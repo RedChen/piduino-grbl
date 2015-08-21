@@ -2778,8 +2778,8 @@ exports.Widget = Widget;
 
 
 },{"./widget.css":"/home/cheton/github/piduino-grbl/web/components/widget/widget.css","classnames":"/home/cheton/github/piduino-grbl/web/vendor/classnames/index.js","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","lodash":"lodash","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widget/widget.css":[function(require,module,exports){
-var css = "[data-component=Widget] .widget{border-radius:3px;border-width:1px;border-style:solid;margin-bottom:20px;background-color:#fff;border-color:#d0d0d0}[data-component=Widget] .widget.widget-no-header .widget-content .widget-title{margin-top:0;font-size:14px;color:#6a6a6a}[data-component=Widget] .widget.widget-no-content .widget-header{border-bottom:none}[data-component=Widget] .widget .widget-header{padding:0 10px;border-bottom:1px solid #fff}[data-component=Widget] .widget .widget-header.widget-header-default{background-color:#fff}[data-component=Widget] .widget .widget-header.widget-header-inverse{background-color:#222}[data-component=Widget] .widget .widget-header .widget-header-title{margin-top:0;font-size:14px;color:#6a6a6a;display:inline-block;vertical-align:middle;margin-bottom:0;line-height:32px}[data-component=Widget] .widget .widget-header .widget-header-title i{font-size:18px;line-height:1;vertical-align:middle}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon,[data-component=Widget] .widget .widget-header .btn-group>a{color:#838383}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:focus,[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:hover,[data-component=Widget] .widget .widget-header .btn-group>a:focus,[data-component=Widget] .widget .widget-header .btn-group>a:hover{color:#505050}[data-component=Widget] .widget .widget-header .btn i{position:relative;top:0;margin-right:2px;font-size:16px;line-height:1}[data-component=Widget] .widget .widget-header .widget-header-toolbar{float:right;width:auto;margin-left:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{position:relative;top:11px;padding:5px;font-size:85%}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label i{font-size:14px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link{padding:0 0 0 10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link:first-child{padding-left:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link i{font-size:28px;line-height:1}@media screen and (max-width:480px){[data-component=Widget] .widget .widget-header .widget-header-toolbar{display:block;position:inherit}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{top:0}}[data-component=Widget] .widget .widget-content{padding:20px}[data-component=Widget] .widget .widget-footer{padding:7px 10px}[data-component=Widget] .widget .widget-footer.widget-footer-default{background-color:#fff}[data-component=Widget] .widget .widget-footer.widget-footer-inverse{background-color:#222}"; (require("browserify-css").createStyle(css, { "href": "components/widget/widget.css"})); module.exports = css;
-},{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/workspace/index.jsx":[function(require,module,exports){
+var css = "[data-component=Widget] .widget{border-radius:3px;border-width:1px;border-style:solid;margin-bottom:20px;background-color:#fff;border-color:#d0d0d0}[data-component=Widget] .widget.widget-no-header .widget-content .widget-title{margin-top:0;font-size:14px;color:#6a6a6a}[data-component=Widget] .widget.widget-no-content .widget-header{border-bottom:none}[data-component=Widget] .widget .widget-header{padding:0 10px;border-bottom:1px solid #fff;line-height:32px}[data-component=Widget] .widget .widget-header.widget-header-default{background-color:#fff}[data-component=Widget] .widget .widget-header.widget-header-inverse{background-color:#222}[data-component=Widget] .widget .widget-header .widget-header-title{margin-top:0;font-size:14px;color:#6a6a6a;display:inline-block;vertical-align:middle;margin-bottom:0}[data-component=Widget] .widget .widget-header .widget-header-title i{font-size:18px;line-height:1;vertical-align:middle}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon,[data-component=Widget] .widget .widget-header .btn-group>a{color:#838383}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:focus,[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:hover,[data-component=Widget] .widget .widget-header .btn-group>a:focus,[data-component=Widget] .widget .widget-header .btn-group>a:hover{color:#505050}[data-component=Widget] .widget .widget-header .btn i{position:relative;top:0;margin-right:2px;font-size:16px;line-height:1}[data-component=Widget] .widget .widget-header .widget-header-toolbar{float:right;width:auto;margin-left:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{position:relative;top:11px;padding:5px;font-size:85%}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label i{font-size:14px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link{padding:0 0 0 10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link:first-child{padding-left:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link i{font-size:28px;line-height:1}@media screen and (max-width:480px){[data-component=Widget] .widget .widget-header .widget-header-toolbar{display:block;position:inherit}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{top:0}}[data-component=Widget] .widget .widget-content{padding:20px}[data-component=Widget] .widget .widget-footer{padding:7px 10px}[data-component=Widget] .widget .widget-footer.widget-footer-default{background-color:#fff}[data-component=Widget] .widget .widget-footer.widget-footer-inverse{background-color:#222}"; (require("browserify-css").createStyle(css, { "href": "components/widget/widget.css"})); module.exports = css;
+},{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/axes.jsx":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2804,13 +2804,79 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Sortable = require('Sortable');
-
-var _Sortable2 = _interopRequireDefault(_Sortable);
-
 var _widget = require('../widget');
 
-require('./workspace.css');
+var AxesWidget = (function (_React$Component) {
+    _inherits(AxesWidget, _React$Component);
+
+    function AxesWidget() {
+        _classCallCheck(this, AxesWidget);
+
+        _get(Object.getPrototypeOf(AxesWidget.prototype), 'constructor', this).apply(this, arguments);
+    }
+
+    _createClass(AxesWidget, [{
+        key: 'render',
+        value: function render() {
+            var options = {
+                header: {
+                    title: _react2['default'].createElement(
+                        'div',
+                        null,
+                        _react2['default'].createElement('i', { className: 'icon ion-levels' }),
+                        ' ',
+                        _react2['default'].createElement(
+                            'span',
+                            null,
+                            _i18next2['default']._('Axes')
+                        )
+                    ),
+                    toolbar: {
+                        buttons: ['toggle']
+                    }
+                },
+                content: _react2['default'].createElement(
+                    'div',
+                    null,
+                    _react2['default'].createElement('p', null)
+                )
+            };
+            return _react2['default'].createElement(_widget.Widget, { options: options });
+        }
+    }]);
+
+    return AxesWidget;
+})(_react2['default'].Component);
+
+exports.AxesWidget = AxesWidget;
+
+
+},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widgets/gcode.jsx":[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _i18next = require('i18next');
+
+var _i18next2 = _interopRequireDefault(_i18next);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _widget = require('../widget');
 
 var GcodeWidget = (function (_React$Component) {
     _inherits(GcodeWidget, _React$Component);
@@ -2855,8 +2921,59 @@ var GcodeWidget = (function (_React$Component) {
     return GcodeWidget;
 })(_react2['default'].Component);
 
-var SerialConsoleWidget = (function (_React$Component2) {
-    _inherits(SerialConsoleWidget, _React$Component2);
+exports.GcodeWidget = GcodeWidget;
+
+
+},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widgets/index.jsx":[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _axes = require('./axes');
+
+var _gcode = require('./gcode');
+
+var _serialConsole = require('./serial-console');
+
+var _webcam = require('./webcam');
+
+exports.AxesWidget = _axes.AxesWidget;
+exports.GcodeWidget = _gcode.GcodeWidget;
+exports.SerialConsoleWidget = _serialConsole.SerialConsoleWidget;
+exports.WebcamWidget = _webcam.WebcamWidget;
+
+
+},{"./axes":"/home/cheton/github/piduino-grbl/web/components/widgets/axes.jsx","./gcode":"/home/cheton/github/piduino-grbl/web/components/widgets/gcode.jsx","./serial-console":"/home/cheton/github/piduino-grbl/web/components/widgets/serial-console.jsx","./webcam":"/home/cheton/github/piduino-grbl/web/components/widgets/webcam.jsx"}],"/home/cheton/github/piduino-grbl/web/components/widgets/serial-console.jsx":[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _i18next = require('i18next');
+
+var _i18next2 = _interopRequireDefault(_i18next);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _widget = require('../widget');
+
+var SerialConsoleWidget = (function (_React$Component) {
+    _inherits(SerialConsoleWidget, _React$Component);
 
     function SerialConsoleWidget() {
         _classCallCheck(this, SerialConsoleWidget);
@@ -2897,50 +3014,38 @@ var SerialConsoleWidget = (function (_React$Component2) {
     return SerialConsoleWidget;
 })(_react2['default'].Component);
 
-var AxesWidget = (function (_React$Component3) {
-    _inherits(AxesWidget, _React$Component3);
+exports.SerialConsoleWidget = SerialConsoleWidget;
 
-    function AxesWidget() {
-        _classCallCheck(this, AxesWidget);
 
-        _get(Object.getPrototypeOf(AxesWidget.prototype), 'constructor', this).apply(this, arguments);
-    }
+},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widgets/webcam.jsx":[function(require,module,exports){
+'use strict';
 
-    _createClass(AxesWidget, [{
-        key: 'render',
-        value: function render() {
-            var options = {
-                header: {
-                    title: _react2['default'].createElement(
-                        'div',
-                        null,
-                        _react2['default'].createElement('i', { className: 'icon ion-levels' }),
-                        ' ',
-                        _react2['default'].createElement(
-                            'span',
-                            null,
-                            _i18next2['default']._('Axes')
-                        )
-                    ),
-                    toolbar: {
-                        buttons: ['toggle']
-                    }
-                },
-                content: _react2['default'].createElement(
-                    'div',
-                    null,
-                    _react2['default'].createElement('p', null)
-                )
-            };
-            return _react2['default'].createElement(_widget.Widget, { options: options });
-        }
-    }]);
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
 
-    return AxesWidget;
-})(_react2['default'].Component);
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var WebcamWidget = (function (_React$Component4) {
-    _inherits(WebcamWidget, _React$Component4);
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _i18next = require('i18next');
+
+var _i18next2 = _interopRequireDefault(_i18next);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _widget = require('../widget');
+
+var WebcamWidget = (function (_React$Component) {
+    _inherits(WebcamWidget, _React$Component);
 
     function WebcamWidget() {
         _classCallCheck(this, WebcamWidget);
@@ -2981,8 +3086,46 @@ var WebcamWidget = (function (_React$Component4) {
     return WebcamWidget;
 })(_react2['default'].Component);
 
-var Workspace = (function (_React$Component5) {
-    _inherits(Workspace, _React$Component5);
+exports.WebcamWidget = WebcamWidget;
+
+
+},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/workspace/index.jsx":[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _i18next = require('i18next');
+
+var _i18next2 = _interopRequireDefault(_i18next);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Sortable = require('Sortable');
+
+var _Sortable2 = _interopRequireDefault(_Sortable);
+
+var _widget = require('../widget');
+
+var _widgets = require('../widgets');
+
+require('./workspace.css');
+
+var Workspace = (function (_React$Component) {
+    _inherits(Workspace, _React$Component);
 
     function Workspace(props) {
         _classCallCheck(this, Workspace);
@@ -3093,8 +3236,8 @@ var Workspace = (function (_React$Component5) {
                             _react2['default'].createElement(
                                 'div',
                                 { className: 'row', ref: 'primary-sidebar', 'data-layout': 'primary-sidebar' },
-                                _react2['default'].createElement(GcodeWidget, { className: 'col-sm-12' }),
-                                _react2['default'].createElement(SerialConsoleWidget, { className: 'col-sm-12' })
+                                _react2['default'].createElement(_widgets.GcodeWidget, { className: 'col-sm-12' }),
+                                _react2['default'].createElement(_widgets.SerialConsoleWidget, { className: 'col-sm-12' })
                             )
                         )
                     ),
@@ -3124,8 +3267,8 @@ var Workspace = (function (_React$Component5) {
                             _react2['default'].createElement(
                                 'div',
                                 { className: 'row', ref: 'secondary-sidebar', 'data-layout': 'secondary-sidebar' },
-                                _react2['default'].createElement(AxesWidget, { className: 'col-sm-12' }),
-                                _react2['default'].createElement(WebcamWidget, { className: 'col-sm-12' })
+                                _react2['default'].createElement(_widgets.AxesWidget, { className: 'col-sm-12' }),
+                                _react2['default'].createElement(_widgets.WebcamWidget, { className: 'col-sm-12' })
                             )
                         )
                     )
@@ -3140,7 +3283,7 @@ var Workspace = (function (_React$Component5) {
 exports.Workspace = Workspace;
 
 
-},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","./workspace.css":"/home/cheton/github/piduino-grbl/web/components/workspace/workspace.css","Sortable":"/home/cheton/github/piduino-grbl/web/vendor/Sortable/Sortable.js","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/workspace/workspace.css":[function(require,module,exports){
+},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","../widgets":"/home/cheton/github/piduino-grbl/web/components/widgets/index.jsx","./workspace.css":"/home/cheton/github/piduino-grbl/web/components/workspace/workspace.css","Sortable":"/home/cheton/github/piduino-grbl/web/vendor/Sortable/Sortable.js","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/workspace/workspace.css":[function(require,module,exports){
 var css = "[data-component=Workspace] .row[data-layout=main-content],[data-component=Workspace] .row[data-layout=primary-sidebar],[data-component=Workspace] .row[data-layout=secondary-sidebar]{padding:15px 0;min-height:500px}"; (require("browserify-css").createStyle(css, { "href": "components/workspace/workspace.css"})); module.exports = css;
 },{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/config/settings.js":[function(require,module,exports){
 'use strict';

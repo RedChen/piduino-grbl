@@ -1,5 +1,5 @@
 # PiDuino-GRBL
 
-PiDuino-GRBL is a web-based GRBL controller using Raspberry Pi and Arduino.
-
+PiDuino-GRBL is a web-based CNC milling controller for the Arduino running [GRBL](https://github.com/grbl/grbl). It runs on an Raspberry Pi or a computer, connecting to the Arduino over a serial connection (e.g. USB port / Serial-to-WiFi module).
+ 
 Powered by [WebAppEngine](https://github.com/cheton/webappengine)

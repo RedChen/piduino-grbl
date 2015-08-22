@@ -8,4 +8,4 @@ PiDuino-GRBL is a web-based CNC milling controller for the [Arduino](https://www
 
 Copyright (c) 2015 Cheton Wu
 
-Licensed under the [MIT License](https://github.com/cheton/piduno-grbl/blob/master/LICENSE).
+Licensed under the [MIT License](LICENSE).

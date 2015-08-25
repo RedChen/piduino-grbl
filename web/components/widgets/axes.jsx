@@ -35,9 +35,9 @@ export default class AxesWidget extends React.Component {
                                             <span className="dimension-unit">mm</span>
                                         </td>
                                         <td className="axis-control">
-                                            <div className="btn-group-vertical btn-group-sm" role="group">
-                                                <button type="button" className="btn btn-default">{i18n._('Go To Zero')}</button>
-                                                <button type="button" className="btn btn-default">{i18n._('Zero Out')}</button>
+                                            <div className="btn-group-vertical btn-group-xs" role="group">
+                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i><span>{i18n._('Go To Zero')}</span></button>
+                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i><span>{i18n._('Zero Out')}</span></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -50,9 +50,9 @@ export default class AxesWidget extends React.Component {
                                             <span className="dimension-unit">mm</span>
                                         </td>
                                         <td className="axis-control">
-                                            <div className="btn-group-vertical btn-group-sm" role="group">
-                                                <button type="button" className="btn btn-default">{i18n._('Go To Zero')}</button>
-                                                <button type="button" className="btn btn-default">{i18n._('Zero Out')}</button>
+                                            <div className="btn-group-vertical btn-group-xs" role="group">
+                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i>{i18n._('Go To Zero')}</button>
+                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i>{i18n._('Zero Out')}</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -65,9 +65,9 @@ export default class AxesWidget extends React.Component {
                                             <span className="dimension-unit">mm</span>
                                         </td>
                                         <td className="axis-control">
-                                            <div className="btn-group-vertical btn-group-sm" role="group">
-                                                <button type="button" className="btn btn-default">{i18n._('Go To Zero')}</button>
-                                                <button type="button" className="btn btn-default">{i18n._('Zero Out')}</button>
+                                            <div className="btn-group-vertical btn-group-xs" role="group">
+                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i>{i18n._('Go To Zero')}</button>
+                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i>{i18n._('Zero Out')}</button>
                                             </div>
                                         </td>
                                     </tr>

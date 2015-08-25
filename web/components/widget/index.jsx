@@ -179,8 +179,6 @@ export default class Widget extends React.Component {
     }
     render() {
         let { options } = this.props;
-        options = options || {};
-        options.containerClass = (options.containerClass || '');
         return (
             <div className={options.containerClass} ref="widgetContainer" data-component="Widget">
                 <div className="widget">
@@ -198,3 +196,10 @@ export default class Widget extends React.Component {
         );
     }
 }
+
+Widget.defaultProps = {
+    options: {}
+};
+Widget.propTypes = {
+    options: React.PropTypes.object
+};

@@ -35,10 +35,14 @@ export default class AxesWidget extends React.Component {
                                             <span className="dimension-unit">mm</span>
                                         </td>
                                         <td className="axis-control">
-                                            <div className="btn-group-vertical btn-group-xs" role="group">
-                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i><span>{i18n._('Go To Zero')}</span></button>
-                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i><span>{i18n._('Zero Out')}</span></button>
-                                            </div>
+                                            <ul className="list-unstyled">
+                                                <li className="axis-control-item">
+                                                    {i18n._('Go To Zero')}
+                                                </li>
+                                                <li className="axis-control-item">
+                                                    {i18n._('Zero Out')}
+                                                </li>
+                                            </ul>
                                         </td>
                                     </tr>
                                     <tr>
@@ -50,10 +54,14 @@ export default class AxesWidget extends React.Component {
                                             <span className="dimension-unit">mm</span>
                                         </td>
                                         <td className="axis-control">
-                                            <div className="btn-group-vertical btn-group-xs" role="group">
-                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i>{i18n._('Go To Zero')}</button>
-                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i>{i18n._('Zero Out')}</button>
-                                            </div>
+                                            <ul className="list-unstyled">
+                                                <li className="axis-control-item">
+                                                    {i18n._('Go To Zero')}
+                                                </li>
+                                                <li className="axis-control-item">
+                                                    {i18n._('Zero Out')}
+                                                </li>
+                                            </ul>
                                         </td>
                                     </tr>
                                     <tr>
@@ -65,10 +73,14 @@ export default class AxesWidget extends React.Component {
                                             <span className="dimension-unit">mm</span>
                                         </td>
                                         <td className="axis-control">
-                                            <div className="btn-group-vertical btn-group-xs" role="group">
-                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i>{i18n._('Go To Zero')}</button>
-                                                <button type="button" className="btn btn-default"><i className="icon ion-levels"></i>{i18n._('Zero Out')}</button>
-                                            </div>
+                                            <ul className="list-unstyled">
+                                                <li className="axis-control-item">
+                                                    {i18n._('Go To Zero')}
+                                                </li>
+                                                <li className="axis-control-item">
+                                                    {i18n._('Zero Out')}
+                                                </li>
+                                            </ul>
                                         </td>
                                     </tr>
                                 </tbody>

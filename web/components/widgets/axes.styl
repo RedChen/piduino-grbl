@@ -51,27 +51,24 @@
             }
         }
         .axis-control {
-            padding: 4px;
             width: 1%;
+            white-space: nowrap;
 
-            .btn {
-                > .icon {
-                    display: block;
-                    font-size: 18px;
-                }
-                > span {
-                    display: none;
+            ul {
+                margin-bottom: 0;
+            }
+
+            .axis-control-item {
+                text-align: center;
+                padding: 0 4px;
+
+                &:hover {
+                    background-color: #ddd;
+                    cursor: pointer;
                 }
             }
-            @media (min-width: 1200px) {
-                .btn {
-                    > .icon {
-                        display: none;
-                    }
-                    > span {
-                        display: block;
-                    }
-                }
+            .axis-control-item + .axis-control-item {
+                border-top: 1px solid #ddd;
             }
         }
     }

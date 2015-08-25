@@ -2247,7 +2247,11 @@ var _reactRouter2 = _interopRequireDefault(_reactRouter);
 
 var _componentsHeader = require('./components/header');
 
+var _componentsHeader2 = _interopRequireDefault(_componentsHeader);
+
 var _componentsWorkspace = require('./components/workspace');
+
+var _componentsWorkspace2 = _interopRequireDefault(_componentsWorkspace);
 
 var App = (function (_React$Component) {
     _inherits(App, _React$Component);
@@ -2268,7 +2272,7 @@ var App = (function (_React$Component) {
             return _react2['default'].createElement(
                 'div',
                 { style: style },
-                _react2['default'].createElement(_componentsHeader.Header, null),
+                _react2['default'].createElement(_componentsHeader2['default'], null),
                 _react2['default'].createElement(_reactRouter.RouteHandler, null)
             );
         }
@@ -2283,8 +2287,8 @@ function run() {
     var routes = _react2['default'].createElement(
         _reactRouter.Route,
         { name: 'app', path: '/', handler: App },
-        _react2['default'].createElement(_reactRouter.DefaultRoute, { handler: _componentsWorkspace.Workspace }),
-        _react2['default'].createElement(_reactRouter.Route, { name: 'workspace', handler: _componentsWorkspace.Workspace })
+        _react2['default'].createElement(_reactRouter.DefaultRoute, { handler: _componentsWorkspace2['default'] }),
+        _react2['default'].createElement(_reactRouter.Route, { name: 'workspace', handler: _componentsWorkspace2['default'] })
     );
     _reactRouter2['default'].run(routes, function (Handler) {
         _react2['default'].render(_react2['default'].createElement(Handler, null), document.querySelector('#components'));
@@ -2317,9 +2321,11 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = require('react-router');
+var _configSettings = require('../../config/settings');
 
-var brand = 'PiDuino-GRBL';
+var _configSettings2 = _interopRequireDefault(_configSettings);
+
+var _reactRouter = require('react-router');
 
 var Header = (function (_React$Component) {
     _inherits(Header, _React$Component);
@@ -2353,7 +2359,7 @@ var Header = (function (_React$Component) {
                         _react2['default'].createElement(
                             'a',
                             { className: 'navbar-brand', href: '#' },
-                            brand
+                            _configSettings2['default'].name
                         )
                     ),
                     _react2['default'].createElement(
@@ -2473,10 +2479,11 @@ var Header = (function (_React$Component) {
     return Header;
 })(_react2['default'].Component);
 
-exports.Header = Header;
+exports['default'] = Header;
+module.exports = exports['default'];
 
 
-},{"i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react","react-router":"/home/cheton/github/piduino-grbl/web/vendor/react-router/build/umd/ReactRouter.js"}],"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx":[function(require,module,exports){
+},{"../../config/settings":"/home/cheton/github/piduino-grbl/web/config/settings.js","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react","react-router":"/home/cheton/github/piduino-grbl/web/vendor/react-router/build/umd/ReactRouter.js"}],"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2774,11 +2781,14 @@ var Widget = (function (_React$Component5) {
     return Widget;
 })(_react2['default'].Component);
 
-exports.Widget = Widget;
+exports['default'] = Widget;
+module.exports = exports['default'];
 
 
 },{"./widget.css":"/home/cheton/github/piduino-grbl/web/components/widget/widget.css","classnames":"/home/cheton/github/piduino-grbl/web/vendor/classnames/index.js","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","lodash":"lodash","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widget/widget.css":[function(require,module,exports){
-var css = "[data-component=Widget] .widget{border-radius:3px;border-width:1px;border-style:solid;margin-bottom:20px;background-color:#fff;border-color:#d0d0d0}[data-component=Widget] .widget.widget-no-header .widget-content .widget-title{margin-top:0;font-size:14px;color:#6a6a6a}[data-component=Widget] .widget.widget-no-content .widget-header{border-bottom:none}[data-component=Widget] .widget .widget-header{padding:0 10px;border-bottom:1px solid #fff;line-height:32px}[data-component=Widget] .widget .widget-header.widget-header-default{background-color:#fff}[data-component=Widget] .widget .widget-header.widget-header-inverse{background-color:#222}[data-component=Widget] .widget .widget-header .widget-header-title{margin-top:0;font-size:14px;color:#6a6a6a;display:inline-block;vertical-align:middle;margin-bottom:0}[data-component=Widget] .widget .widget-header .widget-header-title i{font-size:18px;line-height:1;vertical-align:middle}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon,[data-component=Widget] .widget .widget-header .btn-group>a{color:#838383}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:focus,[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:hover,[data-component=Widget] .widget .widget-header .btn-group>a:focus,[data-component=Widget] .widget .widget-header .btn-group>a:hover{color:#505050}[data-component=Widget] .widget .widget-header .btn i{position:relative;top:0;margin-right:2px;font-size:16px;line-height:1}[data-component=Widget] .widget .widget-header .widget-header-toolbar{float:right;width:auto;margin-left:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{position:relative;top:11px;padding:5px;font-size:85%}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label i{font-size:14px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link{padding:0 0 0 10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link:first-child{padding-left:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link i{font-size:28px;line-height:1}@media screen and (max-width:480px){[data-component=Widget] .widget .widget-header .widget-header-toolbar{display:block;position:inherit}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{top:0}}[data-component=Widget] .widget .widget-content{padding:20px}[data-component=Widget] .widget .widget-footer{padding:7px 10px}[data-component=Widget] .widget .widget-footer.widget-footer-default{background-color:#fff}[data-component=Widget] .widget .widget-footer.widget-footer-inverse{background-color:#222}"; (require("browserify-css").createStyle(css, { "href": "components/widget/widget.css"})); module.exports = css;
+var css = "[data-component=Widget] .widget{border-radius:3px;border-width:1px;border-style:solid;margin-bottom:20px;background-color:#fff;border-color:#d0d0d0}[data-component=Widget] .widget.widget-no-header .widget-content .widget-title{margin-top:0;font-size:14px;color:#6a6a6a}[data-component=Widget] .widget.widget-no-content .widget-header{border-bottom:none}[data-component=Widget] .widget .widget-header{padding:0 10px;border-bottom:1px solid #fff;line-height:32px}[data-component=Widget] .widget .widget-header.widget-header-default{background-color:#fff}[data-component=Widget] .widget .widget-header.widget-header-inverse{background-color:#222}[data-component=Widget] .widget .widget-header .widget-header-title{margin-top:0;font-size:14px;color:#6a6a6a;display:inline-block;vertical-align:middle;margin-bottom:0}[data-component=Widget] .widget .widget-header .widget-header-title i{font-size:18px;line-height:1;vertical-align:middle}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon,[data-component=Widget] .widget .widget-header .btn-group>a{color:#838383}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:focus,[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:hover,[data-component=Widget] .widget .widget-header .btn-group>a:focus,[data-component=Widget] .widget .widget-header .btn-group>a:hover{color:#505050}[data-component=Widget] .widget .widget-header .btn i{position:relative;top:0;margin-right:2px;font-size:16px;line-height:1}[data-component=Widget] .widget .widget-header .widget-header-toolbar{float:right;width:auto;margin-left:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{position:relative;top:11px;padding:5px;font-size:85%}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label i{font-size:14px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link{padding:0 0 0 10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link:first-child{padding-left:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link i{font-size:28px;line-height:1}@media screen and (max-width:480px){[data-component=Widget] .widget .widget-header .widget-header-toolbar{display:block;position:inherit}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{top:0}}[data-component=Widget] .widget .widget-footer.widget-footer-default{background-color:#fff}[data-component=Widget] .widget .widget-footer.widget-footer-inverse{background-color:#222}"; (require("browserify-css").createStyle(css, { "href": "components/widget/widget.css"})); module.exports = css;
+},{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/axes.css":[function(require,module,exports){
+var css = "[data-component=\"Widgets/AxesWidget\"] .axes-display-panel{border-left:none;border-right:none}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-label{font-size:30px;text-align:center;width:60px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position{padding:0 20px;text-align:right;white-space:nowrap}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .integer-part{font-size:30px;width:90px;text-align:right}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .decimal-point,[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .fractional-part{font-size:30px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .dimension-unit{font-size:14px;vertical-align:top;margin-left:8px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-control{padding:4px;width:1%}"; (require("browserify-css").createStyle(css, { "href": "components/widgets/axes.css"})); module.exports = css;
 },{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/axes.jsx":[function(require,module,exports){
 'use strict';
 
@@ -2805,6 +2815,10 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _widget = require('../widget');
+
+var _widget2 = _interopRequireDefault(_widget);
+
+require('./axes.css');
 
 var AxesWidget = (function (_React$Component) {
     _inherits(AxesWidget, _React$Component);
@@ -2837,21 +2851,193 @@ var AxesWidget = (function (_React$Component) {
                 },
                 content: _react2['default'].createElement(
                     'div',
-                    null,
-                    _react2['default'].createElement('p', null)
+                    { 'data-component': 'Widgets/AxesWidget' },
+                    _react2['default'].createElement(
+                        'div',
+                        { className: 'container-fluid axes-display-panel' },
+                        _react2['default'].createElement(
+                            'div',
+                            { className: 'row' },
+                            _react2['default'].createElement(
+                                'table',
+                                { className: 'table-bordered', style: { width: '100%' } },
+                                _react2['default'].createElement(
+                                    'tbody',
+                                    null,
+                                    _react2['default'].createElement(
+                                        'tr',
+                                        null,
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { className: 'axis-label' },
+                                            'X'
+                                        ),
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { className: 'axis-position' },
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'integer-part' },
+                                                '-20'
+                                            ),
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'decimal-point' },
+                                                '.'
+                                            ),
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'fractional-part' },
+                                                '000'
+                                            ),
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'dimension-unit' },
+                                                'mm'
+                                            )
+                                        ),
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { className: 'axis-control' },
+                                            _react2['default'].createElement(
+                                                'div',
+                                                { className: 'btn-group-vertical btn-group-sm', role: 'group' },
+                                                _react2['default'].createElement(
+                                                    'button',
+                                                    { type: 'button', className: 'btn btn-default' },
+                                                    _i18next2['default']._('Go To Zero')
+                                                ),
+                                                _react2['default'].createElement(
+                                                    'button',
+                                                    { type: 'button', className: 'btn btn-default' },
+                                                    _i18next2['default']._('Zero Out')
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    _react2['default'].createElement(
+                                        'tr',
+                                        null,
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { className: 'axis-label' },
+                                            'Y'
+                                        ),
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { className: 'axis-position' },
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'integer-part' },
+                                                '-20'
+                                            ),
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'decimal-point' },
+                                                '.'
+                                            ),
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'fractional-part' },
+                                                '000'
+                                            ),
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'dimension-unit' },
+                                                'mm'
+                                            )
+                                        ),
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { className: 'axis-control' },
+                                            _react2['default'].createElement(
+                                                'div',
+                                                { className: 'btn-group-vertical btn-group-sm', role: 'group' },
+                                                _react2['default'].createElement(
+                                                    'button',
+                                                    { type: 'button', className: 'btn btn-default' },
+                                                    _i18next2['default']._('Go To Zero')
+                                                ),
+                                                _react2['default'].createElement(
+                                                    'button',
+                                                    { type: 'button', className: 'btn btn-default' },
+                                                    _i18next2['default']._('Zero Out')
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    _react2['default'].createElement(
+                                        'tr',
+                                        null,
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { className: 'axis-label' },
+                                            'Z'
+                                        ),
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { className: 'axis-position' },
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'integer-part' },
+                                                '-20'
+                                            ),
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'decimal-point' },
+                                                '.'
+                                            ),
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'fractional-part' },
+                                                '000'
+                                            ),
+                                            _react2['default'].createElement(
+                                                'span',
+                                                { className: 'dimension-unit' },
+                                                'mm'
+                                            )
+                                        ),
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { className: 'axis-control' },
+                                            _react2['default'].createElement(
+                                                'div',
+                                                { className: 'btn-group-vertical btn-group-sm', role: 'group' },
+                                                _react2['default'].createElement(
+                                                    'button',
+                                                    { type: 'button', className: 'btn btn-default' },
+                                                    _i18next2['default']._('Go To Zero')
+                                                ),
+                                                _react2['default'].createElement(
+                                                    'button',
+                                                    { type: 'button', className: 'btn btn-default' },
+                                                    _i18next2['default']._('Zero Out')
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    _react2['default'].createElement('div', { className: 'container-fluid axes-control-panel' })
                 )
             };
-            return _react2['default'].createElement(_widget.Widget, { options: options });
+            return _react2['default'].createElement(_widget2['default'], { options: options });
         }
     }]);
 
     return AxesWidget;
 })(_react2['default'].Component);
 
-exports.AxesWidget = AxesWidget;
+exports['default'] = AxesWidget;
+module.exports = exports['default'];
 
 
-},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widgets/gcode.jsx":[function(require,module,exports){
+},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","./axes.css":"/home/cheton/github/piduino-grbl/web/components/widgets/axes.css","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widgets/gcode.css":[function(require,module,exports){
+var css = ""; (require("browserify-css").createStyle(css, { "href": "components/widgets/gcode.css"})); module.exports = css;
+},{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/gcode.jsx":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2877,6 +3063,10 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _widget = require('../widget');
+
+var _widget2 = _interopRequireDefault(_widget);
+
+require('./gcode.css');
 
 var GcodeWidget = (function (_React$Component) {
     _inherits(GcodeWidget, _React$Component);
@@ -2905,47 +3095,56 @@ var GcodeWidget = (function (_React$Component) {
                         )
                     ),
                     toolbar: {
-                        buttons: ['toggle', 'remove']
+                        buttons: ['toggle']
                     }
                 },
-                content: _react2['default'].createElement(
-                    'div',
-                    null,
-                    _react2['default'].createElement('p', null)
-                )
+                content: _react2['default'].createElement('div', { 'data-component': 'Widgets/GcodeWidget' })
             };
-            return _react2['default'].createElement(_widget.Widget, { options: options });
+            return _react2['default'].createElement(_widget2['default'], { options: options });
         }
     }]);
 
     return GcodeWidget;
 })(_react2['default'].Component);
 
-exports.GcodeWidget = GcodeWidget;
+exports['default'] = GcodeWidget;
+module.exports = exports['default'];
 
 
-},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widgets/index.jsx":[function(require,module,exports){
+},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","./gcode.css":"/home/cheton/github/piduino-grbl/web/components/widgets/gcode.css","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widgets/index.jsx":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 var _axes = require('./axes');
+
+var _axes2 = _interopRequireDefault(_axes);
 
 var _gcode = require('./gcode');
 
+var _gcode2 = _interopRequireDefault(_gcode);
+
 var _serialConsole = require('./serial-console');
+
+var _serialConsole2 = _interopRequireDefault(_serialConsole);
 
 var _webcam = require('./webcam');
 
-exports.AxesWidget = _axes.AxesWidget;
-exports.GcodeWidget = _gcode.GcodeWidget;
-exports.SerialConsoleWidget = _serialConsole.SerialConsoleWidget;
-exports.WebcamWidget = _webcam.WebcamWidget;
+var _webcam2 = _interopRequireDefault(_webcam);
+
+exports.AxesWidget = _axes2['default'];
+exports.GcodeWidget = _gcode2['default'];
+exports.SerialConsoleWidget = _serialConsole2['default'];
+exports.WebcamWidget = _webcam2['default'];
 
 
-},{"./axes":"/home/cheton/github/piduino-grbl/web/components/widgets/axes.jsx","./gcode":"/home/cheton/github/piduino-grbl/web/components/widgets/gcode.jsx","./serial-console":"/home/cheton/github/piduino-grbl/web/components/widgets/serial-console.jsx","./webcam":"/home/cheton/github/piduino-grbl/web/components/widgets/webcam.jsx"}],"/home/cheton/github/piduino-grbl/web/components/widgets/serial-console.jsx":[function(require,module,exports){
+},{"./axes":"/home/cheton/github/piduino-grbl/web/components/widgets/axes.jsx","./gcode":"/home/cheton/github/piduino-grbl/web/components/widgets/gcode.jsx","./serial-console":"/home/cheton/github/piduino-grbl/web/components/widgets/serial-console.jsx","./webcam":"/home/cheton/github/piduino-grbl/web/components/widgets/webcam.jsx"}],"/home/cheton/github/piduino-grbl/web/components/widgets/serial-console.css":[function(require,module,exports){
+var css = ""; (require("browserify-css").createStyle(css, { "href": "components/widgets/serial-console.css"})); module.exports = css;
+},{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/serial-console.jsx":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2971,6 +3170,10 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _widget = require('../widget');
+
+var _widget2 = _interopRequireDefault(_widget);
+
+require('./serial-console.css');
 
 var SerialConsoleWidget = (function (_React$Component) {
     _inherits(SerialConsoleWidget, _React$Component);
@@ -3003,21 +3206,24 @@ var SerialConsoleWidget = (function (_React$Component) {
                 },
                 content: _react2['default'].createElement(
                     'div',
-                    null,
+                    { 'data-component': 'Widgets/SerialConsoleWidget' },
                     _react2['default'].createElement('p', null)
                 )
             };
-            return _react2['default'].createElement(_widget.Widget, { options: options });
+            return _react2['default'].createElement(_widget2['default'], { options: options });
         }
     }]);
 
     return SerialConsoleWidget;
 })(_react2['default'].Component);
 
-exports.SerialConsoleWidget = SerialConsoleWidget;
+exports['default'] = SerialConsoleWidget;
+module.exports = exports['default'];
 
 
-},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widgets/webcam.jsx":[function(require,module,exports){
+},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","./serial-console.css":"/home/cheton/github/piduino-grbl/web/components/widgets/serial-console.css","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widgets/webcam.css":[function(require,module,exports){
+var css = ""; (require("browserify-css").createStyle(css, { "href": "components/widgets/webcam.css"})); module.exports = css;
+},{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/webcam.jsx":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3043,6 +3249,10 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _widget = require('../widget');
+
+var _widget2 = _interopRequireDefault(_widget);
+
+require('./webcam.css');
 
 var WebcamWidget = (function (_React$Component) {
     _inherits(WebcamWidget, _React$Component);
@@ -3073,23 +3283,20 @@ var WebcamWidget = (function (_React$Component) {
                         buttons: ['toggle']
                     }
                 },
-                content: _react2['default'].createElement(
-                    'div',
-                    null,
-                    _react2['default'].createElement('p', null)
-                )
+                content: _react2['default'].createElement('div', { 'data-component': 'Widgets/WebcamWidget' })
             };
-            return _react2['default'].createElement(_widget.Widget, { options: options });
+            return _react2['default'].createElement(_widget2['default'], { options: options });
         }
     }]);
 
     return WebcamWidget;
 })(_react2['default'].Component);
 
-exports.WebcamWidget = WebcamWidget;
+exports['default'] = WebcamWidget;
+module.exports = exports['default'];
 
 
-},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/workspace/index.jsx":[function(require,module,exports){
+},{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","./webcam.css":"/home/cheton/github/piduino-grbl/web/components/widgets/webcam.css","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/workspace/index.jsx":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3119,6 +3326,8 @@ var _Sortable = require('Sortable');
 var _Sortable2 = _interopRequireDefault(_Sortable);
 
 var _widget = require('../widget');
+
+var _widget2 = _interopRequireDefault(_widget);
 
 var _widgets = require('../widgets');
 
@@ -3229,21 +3438,21 @@ var Workspace = (function (_React$Component) {
                     { className: 'row' },
                     _react2['default'].createElement(
                         'div',
-                        { className: 'col-sm-3' },
+                        { className: 'col-sm-3 col-md-3' },
                         _react2['default'].createElement(
                             'div',
                             { className: 'container-fluid' },
                             _react2['default'].createElement(
                                 'div',
                                 { className: 'row', ref: 'primary-sidebar', 'data-layout': 'primary-sidebar' },
-                                _react2['default'].createElement(_widgets.GcodeWidget, { className: 'col-sm-12' }),
-                                _react2['default'].createElement(_widgets.SerialConsoleWidget, { className: 'col-sm-12' })
+                                _react2['default'].createElement(_widgets.GcodeWidget, { className: 'col-sm-12 col-md-12' }),
+                                _react2['default'].createElement(_widgets.SerialConsoleWidget, { className: 'col-sm-12 col-md-12' })
                             )
                         )
                     ),
                     _react2['default'].createElement(
                         'div',
-                        { className: 'col-sm-6' },
+                        { className: 'col-sm-6 col-md-6' },
                         _react2['default'].createElement(
                             'div',
                             { className: 'container-fluid' },
@@ -3253,22 +3462,22 @@ var Workspace = (function (_React$Component) {
                                 _react2['default'].createElement(
                                     'p',
                                     null,
-                                    'Main area'
+                                    'Toolpath'
                                 )
                             )
                         )
                     ),
                     _react2['default'].createElement(
                         'div',
-                        { className: 'col-sm-3' },
+                        { className: 'col-sm-3 col-md-3' },
                         _react2['default'].createElement(
                             'div',
                             { className: 'container-fluid' },
                             _react2['default'].createElement(
                                 'div',
                                 { className: 'row', ref: 'secondary-sidebar', 'data-layout': 'secondary-sidebar' },
-                                _react2['default'].createElement(_widgets.AxesWidget, { className: 'col-sm-12' }),
-                                _react2['default'].createElement(_widgets.WebcamWidget, { className: 'col-sm-12' })
+                                _react2['default'].createElement(_widgets.AxesWidget, { className: 'col-sm-12 col-md-12' }),
+                                _react2['default'].createElement(_widgets.WebcamWidget, { className: 'col-sm-12 col-md-12' })
                             )
                         )
                     )
@@ -3280,7 +3489,8 @@ var Workspace = (function (_React$Component) {
     return Workspace;
 })(_react2['default'].Component);
 
-exports.Workspace = Workspace;
+exports['default'] = Workspace;
+module.exports = exports['default'];
 
 
 },{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","../widgets":"/home/cheton/github/piduino-grbl/web/components/widgets/index.jsx","./workspace.css":"/home/cheton/github/piduino-grbl/web/components/workspace/workspace.css","Sortable":"/home/cheton/github/piduino-grbl/web/vendor/Sortable/Sortable.js","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/workspace/workspace.css":[function(require,module,exports){
@@ -3288,16 +3498,18 @@ var css = "[data-component=Workspace] .row[data-layout=main-content],[data-compo
 },{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/config/settings.js":[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
 var root = window.root;
 
 console.assert(typeof root.app.config === 'object', 'root.app.config is not an object');
 
-var settings = {};
-
-module.exports = settings = {
+var settings = {
     version: root.app.config.version,
     webroot: root.app.config.webroot,
     cdn: root.app.config.cdn,
+    name: 'PiDuino-GRBL',
     log: {
         level: 'debug', // trace, debug, info, warn, error
         logger: 'console', // console
@@ -3380,6 +3592,9 @@ module.exports = settings = {
         }
     }
 };
+
+exports['default'] = settings;
+module.exports = exports['default'];
 
 
 },{}],"/home/cheton/github/piduino-grbl/web/lib/browser.js":[function(require,module,exports){

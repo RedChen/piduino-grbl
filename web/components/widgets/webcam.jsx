@@ -1,8 +1,9 @@
 import i18n from 'i18next';
 import React from 'react';
-import { Widget } from '../widget';
+import Widget from '../widget';
+import './webcam.css';
 
-export class WebcamWidget extends React.Component {
+export default class WebcamWidget extends React.Component {
     render() {
         var options = {
             header: {
@@ -20,8 +21,7 @@ export class WebcamWidget extends React.Component {
                 }
             },
             content: (
-                <div>
-                    <p></p>
+                <div data-component="Widgets/WebcamWidget">
                 </div>
             )
         };

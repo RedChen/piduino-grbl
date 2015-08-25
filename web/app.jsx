@@ -2,8 +2,8 @@ import log from './lib/log';
 import React from 'react';
 import Router from 'react-router';
 import { Route, DefaultRoute, Link, RouteHandler } from 'react-router';
-import { Header } from './components/header';
-import { Workspace } from './components/workspace';
+import Header from './components/header';
+import Workspace from './components/workspace';
 
 export class App extends React.Component {
     render() {

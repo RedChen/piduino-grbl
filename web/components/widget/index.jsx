@@ -2,8 +2,7 @@ import _ from 'lodash';
 import i18n from 'i18next';
 import React from 'react';
 import classNames from 'classnames';
-
-require('./widget.css');
+import './widget.css';
 
 class WidgetHeaderToolbar extends React.Component {
     constructor(props) {
@@ -157,7 +156,7 @@ class WidgetFooter extends React.Component {
     }
 }
 
-export class Widget extends React.Component {
+export default class Widget extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

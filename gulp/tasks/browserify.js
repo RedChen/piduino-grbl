@@ -75,9 +75,10 @@ module.exports = function(options) {
         };
 
         // Add watchify
-        if (options.watch) {
+        if (options.watch) { // Also see at gulp/tasks/watch.js
             bundler = watchify(bundler);
             bundler.on('update', rebundle);
+            bundler.on('log', gutil.log);
         }
 
         // Trigger the initial bundling

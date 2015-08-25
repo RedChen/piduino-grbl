@@ -1,10 +1,9 @@
 import i18n from 'i18next';
 import React from 'react';
-import { Route, Link } from 'react-router';
+import settings from '../../config/settings';
+import { Link } from 'react-router';
 
-var brand = 'PiDuino-GRBL';
-
-export class Header extends React.Component {
+export default class Header extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -16,7 +15,7 @@ export class Header extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="#">{brand}</a>
+                        <a className="navbar-brand" href="#">{settings.name}</a>
                     </div>
                     <div className="navbar-collapse collapse" id="navbar-collapse">
                         <ul className="nav navbar-nav">

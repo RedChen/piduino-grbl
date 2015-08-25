@@ -2,12 +2,11 @@ var root = window.root;
 
 console.assert(typeof root.app.config === 'object', 'root.app.config is not an object');
 
-var settings = {};
-
-module.exports = settings = {
+var settings = {
     version: root.app.config.version,
     webroot: root.app.config.webroot,
     cdn: root.app.config.cdn,
+    name: 'PiDuino-GRBL',
     log: {
         level: 'debug', // trace, debug, info, warn, error
         logger: 'console', // console
@@ -99,3 +98,5 @@ module.exports = settings = {
         }
     }
 };
+
+export default settings;

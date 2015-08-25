@@ -1,8 +1,9 @@
 import i18n from 'i18next';
 import React from 'react';
-import { Widget } from '../widget';
+import Widget from '../widget';
+import './serial-console.css';
 
-export class SerialConsoleWidget extends React.Component {
+export default class SerialConsoleWidget extends React.Component {
     render() {
         var options = {
             header: {
@@ -20,7 +21,7 @@ export class SerialConsoleWidget extends React.Component {
                 }
             },
             content: (
-                <div>
+                <div data-component="Widgets/SerialConsoleWidget">
                     <p></p>
                 </div>
             )

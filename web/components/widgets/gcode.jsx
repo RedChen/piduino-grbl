@@ -1,8 +1,9 @@
 import i18n from 'i18next';
 import React from 'react';
-import { Widget } from '../widget';
+import Widget from '../widget';
+import './gcode.css';
 
-export class GcodeWidget extends React.Component {
+export default class GcodeWidget extends React.Component {
     render() {
         var options = {
             header: {
@@ -16,14 +17,12 @@ export class GcodeWidget extends React.Component {
                 ),
                 toolbar: {
                     buttons: [
-                        'toggle',
-                        'remove'
+                        'toggle'
                     ]
                 }
             },
             content: (
-                <div>
-                    <p></p>
+                <div data-component="Widgets/GcodeWidget">
                 </div>
             )
         };

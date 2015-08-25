@@ -1,17 +1,17 @@
 [data-component="Widgets/AxesWidget"] {
     .axes-display-panel {
-        border-left: none;
-        border-right: none;
+        margin: 0 4px;
 
         .axis-label {
-            padding: 0 10px;
             text-align: center;
             width: 1%;
 
             font-size: 24px;
+            padding: 0 10px;
 
             @media (min-width: 1200px) {
                 font-size: 30px;
+                padding: 0 20px;
             }
 
         }
@@ -52,28 +52,41 @@
         }
         .axis-control {
             width: 1%;
-            white-space: nowrap;
+            padding: 0 4px;
+            text-align: center;
 
-            ul {
-                margin-bottom: 0;
-            }
-
-            .axis-control-item {
-                text-align: center;
-                padding: 0 4px;
-
-                &:hover {
-                    background-color: #ddd;
-                    cursor: pointer;
-                }
-            }
-            .axis-control-item + .axis-control-item {
-                border-top: 1px solid #ddd;
+            .icon {
+                font-size: 12px;
             }
         }
     }
 
     .axes-control-panel {
+        background-color: #eee;
+        padding: 10px;
+
+        .jog-x,
+        .jog-y,
+        .jog-z {
+            font-size: 24px;
+        }
+        .jog-x {
+            padding: 0 5px;
+        }
+        .jog-y {
+            padding: 5px;
+            .jog-y-plus {
+                margin-bottom: 10px;
+            }
+        }
+        .jog-z {
+            padding: 5px;
+            .jog-z-plus {
+                margin-bottom: 10px;
+            }
+        }
+        .jog-params {
+        }
     }
 
 }

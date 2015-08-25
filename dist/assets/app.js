@@ -2793,7 +2793,7 @@ module.exports = exports['default'];
 },{"./widget.css":"/home/cheton/github/piduino-grbl/web/components/widget/widget.css","classnames":"/home/cheton/github/piduino-grbl/web/vendor/classnames/index.js","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","lodash":"lodash","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widget/widget.css":[function(require,module,exports){
 var css = "[data-component=Widget] .widget{border-radius:3px;border-width:1px;border-style:solid;margin-bottom:20px;background-color:#fff;border-color:#d0d0d0}[data-component=Widget] .widget.widget-no-header .widget-content .widget-title{margin-top:0;font-size:14px;color:#6a6a6a}[data-component=Widget] .widget.widget-no-content .widget-header{border-bottom:none}[data-component=Widget] .widget .widget-header{padding:0 10px;border-bottom:1px solid #fff;line-height:32px}[data-component=Widget] .widget .widget-header.widget-header-default{background-color:#fff}[data-component=Widget] .widget .widget-header.widget-header-inverse{background-color:#222}[data-component=Widget] .widget .widget-header .widget-header-title{margin-top:0;font-size:14px;color:#6a6a6a;display:inline-block;vertical-align:middle;margin-bottom:0}[data-component=Widget] .widget .widget-header .widget-header-title i{font-size:18px;line-height:1;vertical-align:middle}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon,[data-component=Widget] .widget .widget-header .btn-group>a{color:#838383}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:focus,[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:hover,[data-component=Widget] .widget .widget-header .btn-group>a:focus,[data-component=Widget] .widget .widget-header .btn-group>a:hover{color:#505050}[data-component=Widget] .widget .widget-header .btn i{position:relative;top:0;margin-right:2px;font-size:16px;line-height:1}[data-component=Widget] .widget .widget-header .widget-header-toolbar{float:right;width:auto;margin-left:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{position:relative;top:11px;padding:5px;font-size:85%}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label i{font-size:14px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link{padding:0 0 0 10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link:first-child{padding-left:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link i{font-size:28px;line-height:1}@media screen and (max-width:480px){[data-component=Widget] .widget .widget-header .widget-header-toolbar{display:block;position:inherit}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{top:0}}[data-component=Widget] .widget .widget-footer.widget-footer-default{background-color:#fff}[data-component=Widget] .widget .widget-footer.widget-footer-inverse{background-color:#222}"; (require("browserify-css").createStyle(css, { "href": "components/widget/widget.css"})); module.exports = css;
 },{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/axes.css":[function(require,module,exports){
-var css = "[data-component=\"Widgets/AxesWidget\"] .axes-display-panel{border-left:none;border-right:none}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-label{padding:0 10px;text-align:center;width:1%;font-size:24px}@media (min-width:1200px){[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-label{font-size:30px}}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position{padding:0 10px;text-align:right;white-space:nowrap}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .decimal-point,[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .fractional-part,[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .integer-part{font-size:24px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .dimension-unit{font-size:12px}@media (min-width:1200px){[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .decimal-point,[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .fractional-part,[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .integer-part{font-size:30px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .dimension-unit{font-size:14px}}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .integer-part{width:90px;text-align:right}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .dimension-unit{vertical-align:top;margin-left:8px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-control{padding:4px;width:1%}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-control .btn>.icon{display:block;font-size:18px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-control .btn>span{display:none}@media (min-width:1200px){[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-control .btn>.icon{display:none}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-control .btn>span{display:block}}"; (require("browserify-css").createStyle(css, { "href": "components/widgets/axes.css"})); module.exports = css;
+var css = "[data-component=\"Widgets/AxesWidget\"] .axes-display-panel{margin:0 4px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-label{text-align:center;width:1%;font-size:24px;padding:0 10px}@media (min-width:1200px){[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-label{font-size:30px;padding:0 20px}}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position{padding:0 10px;text-align:right;white-space:nowrap}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .decimal-point,[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .fractional-part,[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .integer-part{font-size:24px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .dimension-unit{font-size:12px}@media (min-width:1200px){[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .decimal-point,[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .fractional-part,[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .integer-part{font-size:30px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .dimension-unit{font-size:14px}}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .integer-part{width:90px;text-align:right}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-position .dimension-unit{vertical-align:top;margin-left:8px}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-control{width:1%;padding:0 4px;text-align:center}[data-component=\"Widgets/AxesWidget\"] .axes-display-panel .axis-control .icon{font-size:12px}[data-component=\"Widgets/AxesWidget\"] .axes-control-panel{background-color:#eee;padding:10px}[data-component=\"Widgets/AxesWidget\"] .axes-control-panel .jog-x,[data-component=\"Widgets/AxesWidget\"] .axes-control-panel .jog-y,[data-component=\"Widgets/AxesWidget\"] .axes-control-panel .jog-z{font-size:24px}[data-component=\"Widgets/AxesWidget\"] .axes-control-panel .jog-x{padding:0 5px}[data-component=\"Widgets/AxesWidget\"] .axes-control-panel .jog-y{padding:5px}[data-component=\"Widgets/AxesWidget\"] .axes-control-panel .jog-y .jog-y-plus{margin-bottom:10px}[data-component=\"Widgets/AxesWidget\"] .axes-control-panel .jog-z{padding:5px}[data-component=\"Widgets/AxesWidget\"] .axes-control-panel .jog-z .jog-z-plus{margin-bottom:10px}"; (require("browserify-css").createStyle(css, { "href": "components/widgets/axes.css"})); module.exports = css;
 },{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/axes.jsx":[function(require,module,exports){
 'use strict';
 
@@ -2859,13 +2859,13 @@ var AxesWidget = (function (_React$Component) {
                     { 'data-component': 'Widgets/AxesWidget' },
                     _react2['default'].createElement(
                         'div',
-                        { className: 'container-fluid axes-display-panel' },
+                        { className: 'container-fluid' },
                         _react2['default'].createElement(
                             'div',
                             { className: 'row' },
                             _react2['default'].createElement(
                                 'table',
-                                { className: 'table-bordered', style: { width: '100%' } },
+                                { className: 'table-bordered axes-display-panel' },
                                 _react2['default'].createElement(
                                     'tbody',
                                     null,
@@ -2883,7 +2883,7 @@ var AxesWidget = (function (_React$Component) {
                                             _react2['default'].createElement(
                                                 'span',
                                                 { className: 'integer-part' },
-                                                '-20'
+                                                '-000'
                                             ),
                                             _react2['default'].createElement(
                                                 'span',
@@ -2905,28 +2905,9 @@ var AxesWidget = (function (_React$Component) {
                                             'td',
                                             { className: 'axis-control' },
                                             _react2['default'].createElement(
-                                                'div',
-                                                { className: 'btn-group-vertical btn-group-xs', role: 'group' },
-                                                _react2['default'].createElement(
-                                                    'button',
-                                                    { type: 'button', className: 'btn btn-default' },
-                                                    _react2['default'].createElement('i', { className: 'icon ion-levels' }),
-                                                    _react2['default'].createElement(
-                                                        'span',
-                                                        null,
-                                                        _i18next2['default']._('Go To Zero')
-                                                    )
-                                                ),
-                                                _react2['default'].createElement(
-                                                    'button',
-                                                    { type: 'button', className: 'btn btn-default' },
-                                                    _react2['default'].createElement('i', { className: 'icon ion-levels' }),
-                                                    _react2['default'].createElement(
-                                                        'span',
-                                                        null,
-                                                        _i18next2['default']._('Zero Out')
-                                                    )
-                                                )
+                                                'button',
+                                                { type: 'button', className: 'btn btn-sm btn-default' },
+                                                _react2['default'].createElement('i', { className: 'glyphicon glyphicon-list' })
                                             )
                                         )
                                     ),
@@ -2944,7 +2925,7 @@ var AxesWidget = (function (_React$Component) {
                                             _react2['default'].createElement(
                                                 'span',
                                                 { className: 'integer-part' },
-                                                '-20'
+                                                '-000'
                                             ),
                                             _react2['default'].createElement(
                                                 'span',
@@ -2966,20 +2947,9 @@ var AxesWidget = (function (_React$Component) {
                                             'td',
                                             { className: 'axis-control' },
                                             _react2['default'].createElement(
-                                                'div',
-                                                { className: 'btn-group-vertical btn-group-xs', role: 'group' },
-                                                _react2['default'].createElement(
-                                                    'button',
-                                                    { type: 'button', className: 'btn btn-default' },
-                                                    _react2['default'].createElement('i', { className: 'icon ion-levels' }),
-                                                    _i18next2['default']._('Go To Zero')
-                                                ),
-                                                _react2['default'].createElement(
-                                                    'button',
-                                                    { type: 'button', className: 'btn btn-default' },
-                                                    _react2['default'].createElement('i', { className: 'icon ion-levels' }),
-                                                    _i18next2['default']._('Zero Out')
-                                                )
+                                                'button',
+                                                { type: 'button', className: 'btn btn-sm btn-default' },
+                                                _react2['default'].createElement('i', { className: 'glyphicon glyphicon-list' })
                                             )
                                         )
                                     ),
@@ -2997,7 +2967,7 @@ var AxesWidget = (function (_React$Component) {
                                             _react2['default'].createElement(
                                                 'span',
                                                 { className: 'integer-part' },
-                                                '-20'
+                                                '-000'
                                             ),
                                             _react2['default'].createElement(
                                                 'span',
@@ -3019,19 +2989,191 @@ var AxesWidget = (function (_React$Component) {
                                             'td',
                                             { className: 'axis-control' },
                                             _react2['default'].createElement(
-                                                'div',
-                                                { className: 'btn-group-vertical btn-group-xs', role: 'group' },
+                                                'button',
+                                                { type: 'button', className: 'btn btn-sm btn-default' },
+                                                _react2['default'].createElement('i', { className: 'glyphicon glyphicon-list' })
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        _react2['default'].createElement(
+                            'div',
+                            { className: 'row' },
+                            _react2['default'].createElement(
+                                'div',
+                                { className: 'axes-control-panel' },
+                                _react2['default'].createElement(
+                                    'table',
+                                    null,
+                                    _react2['default'].createElement(
+                                        'tbody',
+                                        null,
+                                        _react2['default'].createElement(
+                                            'tr',
+                                            null,
+                                            _react2['default'].createElement(
+                                                'td',
+                                                { className: 'jog-x' },
                                                 _react2['default'].createElement(
                                                     'button',
-                                                    { type: 'button', className: 'btn btn-default' },
-                                                    _react2['default'].createElement('i', { className: 'icon ion-levels' }),
-                                                    _i18next2['default']._('Go To Zero')
+                                                    { type: 'button', className: 'btn btn-default jog-x-minus' },
+                                                    'X-'
+                                                )
+                                            ),
+                                            _react2['default'].createElement(
+                                                'td',
+                                                { className: 'jog-y' },
+                                                _react2['default'].createElement(
+                                                    'div',
+                                                    { className: 'btn-group-vertical' },
+                                                    _react2['default'].createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-primary jog-y-plus' },
+                                                        'Y+',
+                                                        _react2['default'].createElement('i', { className: 'icon ion-arrow-up' })
+                                                    ),
+                                                    _react2['default'].createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-primary jog-y-minus' },
+                                                        'Y-',
+                                                        _react2['default'].createElement('i', { className: 'icon ion-arrow-down' })
+                                                    )
+                                                )
+                                            ),
+                                            _react2['default'].createElement(
+                                                'td',
+                                                { className: 'jog-x' },
+                                                _react2['default'].createElement(
+                                                    'button',
+                                                    { type: 'button', className: 'btn btn-default jog-x-plus' },
+                                                    'X+'
+                                                )
+                                            ),
+                                            _react2['default'].createElement(
+                                                'td',
+                                                { className: 'jog-z' },
+                                                _react2['default'].createElement(
+                                                    'div',
+                                                    { className: 'btn-group-vertical' },
+                                                    _react2['default'].createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-danger jog-z-plus' },
+                                                        'Z+'
+                                                    ),
+                                                    _react2['default'].createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-danger jog-z-minus' },
+                                                        'Z-'
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                ),
+                                _react2['default'].createElement(
+                                    'div',
+                                    { className: 'form-group' },
+                                    _react2['default'].createElement(
+                                        'label',
+                                        { className: 'control-label' },
+                                        'Feed rate:'
+                                    ),
+                                    _react2['default'].createElement(
+                                        'select',
+                                        { className: 'form-control' },
+                                        _react2['default'].createElement(
+                                            'option',
+                                            null,
+                                            '500'
+                                        ),
+                                        _react2['default'].createElement(
+                                            'option',
+                                            null,
+                                            '1000'
+                                        ),
+                                        _react2['default'].createElement(
+                                            'option',
+                                            null,
+                                            '1500'
+                                        )
+                                    )
+                                ),
+                                _react2['default'].createElement(
+                                    'div',
+                                    { className: 'form-group' },
+                                    _react2['default'].createElement(
+                                        'label',
+                                        { className: 'control-label' },
+                                        'Distance:'
+                                    ),
+                                    _react2['default'].createElement(
+                                        'select',
+                                        { className: 'form-control' },
+                                        _react2['default'].createElement(
+                                            'option',
+                                            null,
+                                            '500'
+                                        ),
+                                        _react2['default'].createElement(
+                                            'option',
+                                            null,
+                                            '1000'
+                                        ),
+                                        _react2['default'].createElement(
+                                            'option',
+                                            null,
+                                            '1500'
+                                        )
+                                    )
+                                ),
+                                _react2['default'].createElement(
+                                    'div',
+                                    { className: 'form-group' },
+                                    _react2['default'].createElement(
+                                        'div',
+                                        { className: 'btn-group', role: 'group' },
+                                        _react2['default'].createElement(
+                                            'button',
+                                            { type: 'button', className: 'btn btn-sm btn-default' },
+                                            _i18next2['default']._('Go To Zero')
+                                        ),
+                                        _react2['default'].createElement(
+                                            'button',
+                                            { type: 'button', className: 'btn btn-sm btn-default' },
+                                            _i18next2['default']._('Zero Out')
+                                        ),
+                                        _react2['default'].createElement(
+                                            'div',
+                                            { className: 'btn-group', role: 'group' },
+                                            _react2['default'].createElement(
+                                                'button',
+                                                { type: 'button', className: 'btn btn-sm btn-default dropdown-toggle', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+                                                _i18next2['default']._('More'),
+                                                ' ',
+                                                _react2['default'].createElement('span', { className: 'caret' })
+                                            ),
+                                            _react2['default'].createElement(
+                                                'ul',
+                                                { className: 'dropdown-menu' },
+                                                _react2['default'].createElement(
+                                                    'li',
+                                                    null,
+                                                    _react2['default'].createElement(
+                                                        'a',
+                                                        { href: '#' },
+                                                        _i18next2['default']._('Toggle inch/mm')
+                                                    )
                                                 ),
                                                 _react2['default'].createElement(
-                                                    'button',
-                                                    { type: 'button', className: 'btn btn-default' },
-                                                    _react2['default'].createElement('i', { className: 'icon ion-levels' }),
-                                                    _i18next2['default']._('Zero Out')
+                                                    'li',
+                                                    null,
+                                                    _react2['default'].createElement(
+                                                        'a',
+                                                        { href: '#' },
+                                                        _i18next2['default']._('Homing Sequence')
+                                                    )
                                                 )
                                             )
                                         )
@@ -3039,8 +3181,7 @@ var AxesWidget = (function (_React$Component) {
                                 )
                             )
                         )
-                    ),
-                    _react2['default'].createElement('div', { className: 'container-fluid axes-control-panel' })
+                    )
                 )
             };
             return _react2['default'].createElement(_widget2['default'], { options: options });
@@ -3457,7 +3598,7 @@ var Workspace = (function (_React$Component) {
                     { className: 'row' },
                     _react2['default'].createElement(
                         'div',
-                        { className: 'col-xs-4 col-sm-4 col-md-3 col-lg-3' },
+                        { className: 'col-xs-4 col-sm-3' },
                         _react2['default'].createElement(
                             'div',
                             { className: 'container-fluid' },
@@ -3471,7 +3612,7 @@ var Workspace = (function (_React$Component) {
                     ),
                     _react2['default'].createElement(
                         'div',
-                        { className: 'col-xs-4 col-sm-4 col-md-6 col-lg-6' },
+                        { className: 'col-xs-4 col-sm-6' },
                         _react2['default'].createElement(
                             'div',
                             { className: 'container-fluid' },
@@ -3488,7 +3629,7 @@ var Workspace = (function (_React$Component) {
                     ),
                     _react2['default'].createElement(
                         'div',
-                        { className: 'col-xs-4 col-sm-4 col-md-3 col-lg-3' },
+                        { className: 'col-xs-4 col-sm-3' },
                         _react2['default'].createElement(
                             'div',
                             { className: 'container-fluid' },

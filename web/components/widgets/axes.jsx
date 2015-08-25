@@ -22,72 +22,107 @@ export default class AxesWidget extends React.Component {
             },
             content: (
                 <div data-component="Widgets/AxesWidget">
-                    <div className="container-fluid axes-display-panel">
+                    <div className="container-fluid">
                         <div className="row">
-                            <table className="table-bordered" style={{width:'100%'}}>
+                            <table className="table-bordered axes-display-panel">
                                 <tbody>
                                     <tr>
                                         <td className="axis-label">X</td>
                                         <td className="axis-position">
-                                            <span className="integer-part">-20</span>
+                                            <span className="integer-part">-000</span>
                                             <span className="decimal-point">.</span>
                                             <span className="fractional-part">000</span>
                                             <span className="dimension-unit">mm</span>
                                         </td>
                                         <td className="axis-control">
-                                            <ul className="list-unstyled">
-                                                <li className="axis-control-item">
-                                                    {i18n._('Go To Zero')}
-                                                </li>
-                                                <li className="axis-control-item">
-                                                    {i18n._('Zero Out')}
-                                                </li>
-                                            </ul>
+                                            <button type="button" className="btn btn-sm btn-default"><i className="glyphicon glyphicon-list"></i></button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td className="axis-label">Y</td>
                                         <td className="axis-position">
-                                            <span className="integer-part">-20</span>
+                                            <span className="integer-part">-000</span>
                                             <span className="decimal-point">.</span>
                                             <span className="fractional-part">000</span>
                                             <span className="dimension-unit">mm</span>
                                         </td>
                                         <td className="axis-control">
-                                            <ul className="list-unstyled">
-                                                <li className="axis-control-item">
-                                                    {i18n._('Go To Zero')}
-                                                </li>
-                                                <li className="axis-control-item">
-                                                    {i18n._('Zero Out')}
-                                                </li>
-                                            </ul>
+                                            <button type="button" className="btn btn-sm btn-default"><i className="glyphicon glyphicon-list"></i></button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td className="axis-label">Z</td>
                                         <td className="axis-position">
-                                            <span className="integer-part">-20</span>
+                                            <span className="integer-part">-000</span>
                                             <span className="decimal-point">.</span>
                                             <span className="fractional-part">000</span>
                                             <span className="dimension-unit">mm</span>
                                         </td>
                                         <td className="axis-control">
-                                            <ul className="list-unstyled">
-                                                <li className="axis-control-item">
-                                                    {i18n._('Go To Zero')}
-                                                </li>
-                                                <li className="axis-control-item">
-                                                    {i18n._('Zero Out')}
-                                                </li>
-                                            </ul>
+                                            <button type="button" className="btn btn-sm btn-default"><i className="glyphicon glyphicon-list"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <div className="container-fluid axes-control-panel">
+                        <div className="row">
+                            <div className="axes-control-panel">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td className="jog-x">
+                                                <button type="button" className="btn btn-default jog-x-minus">X-</button>
+                                            </td>
+                                            <td className="jog-y">
+                                                <div className="btn-group-vertical">
+                                                    <button type="button" className="btn btn-primary jog-y-plus">Y+<i className="icon ion-arrow-up"></i></button>
+                                                    <button type="button" className="btn btn-primary jog-y-minus">Y-<i className="icon ion-arrow-down"></i></button>
+                                                </div>
+                                            </td>
+                                            <td className="jog-x">
+                                                <button type="button" className="btn btn-default jog-x-plus">X+</button>
+                                            </td>
+                                            <td className="jog-z">
+                                                <div className="btn-group-vertical">
+                                                    <button type="button" className="btn btn-danger jog-z-plus">Z+</button>
+                                                    <button type="button" className="btn btn-danger jog-z-minus">Z-</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div className="form-group">
+                                    <label className="control-label">Feed rate:</label>
+                                    <select className="form-control">
+                                        <option>500</option>
+                                        <option>1000</option>
+                                        <option>1500</option>
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label className="control-label">Distance:</label>
+                                    <select className="form-control">
+                                        <option>500</option>
+                                        <option>1000</option>
+                                        <option>1500</option>
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <div className="btn-group" role="group">
+                                        <button type="button" className="btn btn-sm btn-default">{i18n._('Go To Zero')}</button>
+                                        <button type="button" className="btn btn-sm btn-default">{i18n._('Zero Out')}</button>
+
+                                        <div className="btn-group" role="group">
+                                            <button type="button" className="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{i18n._('More')}&nbsp;<span className="caret"></span></button>
+                                            <ul className="dropdown-menu">
+                                                <li><a href="#">{i18n._('Toggle inch/mm')}</a></li>
+                                                <li><a href="#">{i18n._('Homing Sequence')}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )

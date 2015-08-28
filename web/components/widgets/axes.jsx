@@ -88,30 +88,32 @@ export default class AxesWidget extends React.Component {
                             </table>
                         </div>
                         <div className="row control-panel">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td className="jog-x">
-                                            <button type="button" className="btn btn-default jog-x-minus">X-</button>
-                                        </td>
-                                        <td className="jog-y">
-                                            <div className="btn-group-vertical">
-                                                <button type="button" className="btn btn-primary jog-y-plus">Y+<i className="icon ion-arrow-up"></i></button>
-                                                <button type="button" className="btn btn-primary jog-y-minus">Y-<i className="icon ion-arrow-down"></i></button>
-                                            </div>
-                                        </td>
-                                        <td className="jog-x">
-                                            <button type="button" className="btn btn-default jog-x-plus">X+</button>
-                                        </td>
-                                        <td className="jog-z">
-                                            <div className="btn-group-vertical">
-                                                <button type="button" className="btn btn-danger jog-z-plus">Z+</button>
-                                                <button type="button" className="btn btn-danger jog-z-minus">Z-</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div className="form-group">
+                                <table className="table-centered">
+                                    <tbody>
+                                        <tr>
+                                            <td className="jog-x">
+                                                <button type="button" className="btn btn-default jog-x-minus">X-</button>
+                                            </td>
+                                            <td className="jog-y">
+                                                <div className="btn-group-vertical">
+                                                    <button type="button" className="btn btn-primary jog-y-plus">Y+<i className="icon ion-arrow-up"></i></button>
+                                                    <button type="button" className="btn btn-primary jog-y-minus">Y-<i className="icon ion-arrow-down"></i></button>
+                                                </div>
+                                            </td>
+                                            <td className="jog-x">
+                                                <button type="button" className="btn btn-default jog-x-plus">X+</button>
+                                            </td>
+                                            <td className="jog-z">
+                                                <div className="btn-group-vertical">
+                                                    <button type="button" className="btn btn-danger jog-z-plus">Z+</button>
+                                                    <button type="button" className="btn btn-danger jog-z-minus">Z-</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div className="form-group">
                                 <label className="control-label">Feed rate:</label>
                                 <Select

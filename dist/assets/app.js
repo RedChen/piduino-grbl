@@ -4029,7 +4029,7 @@ module.exports = exports['default'];
 },{"./widget.css":"/home/cheton/github/piduino-grbl/web/components/widget/widget.css","classnames":"/home/cheton/github/piduino-grbl/web/vendor/classnames/index.js","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","lodash":"lodash","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/widget/widget.css":[function(require,module,exports){
 var css = "[data-component=Widget] .widget{border-radius:3px;border-width:1px;border-style:solid;margin-bottom:20px;background-color:#fff;border-color:#d0d0d0}[data-component=Widget] .widget.widget-no-header .widget-content .widget-title{margin-top:0;font-size:14px;color:#333}[data-component=Widget] .widget.widget-no-content .widget-header{border-bottom:none}[data-component=Widget] .widget .widget-header{padding:0 10px;border-bottom:1px solid #fff;line-height:32px}[data-component=Widget] .widget .widget-header.widget-header-default{background-color:#fff}[data-component=Widget] .widget .widget-header.widget-header-inverse{background-color:#222}[data-component=Widget] .widget .widget-header .widget-header-title{margin-top:0;font-size:14px;font-weight:700;color:#6a6a6a;display:inline-block;vertical-align:middle;margin-bottom:0}[data-component=Widget] .widget .widget-header .widget-header-title i{font-size:18px;line-height:1;vertical-align:middle}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon,[data-component=Widget] .widget .widget-header .btn-group>a{color:#838383}[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:focus,[data-component=Widget] .widget .widget-header .btn-group .dropdown-toggle .icon:hover,[data-component=Widget] .widget .widget-header .btn-group>a:focus,[data-component=Widget] .widget .widget-header .btn-group>a:hover{color:#505050}[data-component=Widget] .widget .widget-header .btn i{position:relative;top:0;margin-right:2px;font-size:16px;line-height:1}[data-component=Widget] .widget .widget-header .widget-header-toolbar{float:right;width:auto;margin-left:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{position:relative;top:11px;padding:5px;font-size:85%}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label i{font-size:14px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link{padding:0 0 0 10px}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link:first-child{padding-left:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .btn-link i{font-size:28px;line-height:1}@media screen and (max-width:480px){[data-component=Widget] .widget .widget-header .widget-header-toolbar{display:block;position:inherit}[data-component=Widget] .widget .widget-header .widget-header-toolbar .badge{margin-top:0}[data-component=Widget] .widget .widget-header .widget-header-toolbar .label{top:0}}[data-component=Widget] .widget .widget-footer.widget-footer-default{background-color:#fff}[data-component=Widget] .widget .widget-footer.widget-footer-inverse{background-color:#222}"; (require("browserify-css").createStyle(css, { "href": "components/widget/widget.css"})); module.exports = css;
 },{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/axes.css":[function(require,module,exports){
-var css = "[data-component=\"Widgets/AxesWidget\"] .display-panel{padding:0 5px 5px;border-bottom:1px solid #ddd}[data-component=\"Widgets/AxesWidget\"] .display-panel table .table-header{text-align:center;border-bottom-width:1px;padding:4px 2px}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-label{text-align:center;font-size:24px;padding:0 10px;width:1%}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position{padding:0 5px 10px;text-align:right;white-space:nowrap;position:relative}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .decimal-point,[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .fractional-part,[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .integer-part{font-size:24px}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .integer-part{width:90px;text-align:right}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .dimension-unit{font-size:12px;position:absolute;right:5px;bottom:0}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-control{width:1%;padding:0 4px;text-align:center}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-control .icon{font-size:12px}[data-component=\"Widgets/AxesWidget\"] .control-panel{background-color:#eee;padding:10px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-x,[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-y,[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-z{font-size:24px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-x{padding:0 5px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-y{padding:5px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-y .jog-y-plus{margin-bottom:10px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-z{padding:5px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-z .jog-z-plus{margin-bottom:10px}[data-component=\"Widgets/AxesWidget\"] .control-panel .form-group:last-child{margin-bottom:0}"; (require("browserify-css").createStyle(css, { "href": "components/widgets/axes.css"})); module.exports = css;
+var css = "[data-component=\"Widgets/AxesWidget\"] .display-panel{padding:0 5px 5px;border-bottom:1px solid #ddd}[data-component=\"Widgets/AxesWidget\"] .display-panel table .table-header{text-align:center;border-bottom-width:1px;padding:4px 2px}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-label{text-align:center;font-size:24px;padding:0 10px;width:1%}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position{padding:0 5px 10px;text-align:right;white-space:nowrap;position:relative}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .decimal-point,[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .fractional-part,[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .integer-part{font-size:24px}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .integer-part{width:90px;text-align:right}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-position .dimension-unit{font-size:12px;position:absolute;right:5px;bottom:0}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-control{width:1%;padding:0 4px;text-align:center}[data-component=\"Widgets/AxesWidget\"] .display-panel .axis-control .icon{font-size:12px}[data-component=\"Widgets/AxesWidget\"] .control-panel{background-color:#eee;padding:10px}[data-component=\"Widgets/AxesWidget\"] .control-panel .table-centered{margin:0 auto}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-x,[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-y,[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-z{font-size:24px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-x{padding:0 5px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-y{padding:5px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-y .jog-y-plus{margin-bottom:10px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-z{padding:5px}[data-component=\"Widgets/AxesWidget\"] .control-panel .jog-z .jog-z-plus{margin-bottom:10px}[data-component=\"Widgets/AxesWidget\"] .control-panel .form-group:last-child{margin-bottom:0}"; (require("browserify-css").createStyle(css, { "href": "components/widgets/axes.css"})); module.exports = css;
 },{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/axes.jsx":[function(require,module,exports){
 'use strict';
 
@@ -4317,67 +4317,71 @@ var AxesWidget = (function (_React$Component) {
                             'div',
                             { className: 'row control-panel' },
                             _react2['default'].createElement(
-                                'table',
-                                null,
+                                'div',
+                                { className: 'form-group' },
                                 _react2['default'].createElement(
-                                    'tbody',
-                                    null,
+                                    'table',
+                                    { className: 'table-centered' },
                                     _react2['default'].createElement(
-                                        'tr',
+                                        'tbody',
                                         null,
                                         _react2['default'].createElement(
-                                            'td',
-                                            { className: 'jog-x' },
+                                            'tr',
+                                            null,
                                             _react2['default'].createElement(
-                                                'button',
-                                                { type: 'button', className: 'btn btn-default jog-x-minus' },
-                                                'X-'
-                                            )
-                                        ),
-                                        _react2['default'].createElement(
-                                            'td',
-                                            { className: 'jog-y' },
-                                            _react2['default'].createElement(
-                                                'div',
-                                                { className: 'btn-group-vertical' },
+                                                'td',
+                                                { className: 'jog-x' },
                                                 _react2['default'].createElement(
                                                     'button',
-                                                    { type: 'button', className: 'btn btn-primary jog-y-plus' },
-                                                    'Y+',
-                                                    _react2['default'].createElement('i', { className: 'icon ion-arrow-up' })
-                                                ),
-                                                _react2['default'].createElement(
-                                                    'button',
-                                                    { type: 'button', className: 'btn btn-primary jog-y-minus' },
-                                                    'Y-',
-                                                    _react2['default'].createElement('i', { className: 'icon ion-arrow-down' })
+                                                    { type: 'button', className: 'btn btn-default jog-x-minus' },
+                                                    'X-'
                                                 )
-                                            )
-                                        ),
-                                        _react2['default'].createElement(
-                                            'td',
-                                            { className: 'jog-x' },
+                                            ),
                                             _react2['default'].createElement(
-                                                'button',
-                                                { type: 'button', className: 'btn btn-default jog-x-plus' },
-                                                'X+'
-                                            )
-                                        ),
-                                        _react2['default'].createElement(
-                                            'td',
-                                            { className: 'jog-z' },
+                                                'td',
+                                                { className: 'jog-y' },
+                                                _react2['default'].createElement(
+                                                    'div',
+                                                    { className: 'btn-group-vertical' },
+                                                    _react2['default'].createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-primary jog-y-plus' },
+                                                        'Y+',
+                                                        _react2['default'].createElement('i', { className: 'icon ion-arrow-up' })
+                                                    ),
+                                                    _react2['default'].createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-primary jog-y-minus' },
+                                                        'Y-',
+                                                        _react2['default'].createElement('i', { className: 'icon ion-arrow-down' })
+                                                    )
+                                                )
+                                            ),
                                             _react2['default'].createElement(
-                                                'div',
-                                                { className: 'btn-group-vertical' },
+                                                'td',
+                                                { className: 'jog-x' },
                                                 _react2['default'].createElement(
                                                     'button',
-                                                    { type: 'button', className: 'btn btn-danger jog-z-plus' },
-                                                    'Z+'
-                                                ),
+                                                    { type: 'button', className: 'btn btn-default jog-x-plus' },
+                                                    'X+'
+                                                )
+                                            ),
+                                            _react2['default'].createElement(
+                                                'td',
+                                                { className: 'jog-z' },
                                                 _react2['default'].createElement(
-                                                    'button',
-                                                    { type: 'button', className: 'btn btn-danger jog-z-minus' },
-                                                    'Z-'
+                                                    'div',
+                                                    { className: 'btn-group-vertical' },
+                                                    _react2['default'].createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-danger jog-z-plus' },
+                                                        'Z+'
+                                                    ),
+                                                    _react2['default'].createElement(
+                                                        'button',
+                                                        { type: 'button', className: 'btn btn-danger jog-z-minus' },
+                                                        'Z-'
+                                                    )
                                                 )
                                             )
                                         )

@@ -6,6 +6,7 @@ import './webcam.css';
 export default class WebcamWidget extends React.Component {
     render() {
         var options = {
+            width: 300,
             header: {
                 title: (
                     <div>

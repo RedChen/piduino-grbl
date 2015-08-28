@@ -1,4 +1,17 @@
 [data-component="Workspace"] {
+    .row[data-layout="primary-sidebar"] {
+        float: left;
+        @media (max-width: 767px) {
+            float: none;
+        }
+    }
+    .row[data-layout="secondary-sidebar"] {
+        float: right;
+        @media (max-width: 767px) {
+            float: none;
+        }
+    }
+
     .row[data-layout="main-content"],
     .row[data-layout="primary-sidebar"],
     .row[data-layout="secondary-sidebar"] {

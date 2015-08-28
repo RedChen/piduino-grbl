@@ -1,19 +1,14 @@
 [data-component="Widgets/AxesWidget"] {
-    .axes-display-panel {
-        margin: 0 4px;
+    .display-panel {
+        padding: 0 5px 5px 5px;
+        border-bottom: 1px solid #ddd;
 
         .axis-label {
             text-align: center;
             width: 1%;
 
-            font-size: 24px;
+            font-size: 30px;
             padding: 0 10px;
-
-            @media (min-width: 1200px) {
-                font-size: 30px;
-                padding: 0 20px;
-            }
-
         }
         .axis-position {
             padding: 0 10px;
@@ -23,21 +18,10 @@
             .integer-part,
             .decimal-point,
             .fractional-part {
-                font-size: 24px;
+                font-size: 30px;
             }
             .dimension-unit {
-                font-size: 12px;
-            }
-
-            @media (min-width: 1200px) {
-                .integer-part,
-                .decimal-point,
-                .fractional-part {
-                    font-size: 30px;
-                }
-                .dimension-unit {
-                    font-size: 14px;
-                }
+                font-size: 14px;
             }
 
             .integer-part {
@@ -47,7 +31,6 @@
 
             .dimension-unit {
                 vertical-align: top;
-                margin-left: 8px;
             }
         }
         .axis-control {
@@ -61,7 +44,7 @@
         }
     }
 
-    .axes-control-panel {
+    .control-panel {
         background-color: #eee;
         padding: 10px;
 
@@ -85,7 +68,9 @@
                 margin-bottom: 10px;
             }
         }
-        .jog-params {
+
+        .form-group:last-child {
+            margin-bottom: 0;
         }
     }
 

@@ -1,11 +1,17 @@
 import i18n from 'i18next';
 import React from 'react';
+import Select from 'react-select';
 import Widget from '../widget';
 import './axes.css';
 
 export default class AxesWidget extends React.Component {
+    changeFeedRate() {
+    }
+    changeDistance() {
+    }
     render() {
         var options = {
+            width: 300,
             header: {
                 title: (
                     <div>
@@ -23,8 +29,8 @@ export default class AxesWidget extends React.Component {
             content: (
                 <div data-component="Widgets/AxesWidget">
                     <div className="container-fluid">
-                        <div className="row">
-                            <table className="table-bordered axes-display-panel">
+                        <div className="row display-panel">
+                            <table className="table-bordered">
                                 <tbody>
                                     <tr>
                                         <td className="axis-label">X</td>
@@ -32,7 +38,9 @@ export default class AxesWidget extends React.Component {
                                             <span className="integer-part">-000</span>
                                             <span className="decimal-point">.</span>
                                             <span className="fractional-part">000</span>
+                                            <span>&nbsp;</span>
                                             <span className="dimension-unit">mm</span>
+                                            <span>&nbsp;</span>
                                         </td>
                                         <td className="axis-control">
                                             <button type="button" className="btn btn-sm btn-default"><i className="glyphicon glyphicon-list"></i></button>
@@ -44,7 +52,9 @@ export default class AxesWidget extends React.Component {
                                             <span className="integer-part">-000</span>
                                             <span className="decimal-point">.</span>
                                             <span className="fractional-part">000</span>
+                                            <span>&nbsp;</span>
                                             <span className="dimension-unit">mm</span>
+                                            <span>&nbsp;</span>
                                         </td>
                                         <td className="axis-control">
                                             <button type="button" className="btn btn-sm btn-default"><i className="glyphicon glyphicon-list"></i></button>
@@ -56,7 +66,9 @@ export default class AxesWidget extends React.Component {
                                             <span className="integer-part">-000</span>
                                             <span className="decimal-point">.</span>
                                             <span className="fractional-part">000</span>
+                                            <span>&nbsp;</span>
                                             <span className="dimension-unit">mm</span>
+                                            <span>&nbsp;</span>
                                         </td>
                                         <td className="axis-control">
                                             <button type="button" className="btn btn-sm btn-default"><i className="glyphicon glyphicon-list"></i></button>
@@ -65,60 +77,77 @@ export default class AxesWidget extends React.Component {
                                 </tbody>
                             </table>
                         </div>
-                        <div className="row">
-                            <div className="axes-control-panel">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className="jog-x">
-                                                <button type="button" className="btn btn-default jog-x-minus">X-</button>
-                                            </td>
-                                            <td className="jog-y">
-                                                <div className="btn-group-vertical">
-                                                    <button type="button" className="btn btn-primary jog-y-plus">Y+<i className="icon ion-arrow-up"></i></button>
-                                                    <button type="button" className="btn btn-primary jog-y-minus">Y-<i className="icon ion-arrow-down"></i></button>
-                                                </div>
-                                            </td>
-                                            <td className="jog-x">
-                                                <button type="button" className="btn btn-default jog-x-plus">X+</button>
-                                            </td>
-                                            <td className="jog-z">
-                                                <div className="btn-group-vertical">
-                                                    <button type="button" className="btn btn-danger jog-z-plus">Z+</button>
-                                                    <button type="button" className="btn btn-danger jog-z-minus">Z-</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div className="form-group">
-                                    <label className="control-label">Feed rate:</label>
-                                    <select className="form-control">
-                                        <option>500</option>
-                                        <option>1000</option>
-                                        <option>1500</option>
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <label className="control-label">Distance:</label>
-                                    <select className="form-control">
-                                        <option>500</option>
-                                        <option>1000</option>
-                                        <option>1500</option>
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <div className="btn-group" role="group">
-                                        <button type="button" className="btn btn-sm btn-default">{i18n._('Go To Zero')}</button>
-                                        <button type="button" className="btn btn-sm btn-default">{i18n._('Zero Out')}</button>
+                        <div className="row control-panel">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td className="jog-x">
+                                            <button type="button" className="btn btn-default jog-x-minus">X-</button>
+                                        </td>
+                                        <td className="jog-y">
+                                            <div className="btn-group-vertical">
+                                                <button type="button" className="btn btn-primary jog-y-plus">Y+<i className="icon ion-arrow-up"></i></button>
+                                                <button type="button" className="btn btn-primary jog-y-minus">Y-<i className="icon ion-arrow-down"></i></button>
+                                            </div>
+                                        </td>
+                                        <td className="jog-x">
+                                            <button type="button" className="btn btn-default jog-x-plus">X+</button>
+                                        </td>
+                                        <td className="jog-z">
+                                            <div className="btn-group-vertical">
+                                                <button type="button" className="btn btn-danger jog-z-plus">Z+</button>
+                                                <button type="button" className="btn btn-danger jog-z-minus">Z-</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div className="form-group">
+                                <label className="control-label">Feed rate:</label>
+                                <Select
+                                    name="form-feedrate"
+                                    value="1000"
+                                    options={[
+                                        { value: 1500, label: 1500 },
+                                        { value: 1000, label: 1000 },
+                                        { value: 500, label: 500 },
+                                        { value: 100, label: 100 }
+                                    ]}
+                                    backspaceRemoves={false}
+                                    clearable={false}
+                                    searchable={false}
+                                    onChange={this.changeFeedRate}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="control-label">Distance:</label>
+                                <Select
+                                    name="form-distance"
+                                    value="1"
+                                    options={[
+                                        { value: 0.01, label: 0.01 },
+                                        { value: 0.1, label: 0.1 },
+                                        { value: 1, label: 1 },
+                                        { value: 10, label: 10 },
+                                        { value: 100, label: 100 }
+                                    ]}
+                                    backspaceRemoves={false}
+                                    clearable={false}
+                                    searchable={false}
+                                    onChange={this.changeDistance}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <div className="btn-group" role="group">
+                                    <button type="button" className="btn btn-sm btn-default">{i18n._('Go Home (G0)')}</button>
+                                    <button type="button" className="btn btn-sm btn-default">{i18n._('Zero Out (G92)')}</button>
 
-                                        <div className="btn-group" role="group">
-                                            <button type="button" className="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{i18n._('More')}&nbsp;<span className="caret"></span></button>
-                                            <ul className="dropdown-menu">
-                                                <li><a href="#">{i18n._('Toggle inch/mm')}</a></li>
-                                                <li><a href="#">{i18n._('Homing Sequence')}</a></li>
-                                            </ul>
-                                        </div>
+                                    <div className="btn-group" role="group">
+                                        <button type="button" className="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{i18n._('More')}&nbsp;<span className="caret"></span></button>
+                                        <ul className="dropdown-menu">
+                                            <li><a href="#">{i18n._('Toggle inch/mm')}</a></li>
+                                            <li><a href="#">{i18n._('Homing Sequence')}</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

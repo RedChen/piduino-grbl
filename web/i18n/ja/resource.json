@@ -1,17 +1,18 @@
 {
+    "27f73a04305cefef39e3388561ed30bc67df3e00": "Go Home (G0)",
     "4ad5c5e2d38d5b1d38a93928f3ced6f28135e084": "Expand/Collapse",
     "4bab2d8fe13fa6ab57f80098b414f0f734c5dd25": "More",
     "4ca0a75c2b7fa7da4364d03b72c46fee1860a2bf": "ワークスペース",
     "56e3badc4e6c5cc95e0ea5a9a878b9bd09f319d4": "Refresh",
-    "6073f2138280667daf5e3d00cdcb135b968a751d": "Go To Zero",
+    "5cd926e0d460d5e39c7408b890dfd9869ff5b122": "Serial port:",
     "64a68e2905d557b6eb60c9c0cee03927611d1daf": "Homing Sequence",
     "6701076665fbe15f964724bd39db984fb29c6191": "Toggle inch/mm",
     "6f5d31900b3243f0e65ff3f552537a0a2e98bd66": "Webcam",
     "7015a871b66ebe7d88369e52b6c25d2ad0e4b3f4": "Gcode",
     "89b86ab0e66f527166d98df92ddbcf5416ed58f6": "言語",
     "c7f73bb54d928922c3838bb789ee9fb8a5b1eb37": "設定",
-    "d310866cc0c81c480f51668452a379102bbf1b68": "Zero Out",
     "d75f36f88797a19683a1b68037a0b63ba522f4c3": "Axes",
     "e963907dac5cd5c017869b4c96c18021c9bd058b": "Remove",
-    "ed471eaf180750297a1ab037a66f320d3f2bd524": "Serial Console"
+    "ed471eaf180750297a1ab037a66f320d3f2bd524": "Serial Console",
+    "f3ce019b6cf0e8379665169d8fa1704dd0bff066": "Zero Out (G92)"
 }

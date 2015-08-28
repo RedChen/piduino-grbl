@@ -66,7 +66,7 @@ export default class Workspace extends React.Component {
         return (
             <div className="container-fluid workspace" data-component="Workspace">
                 <div className="row">
-                    <div className="col-xs-4 col-sm-3">
+                    <div className="col-xs-12 col-sm-3">
                         <div className="container-fluid">
                             <div className="row" ref="primary-sidebar" data-layout="primary-sidebar">
                                 <GcodeWidget className="col-sm-12 col-md-12"/>
@@ -74,14 +74,14 @@ export default class Workspace extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-xs-4 col-sm-6">
+                    <div className="col-xs-12 col-sm-6">
                         <div className="container-fluid">
                             <div className="row" ref="main-content" data-layout="main-content">
                                 <p>Toolpath</p>
                             </div>
                         </div>
                     </div>
-                    <div className="col-xs-4 col-sm-3">
+                    <div className="col-xs-12 col-sm-3">
                         <div className="container-fluid">
                             <div className="row" ref="secondary-sidebar" data-layout="secondary-sidebar">
                                 <AxesWidget className="col-sm-12 col-md-12"/>

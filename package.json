@@ -41,6 +41,8 @@
     "morgan": "1.0.x",
     "multiparty": "3.2.x",
     "pkginfo": "0.3.x",
+    "react": "^0.13.3",
+    "react-select": "^0.6.6",
     "request": "^2.53.0",
     "serve-favicon": "^2.2.0",
     "serve-static": "^1.0.4",

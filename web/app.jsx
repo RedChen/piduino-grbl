@@ -5,7 +5,7 @@ import { Route, DefaultRoute, Link, RouteHandler } from 'react-router';
 import Header from './components/header';
 import Workspace from './components/workspace';
 
-export class App extends React.Component {
+class App extends React.Component {
     render() {
         var style = {
             paddingTop: '50px',
@@ -20,7 +20,7 @@ export class App extends React.Component {
     }
 }
 
-export function run() {
+export default function() {
     var routes = (
         <Route name="app" path="/" handler={App}>
             <DefaultRoute handler={Workspace}/>

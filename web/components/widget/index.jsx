@@ -179,8 +179,11 @@ export default class Widget extends React.Component {
     }
     render() {
         let { options } = this.props;
+        let widgetStyle = {
+            width: options.width ? options.width : null
+        };
         return (
-            <div className={options.containerClass} ref="widgetContainer" data-component="Widget">
+            <div className={options.containerClass} ref="widgetContainer" data-component="Widget" style={widgetStyle}>
                 <div className="widget">
                     { options.header && 
                         <WidgetHeader options={options} handleClick={this.handleClick.bind(this)}/>

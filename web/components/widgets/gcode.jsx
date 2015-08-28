@@ -6,6 +6,7 @@ import './gcode.css';
 export default class GcodeWidget extends React.Component {
     render() {
         var options = {
+            width: 300,
             header: {
                 style: 'invese',
                 title: (

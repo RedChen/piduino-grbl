@@ -1,11 +1,14 @@
-var _ = require('lodash');
-var async = require('async');
-var i18n = require('i18next');
-var Uri = require('jsUri');
-var log = require('./lib/log');
-var app = require('./app');
-var settings = require('./config/settings');
-var sha1 = require('sha1');
+import _ from 'lodash';
+import async from 'async';
+import i18n from 'i18next';
+import Uri from 'jsUri';
+import log from './lib/log';
+import app from './app';
+import settings from './config/settings';
+import sha1 from 'sha1';
+
+import './styles/vendor.css';
+import './styles/app.css';
 
 var query_params = (function(qs) {
     qs = String(qs || '');
@@ -110,5 +113,5 @@ async.series([
         loading.style.display = 'none';
     }
 
-    app.run();
+    app();
 });

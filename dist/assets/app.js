@@ -3569,131 +3569,135 @@ var Header = (function (_React$Component) {
         key: 'render',
         value: function render() {
             return _react2['default'].createElement(
-                'nav',
-                { className: 'navbar navbar-inverse navbar-fixed-top' },
+                'div',
+                { 'data-component': 'Header' },
                 _react2['default'].createElement(
-                    'div',
-                    { className: 'container-fluid' },
+                    'nav',
+                    { className: 'navbar navbar-inverse navbar-fixed-top' },
                     _react2['default'].createElement(
                         'div',
-                        { className: 'navbar-header' },
+                        { className: 'container-fluid' },
                         _react2['default'].createElement(
-                            'button',
-                            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar-collapse' },
-                            _react2['default'].createElement('span', { className: 'sr-only' }),
-                            _react2['default'].createElement('span', { className: 'icon-bar' }),
-                            _react2['default'].createElement('span', { className: 'icon-bar' }),
-                            _react2['default'].createElement('span', { className: 'icon-bar' })
-                        ),
-                        _react2['default'].createElement(
-                            'a',
-                            { className: 'navbar-brand', href: '#' },
-                            _configSettings2['default'].name
-                        )
-                    ),
-                    _react2['default'].createElement(
-                        'div',
-                        { className: 'navbar-collapse collapse', id: 'navbar-collapse' },
-                        _react2['default'].createElement(
-                            'ul',
-                            { className: 'nav navbar-nav' },
+                            'div',
+                            { className: 'navbar-header' },
                             _react2['default'].createElement(
-                                'li',
-                                null,
-                                _react2['default'].createElement(
-                                    _reactRouter.Link,
-                                    { to: 'workspace' },
-                                    _i18next2['default']._('Workspace')
-                                )
+                                'button',
+                                { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar-collapse' },
+                                _react2['default'].createElement('span', { className: 'sr-only' }),
+                                _react2['default'].createElement('span', { className: 'icon-bar' }),
+                                _react2['default'].createElement('span', { className: 'icon-bar' }),
+                                _react2['default'].createElement('span', { className: 'icon-bar' })
                             ),
                             _react2['default'].createElement(
-                                'li',
-                                { className: 'dropdown' },
+                                'a',
+                                { className: 'navbar-brand', href: '#' },
+                                _configSettings2['default'].name
+                            )
+                        ),
+                        _react2['default'].createElement(
+                            'div',
+                            { className: 'navbar-collapse collapse', id: 'navbar-collapse' },
+                            _react2['default'].createElement(
+                                'ul',
+                                { className: 'nav navbar-nav' },
                                 _react2['default'].createElement(
-                                    'a',
-                                    { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button' },
-                                    _i18next2['default']._('Settings'),
-                                    ' ',
-                                    _react2['default'].createElement('span', { className: 'caret' })
+                                    'li',
+                                    null,
+                                    _react2['default'].createElement(
+                                        _reactRouter.Link,
+                                        { to: 'workspace' },
+                                        _i18next2['default']._('Workspace')
+                                    )
                                 ),
                                 _react2['default'].createElement(
-                                    'ul',
-                                    { className: 'dropdown-menu', role: 'menu' },
+                                    'li',
+                                    { className: 'dropdown' },
                                     _react2['default'].createElement(
-                                        'li',
-                                        { className: 'dropdown-header' },
-                                        _i18next2['default']._('Language')
+                                        'a',
+                                        { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button' },
+                                        _i18next2['default']._('Settings'),
+                                        ' ',
+                                        _react2['default'].createElement('span', { className: 'caret' })
                                     ),
                                     _react2['default'].createElement(
-                                        'li',
-                                        null,
+                                        'ul',
+                                        { className: 'dropdown-menu', role: 'menu' },
                                         _react2['default'].createElement(
-                                            'a',
-                                            { href: '?lang=de' },
-                                            'Deutsch'
-                                        )
-                                    ),
-                                    _react2['default'].createElement(
-                                        'li',
-                                        null,
+                                            'li',
+                                            { className: 'dropdown-header' },
+                                            _i18next2['default']._('Language')
+                                        ),
                                         _react2['default'].createElement(
-                                            'a',
-                                            { href: '?lang=en' },
-                                            'English (US)'
-                                        )
-                                    ),
-                                    _react2['default'].createElement(
-                                        'li',
-                                        null,
+                                            'li',
+                                            null,
+                                            _react2['default'].createElement(
+                                                'a',
+                                                { href: '?lang=de' },
+                                                'Deutsch'
+                                            )
+                                        ),
                                         _react2['default'].createElement(
-                                            'a',
-                                            { href: '?lang=es' },
-                                            'Español'
-                                        )
-                                    ),
-                                    _react2['default'].createElement(
-                                        'li',
-                                        null,
+                                            'li',
+                                            null,
+                                            _react2['default'].createElement(
+                                                'a',
+                                                { href: '?lang=en' },
+                                                'English (US)'
+                                            )
+                                        ),
                                         _react2['default'].createElement(
-                                            'a',
-                                            { href: '?lang=fr' },
-                                            'Français'
-                                        )
-                                    ),
-                                    _react2['default'].createElement(
-                                        'li',
-                                        null,
+                                            'li',
+                                            null,
+                                            _react2['default'].createElement(
+                                                'a',
+                                                { href: '?lang=es' },
+                                                'Español'
+                                            )
+                                        ),
                                         _react2['default'].createElement(
-                                            'a',
-                                            { href: '?lang=it' },
-                                            'Italiano'
-                                        )
-                                    ),
-                                    _react2['default'].createElement(
-                                        'li',
-                                        null,
+                                            'li',
+                                            null,
+                                            _react2['default'].createElement(
+                                                'a',
+                                                { href: '?lang=fr' },
+                                                'Français'
+                                            )
+                                        ),
                                         _react2['default'].createElement(
-                                            'a',
-                                            { href: '?lang=ja' },
-                                            '日本語'
-                                        )
-                                    ),
-                                    _react2['default'].createElement(
-                                        'li',
-                                        null,
+                                            'li',
+                                            null,
+                                            _react2['default'].createElement(
+                                                'a',
+                                                { href: '?lang=it' },
+                                                'Italiano'
+                                            )
+                                        ),
                                         _react2['default'].createElement(
-                                            'a',
-                                            { href: '?lang=zh-cn' },
-                                            '中文 (简体)'
-                                        )
-                                    ),
-                                    _react2['default'].createElement(
-                                        'li',
-                                        null,
+                                            'li',
+                                            null,
+                                            _react2['default'].createElement(
+                                                'a',
+                                                { href: '?lang=ja' },
+                                                '日本語'
+                                            )
+                                        ),
                                         _react2['default'].createElement(
-                                            'a',
-                                            { href: '?lang=zh-tw' },
-                                            '中文 (繁體)'
+                                            'li',
+                                            null,
+                                            _react2['default'].createElement(
+                                                'a',
+                                                { href: '?lang=zh-cn' },
+                                                '中文 (简体)'
+                                            )
+                                        ),
+                                        _react2['default'].createElement(
+                                            'li',
+                                            null,
+                                            _react2['default'].createElement(
+                                                'a',
+                                                { href: '?lang=zh-tw' },
+                                                '中文 (繁體)'
+                                            )
                                         )
                                     )
                                 )
@@ -4926,12 +4930,12 @@ var Workspace = (function (_React$Component) {
     _createClass(Workspace, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.createSortableGroupForPrimarySidebar(_react2['default'].findDOMNode(this.refs['primary-sidebar']));
-            this.createSortableGroupForSecondarySidebar(_react2['default'].findDOMNode(this.refs['secondary-sidebar']));
+            this.createSortableGroupForPrimaryContainer(_react2['default'].findDOMNode(this.refs['primary-container']));
+            this.createSortableGroupForSecondaryContainer(_react2['default'].findDOMNode(this.refs['secondary-container']));
         }
     }, {
-        key: 'createSortableGroupForPrimarySidebar',
-        value: function createSortableGroupForPrimarySidebar(el) {
+        key: 'createSortableGroupForPrimaryContainer',
+        value: function createSortableGroupForPrimaryContainer(el) {
             var sortable = _Sortable2['default'].create(el, {
                 group: 'workspace',
                 handle: '.btn-drag',
@@ -4970,8 +4974,8 @@ var Workspace = (function (_React$Component) {
             return sortable;
         }
     }, {
-        key: 'createSortableGroupForSecondarySidebar',
-        value: function createSortableGroupForSecondarySidebar(el) {
+        key: 'createSortableGroupForSecondaryContainer',
+        value: function createSortableGroupForSecondaryContainer(el) {
             var sortable = _Sortable2['default'].create(el, {
                 group: 'workspace',
                 handle: '.btn-drag',
@@ -5012,50 +5016,34 @@ var Workspace = (function (_React$Component) {
         value: function render() {
             return _react2['default'].createElement(
                 'div',
-                { className: 'container-fluid workspace', 'data-component': 'Workspace' },
+                { className: 'container-fluid', 'data-component': 'Workspace' },
                 _react2['default'].createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'workspace-container' },
                     _react2['default'].createElement(
                         'div',
-                        { className: 'col-xs-12 col-sm-2' },
+                        { className: 'workspace-table' },
                         _react2['default'].createElement(
                             'div',
-                            { className: 'primary-container container-fluid' },
+                            { className: 'workspace-table-row' },
                             _react2['default'].createElement(
                                 'div',
-                                { className: 'row', ref: 'primary-sidebar', 'data-layout': 'primary-sidebar' },
+                                { className: 'primary-container', ref: 'primary-container' },
                                 _react2['default'].createElement(_widgets.ConnectionWidget, null),
                                 _react2['default'].createElement(_widgets.AxesWidget, null)
-                            )
-                        )
-                    ),
-                    _react2['default'].createElement(
-                        'div',
-                        { className: 'col-xs-12 col-sm-8' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'main-container container-fluid' },
+                            ),
                             _react2['default'].createElement(
                                 'div',
-                                { className: 'row', ref: 'main-content', 'data-layout': 'main-content' },
+                                { className: 'main-container', ref: 'main-content' },
                                 _react2['default'].createElement(
                                     'p',
                                     null,
                                     'Toolpath'
                                 )
-                            )
-                        )
-                    ),
-                    _react2['default'].createElement(
-                        'div',
-                        { className: 'col-xs-12 col-sm-2' },
-                        _react2['default'].createElement(
-                            'div',
-                            { className: 'secondary-container container-fluid' },
+                            ),
                             _react2['default'].createElement(
                                 'div',
-                                { className: 'row', ref: 'secondary-sidebar', 'data-layout': 'secondary-sidebar' },
+                                { className: 'secondary-container', ref: 'secondary-container' },
                                 _react2['default'].createElement(_widgets.GcodeWidget, null),
                                 _react2['default'].createElement(_widgets.WebcamWidget, null)
                             )
@@ -5074,7 +5062,7 @@ module.exports = exports['default'];
 
 
 },{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","../widgets":"/home/cheton/github/piduino-grbl/web/components/widgets/index.jsx","./workspace.css":"/home/cheton/github/piduino-grbl/web/components/workspace/workspace.css","Sortable":"/home/cheton/github/piduino-grbl/web/vendor/Sortable/Sortable.js","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react"}],"/home/cheton/github/piduino-grbl/web/components/workspace/workspace.css":[function(require,module,exports){
-var css = "[data-component=Workspace] .primary-container,[data-component=Workspace] .secondary-container{padding:0;position:fixed;height:100%}[data-component=Workspace] .primary-container{z-index:200;left:15px}[data-component=Workspace] .secondary-container{z-index:200;right:15px}[data-component=Workspace] .main-container{z-index:100}[data-component=Workspace] .row[data-layout=main-content]{text-align:center}[data-component=Workspace] .row[data-layout=primary-sidebar]{float:left;background-color:#f0f0f0;padding:15px}@media (max-width:767px){[data-component=Workspace] .row[data-layout=primary-sidebar]{float:none}}[data-component=Workspace] .row[data-layout=secondary-sidebar]{float:right;background-color:#f0f0f0;padding:15px}@media (max-width:767px){[data-component=Workspace] .row[data-layout=secondary-sidebar]{float:none}}[data-component=Workspace] .row[data-layout=main-content],[data-component=Workspace] .row[data-layout=primary-sidebar],[data-component=Workspace] .row[data-layout=secondary-sidebar]{height:100%;min-height:500px}"; (require("browserify-css").createStyle(css, { "href": "components/workspace/workspace.css"})); module.exports = css;
+var css = "[data-component=Workspace]>.workspace-container{position:absolute;top:51px;bottom:0;right:0;left:0}[data-component=Workspace] .workspace-table{display:table;width:100%;height:100%}[data-component=Workspace] .workspace-table-row{display:table-row}[data-component=Workspace] .main-container,[data-component=Workspace] .primary-container,[data-component=Workspace] .secondary-container{display:table-cell;vertical-align:top}[data-component=Workspace] .primary-container,[data-component=Workspace] .secondary-container{background-color:#f0f0f0;width:1%;padding:15px}[data-component=Workspace] .main-container{min-width:200px}"; (require("browserify-css").createStyle(css, { "href": "components/workspace/workspace.css"})); module.exports = css;
 },{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/config/settings.js":[function(require,module,exports){
 'use strict';
 

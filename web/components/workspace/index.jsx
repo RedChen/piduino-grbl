@@ -11,10 +11,10 @@ export default class Workspace extends React.Component {
         this._sortableGroups = [];
     }
     componentDidMount() {
-        this.createSortableGroupForPrimarySidebar(React.findDOMNode(this.refs['primary-sidebar']));
-        this.createSortableGroupForSecondarySidebar(React.findDOMNode(this.refs['secondary-sidebar']));
+        this.createSortableGroupForPrimaryContainer(React.findDOMNode(this.refs['primary-container']));
+        this.createSortableGroupForSecondaryContainer(React.findDOMNode(this.refs['secondary-container']));
     }
-    createSortableGroupForPrimarySidebar(el) {
+    createSortableGroupForPrimaryContainer(el) {
         var sortable = Sortable.create(el, {
             group: 'workspace',
             handle: '.btn-drag',
@@ -40,7 +40,7 @@ export default class Workspace extends React.Component {
 
         return sortable;
     }
-    createSortableGroupForSecondarySidebar(el) {
+    createSortableGroupForSecondaryContainer(el) {
         var sortable = Sortable.create(el, {
             group: 'workspace',
             handle: '.btn-drag',
@@ -64,26 +64,18 @@ export default class Workspace extends React.Component {
     }
     render() {
         return (
-            <div className="container-fluid workspace" data-component="Workspace">
-                <div className="row">
-                    <div className="col-xs-12 col-sm-2">
-                        <div className="primary-container container-fluid">
-                            <div className="row" ref="primary-sidebar" data-layout="primary-sidebar">
+            <div className="container-fluid" data-component="Workspace">
+                <div className="workspace-container">
+                    <div className="workspace-table">
+                        <div className="workspace-table-row">
+                            <div className="primary-container" ref="primary-container">
                                 <ConnectionWidget />
                                 <AxesWidget />
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-8">
-                        <div className="main-container container-fluid">
-                            <div className="row" ref="main-content" data-layout="main-content">
+                            <div className="main-container" ref="main-content">
                                 <p>Toolpath</p>
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-2">
-                        <div className="secondary-container container-fluid">
-                            <div className="row" ref="secondary-sidebar" data-layout="secondary-sidebar">
+                            <div className="secondary-container" ref="secondary-container">
                                 <GcodeWidget />
                                 <WebcamWidget />
                             </div>

@@ -4561,7 +4561,7 @@ module.exports = exports['default'];
 
 
 },{"../widget":"/home/cheton/github/piduino-grbl/web/components/widget/index.jsx","./axes.css":"/home/cheton/github/piduino-grbl/web/components/widgets/axes.css","i18next":"/home/cheton/github/piduino-grbl/web/vendor/i18next/i18next.js","react":"react","react-select":"/home/cheton/github/piduino-grbl/node_modules/react-select/lib/Select.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/connection.css":[function(require,module,exports){
-var css = "[data-component=\"Widgets/ConnectionWidget\"] .control-panel{padding:10px}"; (require("browserify-css").createStyle(css, { "href": "components/widgets/connection.css"})); module.exports = css;
+var css = "[data-component=\"Widgets/ConnectionWidget\"] .control-panel{padding:10px}[data-component=\"Widgets/ConnectionWidget\"] .control-panel button[name=btn-refresh] .icon{font-size:18px}"; (require("browserify-css").createStyle(css, { "href": "components/widgets/connection.css"})); module.exports = css;
 },{"browserify-css":"/home/cheton/github/piduino-grbl/node_modules/browserify-css/browser.js"}],"/home/cheton/github/piduino-grbl/web/components/widgets/connection.jsx":[function(require,module,exports){
 'use strict';
 
@@ -4650,14 +4650,39 @@ var ConnectionWidget = (function (_React$Component) {
                                 { className: 'control-label' },
                                 _i18next2['default']._('Port:')
                             ),
-                            _react2['default'].createElement(_reactSelect2['default'], {
-                                name: 'form-serial-port',
-                                asyncOptions: this.getSerialPorts,
-                                backspaceRemoves: false,
-                                clearable: false,
-                                searchable: false,
-                                placeholder: 'Choose a serial port'
-                            })
+                            _react2['default'].createElement(
+                                'table',
+                                { style: { width: '100%' } },
+                                _react2['default'].createElement(
+                                    'tbody',
+                                    null,
+                                    _react2['default'].createElement(
+                                        'tr',
+                                        null,
+                                        _react2['default'].createElement(
+                                            'td',
+                                            null,
+                                            _react2['default'].createElement(_reactSelect2['default'], {
+                                                name: 'form-serial-port',
+                                                asyncOptions: this.getSerialPorts,
+                                                backspaceRemoves: false,
+                                                clearable: false,
+                                                searchable: false,
+                                                placeholder: 'Choose a serial port'
+                                            })
+                                        ),
+                                        _react2['default'].createElement(
+                                            'td',
+                                            { style: { paddingLeft: 10, width: '1%' } },
+                                            _react2['default'].createElement(
+                                                'button',
+                                                { type: 'button', className: 'btn btn-default', name: 'btn-refresh', title: _i18next2['default']._('Refresh') },
+                                                _react2['default'].createElement('i', { className: 'icon ion-android-sync' })
+                                            )
+                                        )
+                                    )
+                                )
+                            )
                         ),
                         _react2['default'].createElement(
                             'div',
@@ -4667,23 +4692,24 @@ var ConnectionWidget = (function (_React$Component) {
                                 { className: 'control-label' },
                                 _i18next2['default']._('Baud rate:')
                             ),
+                            _react2['default'].createElement(_reactSelect2['default'], {
+                                name: 'form-serial-port',
+                                value: 115200,
+                                options: [{ value: 9600, label: '9600' }, { value: 19200, label: '19200' }, { value: 38400, label: '38400' }, { value: 57600, label: '57600' }, { value: 115200, label: '115200' }],
+                                backspaceRemoves: false,
+                                clearable: false,
+                                searchable: false,
+                                placeholder: 'Choose a baud rate'
+                            })
+                        ),
+                        _react2['default'].createElement(
+                            'div',
+                            { className: 'btn-toolbar', role: 'toolbar' },
                             _react2['default'].createElement(
-                                'div',
-                                { className: 'row' },
-                                _react2['default'].createElement(
-                                    'div',
-                                    { className: 'col-md-6' },
-                                    _react2['default'].createElement(_reactSelect2['default'], {
-                                        name: 'form-serial-port',
-                                        value: 115200,
-                                        options: [{ value: 9600, label: '9600' }, { value: 19200, label: '19200' }, { value: 38400, label: '38400' }, { value: 57600, label: '57600' }, { value: 115200, label: '115200' }],
-                                        backspaceRemoves: false,
-                                        clearable: false,
-                                        searchable: false,
-                                        placeholder: 'Choose a baud rate'
-                                    })
-                                ),
-                                _react2['default'].createElement('div', { className: 'col-md-6' })
+                                'button',
+                                { type: 'button', className: 'btn btn-primary' },
+                                _react2['default'].createElement('i', { className: 'icon ion-power' }),
+                                ' Open'
                             )
                         )
                     )

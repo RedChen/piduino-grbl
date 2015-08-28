@@ -1,12 +1,36 @@
 [data-component="Workspace"] {
+    .primary-container,
+    .secondary-container {
+        padding: 0;
+        position: fixed;
+        height: 100%;
+    }
+    .primary-container {
+        z-index: 200;
+        left: 15px;
+    }
+    .secondary-container {
+        z-index: 200;
+        right: 15px;
+    }
+    .main-container {
+        z-index: 100;
+    }
+    .row[data-layout="main-content"] {
+        text-align: center;
+    }
     .row[data-layout="primary-sidebar"] {
         float: left;
+        background-color: #f0f0f0;
+        padding: 15px;
         @media (max-width: 767px) {
             float: none;
         }
     }
     .row[data-layout="secondary-sidebar"] {
         float: right;
+        background-color: #f0f0f0;
+        padding: 15px;
         @media (max-width: 767px) {
             float: none;
         }
@@ -15,7 +39,7 @@
     .row[data-layout="main-content"],
     .row[data-layout="primary-sidebar"],
     .row[data-layout="secondary-sidebar"] {
-        padding: 15px 0;
+        height: 100%;
         min-height: 500px;
     }
 }

@@ -185,7 +185,7 @@ module.exports = {
         options: {
             debug: true,
             sort: true,
-            lngs: ['en','de','es','fr','it','ja','zh-cn','zh-tw'],
+            lngs: ['en'],
             defaultValue: '__L10N__', // to indicate that a default value has not been defined for the key
             resGetPath: 'web/i18n/${lng}/${ns}.json',
             resSetPath: 'web/i18n/${lng}/${ns}.json', // or 'web/i18n/${lng}/${ns}.saveAll.json'

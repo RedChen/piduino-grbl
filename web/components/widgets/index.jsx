@@ -1,11 +1,11 @@
 import AxesWidget from './axes';
+import ConnectionWidget from './connection';
 import GcodeWidget from './gcode';
-import SerialConsoleWidget from './serial-console';
 import WebcamWidget from './webcam';
 
 export {
     AxesWidget,
+    ConnectionWidget,
     GcodeWidget,
-    SerialConsoleWidget,
     WebcamWidget
 };

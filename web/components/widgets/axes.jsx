@@ -31,6 +31,13 @@ export default class AxesWidget extends React.Component {
                     <div className="container-fluid">
                         <div className="row display-panel">
                             <table className="table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th className="table-header">{i18n._('Axis')}</th>
+                                        <th className="table-header">{i18n._('Machine Position')}</th>
+                                        <th className="table-header">{i18n._('Working Position')}</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
                                         <td className="axis-label">X</td>
@@ -38,12 +45,13 @@ export default class AxesWidget extends React.Component {
                                             <span className="integer-part">-000</span>
                                             <span className="decimal-point">.</span>
                                             <span className="fractional-part">000</span>
-                                            <span>&nbsp;</span>
                                             <span className="dimension-unit">mm</span>
-                                            <span>&nbsp;</span>
                                         </td>
-                                        <td className="axis-control">
-                                            <button type="button" className="btn btn-sm btn-default"><i className="glyphicon glyphicon-list"></i></button>
+                                        <td className="axis-position">
+                                            <span className="integer-part">-000</span>
+                                            <span className="decimal-point">.</span>
+                                            <span className="fractional-part">000</span>
+                                            <span className="dimension-unit">mm</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -52,12 +60,13 @@ export default class AxesWidget extends React.Component {
                                             <span className="integer-part">-000</span>
                                             <span className="decimal-point">.</span>
                                             <span className="fractional-part">000</span>
-                                            <span>&nbsp;</span>
                                             <span className="dimension-unit">mm</span>
-                                            <span>&nbsp;</span>
                                         </td>
-                                        <td className="axis-control">
-                                            <button type="button" className="btn btn-sm btn-default"><i className="glyphicon glyphicon-list"></i></button>
+                                        <td className="axis-position">
+                                            <span className="integer-part">-000</span>
+                                            <span className="decimal-point">.</span>
+                                            <span className="fractional-part">000</span>
+                                            <span className="dimension-unit">mm</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -66,12 +75,13 @@ export default class AxesWidget extends React.Component {
                                             <span className="integer-part">-000</span>
                                             <span className="decimal-point">.</span>
                                             <span className="fractional-part">000</span>
-                                            <span>&nbsp;</span>
                                             <span className="dimension-unit">mm</span>
-                                            <span>&nbsp;</span>
                                         </td>
-                                        <td className="axis-control">
-                                            <button type="button" className="btn btn-sm btn-default"><i className="glyphicon glyphicon-list"></i></button>
+                                        <td className="axis-position">
+                                            <span className="integer-part">-000</span>
+                                            <span className="decimal-point">.</span>
+                                            <span className="fractional-part">000</span>
+                                            <span className="dimension-unit">mm</span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -106,7 +116,7 @@ export default class AxesWidget extends React.Component {
                                 <label className="control-label">Feed rate:</label>
                                 <Select
                                     name="form-feedrate"
-                                    value="1000"
+                                    value={1000}
                                     options={[
                                         { value: 1500, label: 1500 },
                                         { value: 1000, label: 1000 },
@@ -123,7 +133,7 @@ export default class AxesWidget extends React.Component {
                                 <label className="control-label">Distance:</label>
                                 <Select
                                     name="form-distance"
-                                    value="1"
+                                    value={1}
                                     options={[
                                         { value: 0.01, label: 0.01 },
                                         { value: 0.1, label: 0.1 },
@@ -139,14 +149,26 @@ export default class AxesWidget extends React.Component {
                             </div>
                             <div className="form-group">
                                 <div className="btn-group" role="group">
-                                    <button type="button" className="btn btn-sm btn-default">{i18n._('Go Home (G0)')}</button>
+                                    <button type="button" className="btn btn-sm btn-default">{i18n._('Go To Zero (G0)')}</button>
                                     <button type="button" className="btn btn-sm btn-default">{i18n._('Zero Out (G92)')}</button>
 
-                                    <div className="btn-group" role="group">
+                                    <div className="btn-group dropup" role="group">
                                         <button type="button" className="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="glyphicon glyphicon-list"></i></button>
                                         <ul className="dropdown-menu dropdown-menu-right">
                                             <li><a href="#">{i18n._('Toggle inch/mm')}</a></li>
                                             <li><a href="#">{i18n._('Homing Sequence')}</a></li>
+                                            <li className="divider"></li>
+                                            <li className="dropdown-header">{i18n._('X Axis')}</li>
+                                            <li><a href="#">{i18n._('Go To Zero On X Axis (G0 X0)')}</a></li>
+                                            <li><a href="#">{i18n._('Zero Out X Axis (G92 X0)')}</a></li>
+                                            <li className="divider"></li>
+                                            <li className="dropdown-header">{i18n._('Y Axis')}</li>
+                                            <li><a href="#">{i18n._('Go To Zero On Y Axis (G0 Y0)')}</a></li>
+                                            <li><a href="#">{i18n._('Zero Out Y Axis (G92 Y0)')}</a></li>
+                                            <li className="divider"></li>
+                                            <li className="dropdown-header">{i18n._('Z Axis')}</li>
+                                            <li><a href="#">{i18n._('Go To Zero On Z Axis (G0 Z0)')}</a></li>
+                                            <li><a href="#">{i18n._('Zero Out Z Axis (G92 Z0)')}</a></li>
                                         </ul>
                                     </div>
                                 </div>

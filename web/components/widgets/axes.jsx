@@ -143,8 +143,8 @@ export default class AxesWidget extends React.Component {
                                     <button type="button" className="btn btn-sm btn-default">{i18n._('Zero Out (G92)')}</button>
 
                                     <div className="btn-group" role="group">
-                                        <button type="button" className="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{i18n._('More')}&nbsp;<span className="caret"></span></button>
-                                        <ul className="dropdown-menu">
+                                        <button type="button" className="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="glyphicon glyphicon-list"></i></button>
+                                        <ul className="dropdown-menu dropdown-menu-right">
                                             <li><a href="#">{i18n._('Toggle inch/mm')}</a></li>
                                             <li><a href="#">{i18n._('Homing Sequence')}</a></li>
                                         </ul>

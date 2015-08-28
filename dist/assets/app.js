@@ -4400,13 +4400,11 @@ var AxesWidget = (function (_React$Component) {
                                         _react2['default'].createElement(
                                             'button',
                                             { type: 'button', className: 'btn btn-sm btn-default dropdown-toggle', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
-                                            _i18next2['default']._('More'),
-                                            ' ',
-                                            _react2['default'].createElement('span', { className: 'caret' })
+                                            _react2['default'].createElement('i', { className: 'glyphicon glyphicon-list' })
                                         ),
                                         _react2['default'].createElement(
                                             'ul',
-                                            { className: 'dropdown-menu' },
+                                            { className: 'dropdown-menu dropdown-menu-right' },
                                             _react2['default'].createElement(
                                                 'li',
                                                 null,

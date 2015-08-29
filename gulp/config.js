@@ -117,7 +117,7 @@ module.exports = {
             'gulp/**/*.js',
             '*.js',
             '*.jsx',
-            '{app,web}/**/*.js',
+            '{app,web,test}/**/*.js',
 
             // exclusion
             '!web/**/handlebars-templates.js', // exclude handlebars-templates.js:w!
@@ -144,7 +144,7 @@ module.exports = {
     jshint: {
         src: [
             '*.json',
-            '{app,web}/**/*.json',
+            '{app,web,test}/**/*.json',
 
             // exclusion
             '!web/{vendor,test}/**',

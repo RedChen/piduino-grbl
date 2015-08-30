@@ -3,59 +3,7 @@ var serialport = require('serialport');
 var SerialPort = serialport.SerialPort;
 var fs = require('fs');
 var readline = require('readline');
-var byline = require('byline');
-
-var GRBLCommander = function(options) {
-    options = options || {};
-
-    var queuedCommands = [];
-    var pause = false;
-    var dataCallback = function() {};
-
-    var o = {
-        on: function(cmd, callback) {
-            if (cmd === 'data') {
-                _onDataCallback = callback;
-            }
-            return o;
-        },
-        start: function() {
-            pause = false;
-            o.next();
-        },
-        stop: function() {
-            queuedCommands = [];
-            return o;
-        },
-        pause: function() {
-            pause = true;
-            return o;
-        },
-        resume: function() {
-            pause = false;
-            return o;
-        },
-        load: function(cmd) {
-            if (_.isArray(cmd)) {
-                queuedCommands = queuedCommands.concat(cmd);
-            } else if (_.isString(cmd)) {
-                queuedCommands.push(cmd);
-            }
-
-            console.log('#####', queuedCommands);
-            return o;
-        },
-        next: function() {
-            if ( ! pause && queuedCommands.length > 0) {
-                dataCallback(queuedCommands[0]);
-                queuedCommands.shift();
-            }
-            return o;
-        }
-    };
-
-    return o;
-};
+var queueCommander = require('./queue-commander');
 
 var config = {
     baudrate: 115200
@@ -83,12 +31,12 @@ serialport.list(function(err, ports) {
         parser: serialport.parsers.readline('\n'),
         baudrate: config.baudrate 
     });
+    var commander = queueCommander();
 
-    var grbl = GRBLCommander();
-
-    grbl.on('data', function(data) {
-        console.log(data);
-        sp.write(data + '\n');
+    commander.on('data', function(line) {
+        line = line.trim();
+        console.log(line);
+        sp.write(line + '\n');
     });
 
     sp.on('open', function() {
@@ -101,9 +49,9 @@ serialport.list(function(err, ports) {
         console.log('grbl>', line);
 
         if (line === 'ok') {
-            grbl.next();
+            commander.next();
         } else if (line === 'error') {
-            grbl.next();
+            commander.next();
         } else if (/<[^>]+>/.test(line)){
             // <Idle,MPos:0.000,0.000,0.000,WPos:0.000,0.000,0.000>
             var r = line.match(/<(\w+),\w+:([^,]+),([^,]+),([^,]+),\w+:([^,]+),([^,]+),([^,]+)>/);
@@ -159,18 +107,16 @@ serialport.list(function(err, ports) {
                         lines.push(line);
                     })
                     .on('close', function() {
-                        console.log(lines);
-
-                        grbl.load(lines);
-                        grbl.start();
+                        commander.load(lines);
+                        commander.start();
                     });
 
             } else if (line === '#pause') {
-                grbl.pause();
+                commander.pause();
             } else if (line === '#resume') {
-                grbl.resume();
+                commander.resume();
             } else if (line === '#stop') {
-                grbl.stop();
+                commander.stop();
             } else if (line === '#reset') {
                 // Ctrl+x
                 sp.write('\030');

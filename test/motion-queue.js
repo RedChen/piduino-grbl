@@ -1,9 +1,9 @@
 var _ = require('lodash');
 
-var QueueCommander = function(options) {
+var MotionQueue = function(options) {
 
     var Wrapper = function() {
-        this._queuedItems = [];
+        this._queue = [];
         this._paused = false;
         this._dataCallbacks = [];
     };
@@ -22,7 +22,7 @@ var QueueCommander = function(options) {
     };
 
     Wrapper.prototype.stop = function() {
-        this._queuedItems = [];
+        this._queue = [];
         return this;
     };
 
@@ -37,18 +37,18 @@ var QueueCommander = function(options) {
         return this;
     };
 
-    Wrapper.prototype.load = function(items) {
-        if (_.isArray(items)) {
-            this._queuedItems = this._queuedItems.concat(items);
+    Wrapper.prototype.add = function(data) {
+        if (_.isArray(data)) {
+            this._queue = this._queue.concat(data);
         } else {
-            this._queuedItems.push(items);
+            this._queue.push(data);
         }
         return this;
     };
 
     Wrapper.prototype.next = function() {
-        if ( ! this._paused && this._queuedItems.length > 0) {
-            var item = this._queuedItems.shift();
+        if ( ! this._paused && this._queue.length > 0) {
+            var item = this._queue.shift();
 
             _.each(this._dataCallbacks, function(callback) {
                 callback(item);
@@ -57,7 +57,11 @@ var QueueCommander = function(options) {
         return this;
     };
 
+    Wrapper.prototype.size = function() {
+        return this._queue.length;
+    };
+
     return new Wrapper();
 };
 
-module.exports = QueueCommander;
+module.exports = MotionQueue;

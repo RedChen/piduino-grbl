@@ -3,7 +3,7 @@ var serialport = require('serialport');
 var SerialPort = serialport.SerialPort;
 var fs = require('fs');
 var readline = require('readline');
-var queueCommander = require('./queue-commander');
+var mq = require('./motion-queue')();
 
 var config = {
     baudrate: 115200
@@ -31,9 +31,8 @@ serialport.list(function(err, ports) {
         parser: serialport.parsers.readline('\n'),
         baudrate: config.baudrate 
     });
-    var commander = queueCommander();
 
-    commander.on('data', function(line) {
+    mq.on('data', function(line) {
         line = line.trim();
         console.log(line);
         sp.write(line + '\n');
@@ -49,9 +48,9 @@ serialport.list(function(err, ports) {
         console.log('grbl>', line);
 
         if (line === 'ok') {
-            commander.next();
+            mq.next();
         } else if (line === 'error') {
-            commander.next();
+            mq.next();
         } else if (/<[^>]+>/.test(line)){
             // <Idle,MPos:0.000,0.000,0.000,WPos:0.000,0.000,0.000>
             var r = line.match(/<(\w+),\w+:([^,]+),([^,]+),([^,]+),\w+:([^,]+),([^,]+),([^,]+)>/);
@@ -107,16 +106,18 @@ serialport.list(function(err, ports) {
                         lines.push(line);
                     })
                     .on('close', function() {
-                        commander.load(lines);
-                        commander.start();
+                        mq.add(lines);
+                        mq.start();
                     });
 
             } else if (line === '#pause') {
-                commander.pause();
+                mq.pause();
             } else if (line === '#resume') {
-                commander.resume();
+                mq.resume();
             } else if (line === '#stop') {
-                commander.stop();
+                mq.stop();
+            } else if (line === '#size') {
+                console.log(mq.size());
             } else if (line === '#reset') {
                 // Ctrl+x
                 sp.write('\030');

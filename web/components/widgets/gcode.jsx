@@ -1,29 +1,117 @@
+import _ from 'lodash';
 import i18n from 'i18next';
 import React from 'react';
-import ReactList from 'react-list';
+import { createStore } from 'redux';
+import { Table, Column } from 'fixed-data-table';
 import Widget from '../widget';
 import './gcode.css';
 
-export default class GcodeWidget extends React.Component {
+function commandData(state = [], action) {
+    switch (action.type) {
+        case 'UPDATE':
+            state = action.commands;
+            return state;
+        default:
+            return state;
+    }
+}
+
+// Create a Redux store holding the state.
+// Its API is { subscribe, dispatch, getState }.
+let commandDataStore = createStore(commandData);
+
+let isColumnResizing = false;
+
+class CommandList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            commands: []
+            columnWidths: {
+                id: 40,
+                cmd: 260
+            },
+            commands: commandDataStore.getState()
         };
     }
+    componentDidMount() {
+        var that = this;
+        commandDataStore.subscribe(function() {
+            that._onChange();
+        });
+    }
+    componentWillUnmount() {
+        // TODO
+    }
+    _onChange() {
+        this.setState({
+            commands: commandDataStore.getState()
+        });
+    }
+    rowGetter(rowIndex) {
+        return this.state.commands[rowIndex];
+    }
+    renderEmptyMessage() {
+        return (
+            <p className="">No commands to show</p>
+        );
+    }
+    onColumnResizeEndCallback(newColumnWidth, dataKey) {
+        isColumnResizing = false;
+
+        let columnWidths = this.state.columnWidths;
+        columnWidths[dataKey] = newColumnWidth;
+        this.setState({
+            columnWidths: columnWidths
+        });
+    }
+    render() {
+        if (this.state.commands.length === 0) {
+            return this.renderEmptyMessage();
+        }
+
+        return (
+            <Table
+                headerHeight={25}
+                rowHeight={40}
+                rowGetter={this.rowGetter.bind(this)}
+                rowsCount={this.state.commands.length}
+                width={300}
+                maxHeight={200}
+                overflowX="auto"
+                overflowY="auto"
+                isColumnResizing={isColumnResizing}
+                onColumnResizeEndCallback={this.onColumnResizeEndCallback.bind(this)}>
+                <Column
+                    label="No."
+                    width={this.state.columnWidths.id}
+                    dataKey="id"
+                    isResizable={true}
+                    minWidth={5}
+                />
+                <Column
+                    label="Command"
+                    width={this.state.columnWidths.cmd}
+                    dataKey="cmd"
+                    isResizable={true}
+                    minWidth={5}
+                />
+            </Table>
+        );
+    }
+}
+
+export default class GcodeWidget extends React.Component {
     handleCommands() {
         var fs = require('fs'); // FIXME
         var file = fs.readFileSync(__dirname + '/../../../test/github.gcode', 'utf8');
-        var commands = file.split('\n');
-        this.setState({
+        var commands = _.map(file.split('\n'), function(command, index) {
+            return { id: index, cmd: command };
+        });
+
+        commandDataStore.dispatch({
+            type: 'UPDATE',
             commands: commands
         });
-    }
-    renderItem(index, key) {
-        return <div className="list-item" key={key}>
-            <div className="number">{index + 1}</div>
-            <div className="command">{this.state.commands[index]}</div>
-        </div>;
     }
     render() {
         var options = {
@@ -48,12 +136,7 @@ export default class GcodeWidget extends React.Component {
                     <button type="button" className="btn btn-default" name="btn-play" title="Play" onClick={this.handleCommands.bind(this)}>
                         <i className="icon ion-play"></i>
                     </button>
-                    <div style={{overflow: 'auto', maxHeight: 250}}>
-                        <ReactList
-                            itemRenderer={this.renderItem.bind(this)}
-                            length={this.state.commands.length}
-                        />
-                    </div>
+                    <CommandList/>
                 </div>
             )
         };

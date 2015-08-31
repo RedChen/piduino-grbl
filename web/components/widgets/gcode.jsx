@@ -16,18 +16,39 @@ let stripComments = (() => {
     };
 })();
 
-class CommandList extends React.Component {
+class CommandsTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            columnWidths: {
-                id: 40,
-                cmd: 260
-            },
-            commands: this.getCommandsFromStore()
+            table: {
+                columns: [
+                    {
+                        dataKey: 'status',
+                        name: '',
+                        isResizable: false,
+                        width: 20,
+                        minWidth: 20
+                    },
+                    {
+                        dataKey: 'id',
+                        name: 'No.',
+                        isResizable: true,
+                        width: 40,
+                        minWidth: 40
+                    },
+                    {
+                        dataKey: 'cmd',
+                        name: 'Command',
+                        isResizable: true,
+                        width: 250,
+                        minWidth: 100
+                    }
+                ],
+                data: this.getDataFromStore()
+            }
         };
     }
-    getCommandsFromStore() {
+    getDataFromStore() {
         return _.get(store.getState(), 'commands');
     }
     componentDidMount() {
@@ -37,62 +58,98 @@ class CommandList extends React.Component {
         });
     }
     componentWillUnmount() {
-        // TODO
+        this.unsubscribe();
+        this.unsubscribe = null;
     }
     _onChange() {
-        this.setState({
-            commands: this.getCommandsFromStore()
+        // http://facebook.github.io/react/docs/update.html
+        var newState = React.addons.update(this.state, {
+            table: {
+                data: { $set: this.getDataFromStore() }
+            }
         });
+        this.setState(newState);
     }
-    rowGetter(rowIndex) {
-        return this.state.commands[rowIndex];
+    rowGetter(index) {
+        return this.state.table.data[index];
     }
-    renderEmptyMessage() {
+    rowHeightGetter(index) {
+        var row = this.state.table.data[index];
+        if (row.cmd.length > 10) {
+            return 80;
+        }
+        return 40;
+    }
+    cellRenderer(cellData, cellDataKey, rowData, rowIndex, columnData, width) {
         return (
-            <p className="">No data to display</p>
+            <span className="text-overflow-ellipsis" style={{width: width}}>
+                {cellData}
+            </span>
         );
     }
     onColumnResizeEndCallback(newColumnWidth, dataKey) {
         isColumnResizing = false;
-
-        let columnWidths = this.state.columnWidths;
-        columnWidths[dataKey] = newColumnWidth;
-        this.setState({
-            columnWidths: columnWidths
+        this.setTableColumnWidth(dataKey, newColumnWidth);
+    }
+    setTableColumnWidth(dataKey, newColumnWidth) {
+        let columns = this.state.table.columns;
+        let newState = React.addons.update(this.state, {
+            table: {
+                columns: {
+                    $apply: function() {
+                        let key = _.findKey(columns, { dataKey: dataKey });
+                        columns[key].width = newColumnWidth;
+                        return columns;
+                    }
+                }
+            }
         });
+        this.setState(newState);
     }
     render() {
-        if (this.state.commands.length === 0) {
+        if (this.state.table && _.size(this.state.table.data) > 0) {
+            return this.renderTable();
+        } else {
             return this.renderEmptyMessage();
         }
-
+    }
+    renderTable() {
         return (
             <Table
                 headerHeight={25}
                 rowHeight={40}
+                rowHeightGetter={this.rowHeightGetter.bind(this)}
                 rowGetter={this.rowGetter.bind(this)}
-                rowsCount={this.state.commands.length}
+                rowsCount={this.state.table.data.length}
                 width={300}
                 maxHeight={200}
                 overflowX="auto"
                 overflowY="auto"
                 isColumnResizing={isColumnResizing}
                 onColumnResizeEndCallback={this.onColumnResizeEndCallback.bind(this)}>
-                <Column
-                    label="No."
-                    width={this.state.columnWidths.id}
-                    dataKey="id"
-                    isResizable={true}
-                    minWidth={5}
-                />
-                <Column
-                    label="Command"
-                    width={this.state.columnWidths.cmd}
-                    dataKey="cmd"
-                    isResizable={true}
-                    minWidth={5}
-                />
+                {this.renderTableColumns()}
             </Table>
+        );
+    }
+    renderTableColumns() {
+        let columns = this.state.table.columns;
+        return columns.map(function(column, key) {
+            return (
+                <Column
+                    label={column.name}
+                    width={column.width}
+                    dataKey={column.dataKey}
+                    key={key}
+                    isResizable={!!column.isResizable}
+                    cellRenderer={this.cellRenderer}
+                    minWidth={column.minWidth}
+                />
+            );
+        }.bind(this));
+    }
+    renderEmptyMessage() {
+        return (
+            <p className="">No data to display</p>
         );
     }
 }
@@ -111,7 +168,11 @@ export default class GcodeWidget extends React.Component {
                     if (command.length === 0) {
                         return;
                     }
-                    return { id: index, cmd: command };
+                    return {
+                        done: false,
+                        id: index,
+                        cmd: command
+                    };
                 })
                 .compact()
                 .value()
@@ -140,7 +201,7 @@ export default class GcodeWidget extends React.Component {
                     <button type="button" className="btn btn-default" name="btn-play" title="Play" onClick={this.handleCommands.bind(this)}>
                         <i className="icon ion-play"></i>
                     </button>
-                    <CommandList/>
+                    <CommandsTable/>
                 </div>
             )
         };

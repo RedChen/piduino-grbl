@@ -116,7 +116,7 @@
     "jsUri": "./web/vendor/jsUri/Uri.js",
     "handlebars": "./web/vendor/handlebars/handlebars.runtime.js",
     "modernizr": "./web/vendor/modernizr/modernizr.js",
-    "react": "./web/vendor/react/react.js",
+    "react": "./web/vendor/react/react-with-addons.js",
     "react-router": "./web/vendor/react-router/build/umd/ReactRouter.js",
     "rx": "./web/vendor/rxjs/dist/rx.all.js",
     "Sortable": "./web/vendor/Sortable/Sortable.js",

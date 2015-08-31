@@ -1,26 +1,20 @@
 import _ from 'lodash';
 import i18n from 'i18next';
 import React from 'react';
-import { createStore } from 'redux';
 import { Table, Column } from 'fixed-data-table';
 import Widget from '../widget';
+import { UPDATE_COMMANDS } from '../../actions';
+import store from '../../store';
 import './gcode.css';
 
-function commandData(state = [], action) {
-    switch (action.type) {
-        case 'UPDATE':
-            state = action.commands;
-            return state;
-        default:
-            return state;
-    }
-}
-
-// Create a Redux store holding the state.
-// Its API is { subscribe, dispatch, getState }.
-let commandDataStore = createStore(commandData);
-
 let isColumnResizing = false;
+let stripComments = (() => {
+    let re1 = /^\s+|\s+$/g; // Strip leading and trailing spaces
+    let re2 = /\s*[#;].*$/g; // Strip everything after # or ; to the end of the line, including preceding spaces
+    return (s) => {
+        return s.replace(re1, '').replace(re2, '');
+    };
+})();
 
 class CommandList extends React.Component {
     constructor(props) {
@@ -30,12 +24,15 @@ class CommandList extends React.Component {
                 id: 40,
                 cmd: 260
             },
-            commands: commandDataStore.getState()
+            commands: this.getCommandsFromStore()
         };
     }
+    getCommandsFromStore() {
+        return _.get(store.getState(), 'commands');
+    }
     componentDidMount() {
-        var that = this;
-        commandDataStore.subscribe(function() {
+        let that = this;
+        this.unsubscribe = store.subscribe(() => {
             that._onChange();
         });
     }
@@ -44,7 +41,7 @@ class CommandList extends React.Component {
     }
     _onChange() {
         this.setState({
-            commands: commandDataStore.getState()
+            commands: this.getCommandsFromStore()
         });
     }
     rowGetter(rowIndex) {
@@ -52,7 +49,7 @@ class CommandList extends React.Component {
     }
     renderEmptyMessage() {
         return (
-            <p className="">No commands to show</p>
+            <p className="">No data to display</p>
         );
     }
     onColumnResizeEndCallback(newColumnWidth, dataKey) {
@@ -102,19 +99,26 @@ class CommandList extends React.Component {
 
 export default class GcodeWidget extends React.Component {
     handleCommands() {
-        var fs = require('fs'); // FIXME
-        var file = fs.readFileSync(__dirname + '/../../../test/github.gcode', 'utf8');
-        var commands = _.map(file.split('\n'), function(command, index) {
-            return { id: index, cmd: command };
-        });
+        let fs = require('fs'); // FIXME
+        let file = fs.readFileSync(__dirname + '/../../../test/github.gcode', 'utf8');
+        let lines = file.split('\n');
 
-        commandDataStore.dispatch({
-            type: 'UPDATE',
-            commands: commands
+        store.dispatch({
+            type: UPDATE_COMMANDS,
+            commands: _(lines)
+                .map((command, index) => {
+                    command = stripComments(command).trim();
+                    if (command.length === 0) {
+                        return;
+                    }
+                    return { id: index, cmd: command };
+                })
+                .compact()
+                .value()
         });
     }
     render() {
-        var options = {
+        let options = {
             width: 300,
             header: {
                 style: 'invese',

@@ -120,10 +120,10 @@ export default class AxesWidget extends React.Component {
                                     name="form-feedrate"
                                     value={1000}
                                     options={[
-                                        { value: 1500, label: 1500 },
-                                        { value: 1000, label: 1000 },
-                                        { value: 500, label: 500 },
-                                        { value: 100, label: 100 }
+                                        { value: 1500, label: '1500' },
+                                        { value: 1000, label: '1000' },
+                                        { value: 500, label: '500' },
+                                        { value: 100, label: '100' }
                                     ]}
                                     backspaceRemoves={false}
                                     clearable={false}
@@ -137,11 +137,11 @@ export default class AxesWidget extends React.Component {
                                     name="form-distance"
                                     value={1}
                                     options={[
-                                        { value: 0.01, label: 0.01 },
-                                        { value: 0.1, label: 0.1 },
-                                        { value: 1, label: 1 },
-                                        { value: 10, label: 10 },
-                                        { value: 100, label: 100 }
+                                        { value: 0.01, label: '0.01' },
+                                        { value: 0.1, label: '0.1' },
+                                        { value: 1, label: '1' },
+                                        { value: 10, label: '10' },
+                                        { value: 100, label: '100' }
                                     ]}
                                     backspaceRemoves={false}
                                     clearable={false}

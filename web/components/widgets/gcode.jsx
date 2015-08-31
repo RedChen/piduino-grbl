@@ -21,27 +21,35 @@ class CommandsTable extends React.Component {
         super(props);
         this.state = {
             table: {
+                width: this.props.width,
+                height: this.props.height,
                 columns: [
                     {
                         dataKey: 'status',
-                        name: '',
                         isResizable: false,
-                        width: 20,
-                        minWidth: 20
+                        width: 28,
+                        align: 'center',
+                        cellRenderer: (cellData, cellDataKey, rowData, rowIndex, columnData, width) => {
+                            var style = {
+                                color: '#ddd'
+                            };
+                            return (
+                                <i className="icon ion-checkmark" style={style}></i>
+                            );
+                        }
                     },
                     {
-                        dataKey: 'id',
-                        name: 'No.',
+                        dataKey: 'gcode',
                         isResizable: true,
-                        width: 40,
-                        minWidth: 40
-                    },
-                    {
-                        dataKey: 'cmd',
-                        name: 'Command',
-                        isResizable: true,
-                        width: 250,
-                        minWidth: 100
+                        flexGrow: 1,
+                        width: 100,
+                        cellRenderer: (cellData, cellDataKey, rowData, rowIndex, columnData, width) => {
+                            return (
+                                <span className="text-overflow-ellipsis" style={{width: width}}>
+                                    <span className="label label-default">{rowIndex + 1}</span> {cellData} 
+                                </span>
+                            );
+                        }
                     }
                 ],
                 data: this.getDataFromStore()
@@ -53,6 +61,7 @@ class CommandsTable extends React.Component {
     }
     componentDidMount() {
         let that = this;
+
         this.unsubscribe = store.subscribe(() => {
             that._onChange();
         });
@@ -70,28 +79,23 @@ class CommandsTable extends React.Component {
         });
         this.setState(newState);
     }
-    rowGetter(index) {
+    _rowGetter(index) {
         return this.state.table.data[index];
     }
-    rowHeightGetter(index) {
-        var row = this.state.table.data[index];
-        if (row.cmd.length > 10) {
-            return 80;
+    _onContentHeightChange(contentHeight) {
+        if ( ! this.props.onContentDimensionsChange) {
+            return;
         }
-        return 40;
-    }
-    cellRenderer(cellData, cellDataKey, rowData, rowIndex, columnData, width) {
-        return (
-            <span className="text-overflow-ellipsis" style={{width: width}}>
-                {cellData}
-            </span>
+        this.props.onContentDimensionsChange(
+            contentHeight,
+            Math.max(600, this.props.tableWidth)
         );
     }
-    onColumnResizeEndCallback(newColumnWidth, dataKey) {
+    _onColumnResizeEndCallback(newColumnWidth, dataKey) {
         isColumnResizing = false;
-        this.setTableColumnWidth(dataKey, newColumnWidth);
+        this._setTableColumnWidth(dataKey, newColumnWidth);
     }
-    setTableColumnWidth(dataKey, newColumnWidth) {
+    _setTableColumnWidth(dataKey, newColumnWidth) {
         let columns = this.state.table.columns;
         let newState = React.addons.update(this.state, {
             table: {
@@ -114,19 +118,24 @@ class CommandsTable extends React.Component {
         }
     }
     renderTable() {
+        let controlledScrolling =
+            this.props.left !== undefined || this.props.top !== undefined;
+
         return (
             <Table
-                headerHeight={25}
-                rowHeight={40}
-                rowHeightGetter={this.rowHeightGetter.bind(this)}
-                rowGetter={this.rowGetter.bind(this)}
-                rowsCount={this.state.table.data.length}
-                width={300}
-                maxHeight={200}
-                overflowX="auto"
-                overflowY="auto"
+                headerHeight={10}
+                rowHeight={30}
+                rowGetter={this._rowGetter.bind(this)}
+                rowsCount={_.size(this.state.table.data)}
+                width={this.state.table.width}
+                height={this.state.table.height}
+                onContentHeightChange={this._onContentHeightChange.bind(this)}
+                scrollTop={this.props.top}
+                scrollLeft={this.props.left}
+                overflowX={controlledScrolling ? "hidden" : "auto"}
+                overflowY={controlledScrolling ? "hidden" : "auto"}
                 isColumnResizing={isColumnResizing}
-                onColumnResizeEndCallback={this.onColumnResizeEndCallback.bind(this)}>
+                onColumnResizeEndCallback={this._onColumnResizeEndCallback.bind(this)}>
                 {this.renderTableColumns()}
             </Table>
         );
@@ -137,12 +146,16 @@ class CommandsTable extends React.Component {
             return (
                 <Column
                     label={column.name}
-                    width={column.width}
                     dataKey={column.dataKey}
-                    key={key}
+                    width={column.width}
+                    flexGrow={column.flexGrow}
                     isResizable={!!column.isResizable}
-                    cellRenderer={this.cellRenderer}
-                    minWidth={column.minWidth}
+                    key={key}
+                    align={column.align}
+                    headerClassName={column.headerClassName}
+                    headerRenderer={column.headerRenderer}
+                    cellClassName={column.cellClassName}
+                    cellRenderer={column.cellRenderer}
                 />
             );
         }.bind(this));
@@ -169,9 +182,8 @@ export default class GcodeWidget extends React.Component {
                         return;
                     }
                     return {
-                        done: false,
-                        id: index,
-                        cmd: command
+                        status: 0,
+                        gcode: command
                     };
                 })
                 .compact()
@@ -179,8 +191,11 @@ export default class GcodeWidget extends React.Component {
         });
     }
     render() {
+        let widgetWidth = 300;
+        let tableWidth = widgetWidth - 2 /* border */ - 10 /* padding */;
+        let tableHeight = 300;
         let options = {
-            width: 300,
+            width: widgetWidth,
             header: {
                 style: 'invese',
                 title: (
@@ -201,7 +216,9 @@ export default class GcodeWidget extends React.Component {
                     <button type="button" className="btn btn-default" name="btn-play" title="Play" onClick={this.handleCommands.bind(this)}>
                         <i className="icon ion-play"></i>
                     </button>
-                    <CommandsTable/>
+                    <div className="gcode-wrapper">
+                        <CommandsTable width={tableWidth} height={tableHeight}/>
+                    </div>
                 </div>
             )
         };

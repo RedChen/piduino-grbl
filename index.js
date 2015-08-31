@@ -1,7 +1,6 @@
 var path = require('path');
 var webappengine = require('webappengine');
-
-webappengine({
+var options = {
     port: 8000,
     routes: [
         {
@@ -11,4 +10,9 @@ webappengine({
             server: path.resolve(__dirname, 'app/app')
         }
     ]
-});
+};
+
+webappengine(options)
+    .on('ready', function(server) {
+        var io = require('socket.io')(server);
+    });

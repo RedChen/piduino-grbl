@@ -30,7 +30,7 @@ export default class ConsoleWidget extends React.Component {
             )
         };
         return (
-            <Widget options={options}/>
+            <Widget options={options} />
         );
     }
 }

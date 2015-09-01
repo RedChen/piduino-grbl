@@ -37,6 +37,7 @@
     "http-proxy": "1.11.x",
     "i18next": "1.10.x",
     "jade": "0.35.x",
+    "johnny-five": "^0.8.89",
     "lodash": "3.10.x",
     "method-override": "1.0.x",
     "morgan": "1.0.x",

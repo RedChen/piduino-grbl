@@ -1,19 +1,27 @@
+import _ from 'lodash';
 import i18n from 'i18next';
 import React from 'react';
 import Select from 'react-select';
 import Widget from '../widget';
+import socket from '../../socket';
 import './connection.css';
 
 export default class ConnectionWidget extends React.Component {
-    getSerialPorts(input, done) {
-        setTimeout(function() {
-            done(null, {
-                options: [
-                    { value: 'foo', label: 'foo'},
-                    { value: 'bar', label: 'bar'}
-                ]
+    constructor(props) {
+        super(props);
+        this.state = {
+            ports: [],
+            refreshing: false
+        };
+    }
+    componentDidMount() {
+        var that = this;
+
+        socket.on('serial-ports', (ports) => {
+            that.setState({
+                ports: ports
             });
-        }, 500);
+        });
     }
     render() {
         var options = {
@@ -43,11 +51,12 @@ export default class ConnectionWidget extends React.Component {
                                         <td>
                                             <Select
                                                 name="form-serial-port"
-                                                asyncOptions={this.getSerialPorts}
+                                                options={this.state.ports}
                                                 backspaceRemoves={false}
                                                 clearable={false}
                                                 searchable={false}
-                                                placeholder="Choose a serial port"
+                                                placeholder="Choose a port"
+                                                noResultsText="No ports available"
                                             />
                                         </td>
                                         <td style={{paddingLeft: 10, width: '1%'}}>

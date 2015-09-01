@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import React from 'react';
 import Sortable from 'Sortable';
 import Widget from '../widget';
-import { ConnectionWidget, AxesWidget, GcodeWidget, WebcamWidget } from '../widgets';
+import { ConnectionWidget, AxesWidget, ConsoleWidget, GcodeWidget, WebcamWidget } from '../widgets';
 import './workspace.css';
 
 export default class Workspace extends React.Component {
@@ -76,6 +76,7 @@ export default class Workspace extends React.Component {
                                 <p>Toolpath</p>
                             </div>
                             <div className="secondary-container" ref="secondary-container">
+                                <ConsoleWidget />
                                 <GcodeWidget />
                                 <WebcamWidget />
                             </div>

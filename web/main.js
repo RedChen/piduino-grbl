@@ -6,6 +6,7 @@ import log from './lib/log';
 import app from './app';
 import settings from './config/settings';
 import sha1 from 'sha1';
+import socket from './socket';
 
 import './styles/vendor.css';
 import './styles/app.css';
@@ -102,7 +103,7 @@ async.series([
             'webroot=' + settings.webroot,
             'cdn=' + settings.cdn
         ];
-        log.debug(msg.join(','));
+        log.info(msg.join(','));
 
         next();
     }

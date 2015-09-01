@@ -3,7 +3,7 @@ import i18n from 'i18next';
 import React from 'react';
 import { Table, Column } from 'fixed-data-table';
 import Widget from '../widget';
-import { UPDATE_COMMANDS } from '../../actions';
+import { GCODE_UPDATE } from '../../actions';
 import store from '../../store';
 import './gcode.css';
 
@@ -57,7 +57,9 @@ class CommandsTable extends React.Component {
         };
     }
     getDataFromStore() {
-        return _.get(store.getState(), 'commands');
+        console.log(store.getState());
+
+        return _.get(store.getState(), 'gcode.data');
     }
     componentDidMount() {
         let that = this;
@@ -123,7 +125,8 @@ class CommandsTable extends React.Component {
 
         return (
             <Table
-                headerHeight={10}
+                className="noHeader"
+                headerHeight={0}
                 rowHeight={30}
                 rowGetter={this._rowGetter.bind(this)}
                 rowsCount={_.size(this.state.table.data)}
@@ -174,16 +177,16 @@ export default class GcodeWidget extends React.Component {
         let lines = file.split('\n');
 
         store.dispatch({
-            type: UPDATE_COMMANDS,
-            commands: _(lines)
-                .map((command, index) => {
-                    command = stripComments(command).trim();
-                    if (command.length === 0) {
+            type: GCODE_UPDATE,
+            data: _(lines)
+                .map((line, index) => {
+                    line = stripComments(line).trim();
+                    if (line.length === 0) {
                         return;
                     }
                     return {
                         status: 0,
-                        gcode: command
+                        gcode: line
                     };
                 })
                 .compact()
@@ -192,7 +195,7 @@ export default class GcodeWidget extends React.Component {
     }
     render() {
         let widgetWidth = 300;
-        let tableWidth = widgetWidth - 2 /* border */ - 10 /* padding */;
+        let tableWidth = widgetWidth - 2 /* border */ - 20 /* padding */;
         let tableHeight = 300;
         let options = {
             width: widgetWidth,

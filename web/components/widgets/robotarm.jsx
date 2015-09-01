@@ -56,7 +56,7 @@ export default class ConsoleWidget extends React.Component {
                     <div>
                         <i className="icon ion-monitor"></i>
                         &nbsp;
-                        <span>{i18n._('史上最強機械手臂')}</span>
+                        <span>{i18n._('Robot Arm Controller')}</span>
                     </div>
                 ),
                 toolbar: {

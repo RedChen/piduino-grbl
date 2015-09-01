@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import commands from './commands';
+import gcode from './gcode';
+import console from './console';
 
 export default combineReducers({
-    commands
+    gcode,
+    console
 });

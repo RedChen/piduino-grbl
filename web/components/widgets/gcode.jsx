@@ -5,6 +5,7 @@ import { Table, Column } from 'fixed-data-table';
 import Widget from '../widget';
 import { GCODE_UPDATE } from '../../actions';
 import store from '../../store';
+import socket from '../../socket';
 import './gcode.css';
 
 let isColumnResizing = false;
@@ -57,8 +58,6 @@ class CommandsTable extends React.Component {
         };
     }
     getDataFromStore() {
-        console.log(store.getState());
-
         return _.get(store.getState(), 'gcode.data');
     }
     componentDidMount() {

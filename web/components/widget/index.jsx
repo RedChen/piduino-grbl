@@ -28,7 +28,7 @@ class WidgetHeaderToolbar extends React.Component {
                title=""
                className="btn btn-link btn-drag"
                style={style}
-               onClick={::this.handleClick('btn-drag')}>
+               onClick={this.handleClick.bind(this, 'btn-drag')}>
             <i className="icon ion-ios-drag"></i>
             </a>
         );
@@ -39,7 +39,7 @@ class WidgetHeaderToolbar extends React.Component {
                key='btn-refresh'
                title=""
                className="btn btn-link btn-refresh"
-               onClick={::this.handleClick('btn-refresh')}>
+               onClick={this.handleClick.bind(this, 'btn-refresh')}>
             <i className="icon ion-ios-refresh-empty"></i>
             </a>
         );
@@ -50,7 +50,7 @@ class WidgetHeaderToolbar extends React.Component {
                key='btn-remove'
                title={i18n._('Remove')}
                className="btn btn-link btn-remove"
-               onClick={::this.handleClick('btn-remove')}>
+               onClick={this.handleClick.bind(this, 'btn-remove')}>
                 <i className="icon ion-ios-close-empty"></i>
             </a>
         );
@@ -66,7 +66,7 @@ class WidgetHeaderToolbar extends React.Component {
                key='btn-toggle'
                title={i18n._('Expand/Collapse')}
                className="btn btn-link btn-toggle"
-               onClick={::this.handleClick('btn-toggle')}>
+               onClick={this.handleClick.bind(this, 'btn-toggle')}>
                 <i className={iconClasses}></i>
             </a>
         );
@@ -156,11 +156,11 @@ class WidgetFooter extends React.Component {
 }
 
 export default class Widget extends React.Component {
-    static propTypes = {
-        options: React.PropTypes.object
-    };
     static defaultProps = {
         options: {}
+    };
+    static propTypes = {
+        options: React.PropTypes.object
     };
     state = {
         isCollapsed: false

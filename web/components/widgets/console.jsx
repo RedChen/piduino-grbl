@@ -77,7 +77,7 @@ export default class ConsoleWidget extends React.Component {
 
     componentDidMount() {
         var that = this;
-        socket.on('serialport:data', (line) => {
+        socket.on('serialport:msg', (line) => {
             that.sendMessage(line);
         });
     }

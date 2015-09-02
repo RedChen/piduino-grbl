@@ -16,22 +16,22 @@ var stripComments = (function() {
 
 var serialports = {};
 
-var isSerialPortOpen = function(sp) {
+var isOpen = function(sp) {
     return sp && sp.serialPort && sp.serialPort.isOpen();
 };
 
-var parseMsg = function(sp, msg) {
+var parseSerialMsg = function(sp, msg) {
     msg = ('' + msg).trim();
 
     console.log('grbl>', msg);
 
-    if (line === 'ok') {
+    if (msg === 'ok') {
         sp.queue.next();
-    } else if (line === 'error') {
+    } else if (msg === 'error') {
         sp.queue.next();
-    } else if (/<[^>]+>/.test(line)){
+    } else if (/<[^>]+>/.test(msg)){
         // <Idle,MPos:0.000,0.000,0.000,WPos:0.000,0.000,0.000>
-        var r = line.match(/<(\w+),\w+:([^,]+),([^,]+),([^,]+),\w+:([^,]+),([^,]+),([^,]+)>/);
+        var r = msg.match(/<(\w+),\w+:([^,]+),([^,]+),([^,]+),\w+:([^,]+),([^,]+),([^,]+)>/);
         if ( ! r) {
             return;
         }
@@ -56,8 +56,7 @@ var parseMsg = function(sp, msg) {
         // Others
     }
 
-    var msg = 'grbl> ' + line;
-    sp.sockets.emit('serialport:msg', msg);
+    sp.sockets.emit('serialport:msg', 'grbl> ' + msg);
 };
 
 module.exports = function(server) {
@@ -123,8 +122,8 @@ module.exports = function(server) {
                         log.debug('Connected to \'%s\' at %d.', port, baudrate);
                     });
 
-                    serialPort.on('data', function(line) {
-                        parseGRBL(sp, line);
+                    serialPort.on('data', function(msg) {
+                        parseSerialMsg(sp, msg);
                     });
 
                     serialPort.on('close', function() {
@@ -150,13 +149,25 @@ module.exports = function(server) {
             log.debug('socket.on(\'serial-connect\'):', serialports[port]);
         });
 
-        socket.on('serialport:write', function(msg) {
-            log.debug('socket.on(\'serialport:write\'):', { id: socket.id, msg: msg });
+        socket.on('serialport:write', function(port, msg) {
+            var sp = serialports[port];
+            if ( ! isOpen(sp)) {
+                log.warn('The serial port is not open.', { port: port });
+                return;
+            }
+
+            log.debug('socket.on(\'serialport:write\'):', { id: socket.id, port: port, msg: msg });
             sp.write(msg);
         });
 
-        socket.on('serialport:writeln', function(msg) {
-            log.debug('socket.on(\'serialport:writeln\'):', { id: socket.id, msg: msg });
+        socket.on('serialport:writeln', function(port, msg) {
+            var sp = serialports[port];
+            if ( ! isOpen(sp)) {
+                log.warn('The serial port is not open.', { port: port });
+                return;
+            }
+
+            log.debug('socket.on(\'serialport:writeln\'):', { id: socket.id, port: port, msg: msg });
             msg = ('' + msg).trim();
             sp.write(msg + '\n');
         });
@@ -247,127 +258,4 @@ module.exports = function(server) {
         });
 
     });
-};
-
-    /*
-    socket.on('serialport:connect', function(data) {
-        var path = data.port;
-        var baudrate = Number(data.baudrate);
-        var queue = motionQueue();
-
-        if ( ! sp) {
-            sp = new serialport.SerialPort(path, {
-                baudrate: baudrate, // defaults to 9600
-                parser: serialport.parsers.readline('\n')
-            });
-        }
-
-        log.info('Starting a new serial port connection: sockets=%d', sockets.length);
-
-        queue.on('data', function(line) {
-            line = line.trim();
-            console.log(line);
-            sp.write(line + '\n');
-            socket.emit('serialport:data', line);
-        });
-
-        sp.on('open', function() {
-            log.debug('Connected to \'%s\' at %d.', path, baudrate);
-            socket.emit('serialport:open', {
-                port: path,
-                baudrate: baudrate
-            });
-        });
-
-        sp.on('data', function(line){
-            line = line.trim();
-
-            console.log('grbl>', line);
-
-            if (line === 'ok') {
-                queue.next();
-            } else if (line === 'error') {
-                queue.next();
-            } else if (/<[^>]+>/.test(line)){
-                // <Idle,MPos:0.000,0.000,0.000,WPos:0.000,0.000,0.000>
-                var r = line.match(/<(\w+),\w+:([^,]+),([^,]+),([^,]+),\w+:([^,]+),([^,]+),([^,]+)>/);
-                if ( ! r) {
-                    return;
-                }
-
-                // https://github.com/grbl/grbl/wiki/Configuring-Grbl-v0.9#---current-status
-                socket.emit('grbl:status', {
-                    activeState: r[1], // Active States: Idle, Run, Hold, Door, Home, Alarm, Check
-                    machinePos: { // Machine position
-                        x: r[2], 
-                        y: r[3],
-                        z: r[4]
-                    },
-                    workingPos: { // Working position
-                        x: r[5],
-                        y: r[6],
-                        z: r[7]
-                    }
-                });
-            } else {
-                // Others
-            }
-
-            socket.emit('serialport:data', 'grbl> ' + line);
-        });
-
-        sp.on('close', function() {
-            log.debug('The serial port connection is closed.');
-        });
-
-        sp.on('error', function() {
-            log.error('Error opening serial port \'%s\'', path);
-        });
-
-        socket.on('serialport:write', function(data) {
-            log.debug('serialport:write: data=%s', data);
-            sp.write(data);
-        });
-
-        socket.on('serialport:writeln', function(line) {
-            log.debug('serialport:writeln: line=%s', line);
-            sp.write(line + '\n');
-        });
-
-        socket.on('grbl:start', function() {
-            var lines = [];
-
-            readline
-                .createInterface({
-                    input: fs.createReadStream('./test/github.gcode'),
-                    // No output
-                    terminal: false
-                })
-                .on('line', function(line) {
-                    line = stripComments(line);
-                    if (line.length === 0) {
-                        return;
-                    }
-                    lines.push(line);
-                })
-                .on('close', function() {
-                    queue.add(lines);
-                    queue.start();
-                });
-        });
-
-        socket.on('grbl:pause', function() {
-            queue.pause();
-        });
-
-        socket.on('grbl:resume', function() {
-            queue.resume();
-        });
-
-        socket.on('grbl:reset', function() {
-            queue.reset();
-        });
-
-    });
-    */
 };

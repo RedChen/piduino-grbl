@@ -53,47 +53,7 @@ var getStackTrace = function() {
     return (obj.stack || '').split('\n');
 };
 
-module.exports = function() {
-    var arr = [];
-    if (logger.settings.prefix) { // prefix
-        arr.push(logger.settings.prefix);
-    }
-    return {
-        log: function() {
-            var args = Array.prototype.slice.call(arguments);
-            var level = args.shift();
-            var stackTrace = getStackTrace()[2];
-            logger.log(level, util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
-        },
-        trace: function() {
-            var args = Array.prototype.slice.call(arguments);
-            var stackTrace = getStackTrace()[2];
-            logger.trace(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
-        },
-        debug: function() {
-            var args = Array.prototype.slice.call(arguments);
-            var stackTrace = getStackTrace()[2];
-            logger.debug(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
-        },
-        info: function() {
-            var args = Array.prototype.slice.call(arguments);
-            var stackTrace = getStackTrace()[2];
-            logger.info(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
-        },
-        warn: function() {
-            var args = Array.prototype.slice.call(arguments);
-            var stackTrace = getStackTrace()[2];
-            logger.warn(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
-        },
-        error: function() {
-            var args = Array.prototype.slice.call(arguments);
-            var stackTrace = getStackTrace()[2];
-            logger.error(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
-        }
-    };
-};
-
-module.exports.init = function(settings) {
+(function(settings) {
     _.each([ // return the directory name 
         path.dirname(settings.transports.File.filename),
         path.dirname(settings.exceptionHandlers.File.filename)
@@ -135,14 +95,44 @@ module.exports.init = function(settings) {
     logger.settings = settings;
 
     return module.exports;
-};
+})(require('../config/settings')['winston']);
 
-module.exports.registerAppHelper = function(app) {
-    if (app.helpers) {
-        app.helpers({logger: module.exports()});
-    } else {
-        app.locals.logger = module.exports();
+module.exports = (function() {
+    var arr = [];
+    if (logger.settings.prefix) { // prefix
+        arr.push(logger.settings.prefix);
     }
-
-    return module.exports;
-};
+    return {
+        log: function() {
+            var args = Array.prototype.slice.call(arguments);
+            var level = args.shift();
+            var stackTrace = getStackTrace()[2];
+            logger.log(level, util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
+        },
+        trace: function() {
+            var args = Array.prototype.slice.call(arguments);
+            var stackTrace = getStackTrace()[2];
+            logger.trace(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
+        },
+        debug: function() {
+            var args = Array.prototype.slice.call(arguments);
+            var stackTrace = getStackTrace()[2];
+            logger.debug(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
+        },
+        info: function() {
+            var args = Array.prototype.slice.call(arguments);
+            var stackTrace = getStackTrace()[2];
+            logger.info(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
+        },
+        warn: function() {
+            var args = Array.prototype.slice.call(arguments);
+            var stackTrace = getStackTrace()[2];
+            logger.warn(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
+        },
+        error: function() {
+            var args = Array.prototype.slice.call(arguments);
+            var stackTrace = getStackTrace()[2];
+            logger.error(util.format.apply(util.format, arr.concat(args).concat(stackTrace)), meta());
+        }
+    };
+})();

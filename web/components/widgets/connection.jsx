@@ -4,13 +4,23 @@ import React from 'react';
 import Select from 'react-select';
 import Widget from '../widget';
 import socket from '../../socket';
+import log from '../../lib/log';
 import './connection.css';
 
-export default class ConnectionWidget extends React.Component {
+class Connection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             ports: [],
+            port: '',
+            baudrate: 115200,
+            baudrates: [
+                9600,
+                19200,
+                38400,
+                57600,
+                115200
+            ],
             refreshing: false
         };
     }
@@ -18,11 +28,85 @@ export default class ConnectionWidget extends React.Component {
         var that = this;
 
         socket.on('serial-ports', (ports) => {
-            that.setState({
-                ports: ports
-            });
+            log.debug(ports);
+            that.setState({ports: ports});
         });
     }
+    openConnection() {
+        let port = this.state.port;
+        let baudrate = this.state.baudrate;
+        log.debug(port, baudrate);
+    }
+    render() {
+        let canOpenConnection = (this.state.port && this.state.baudrate);
+
+        return (
+            <div>
+                <div className="form-group">
+                    <label className="control-label">{i18n._('Port:')}</label>
+                    <table style={{width: '100%'}}>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <Select
+                                        name="form-port"
+                                        value={this.state.port}
+                                        options={_.map(this.state.ports, function(port) {
+                                            let value = port.comName;
+                                            let label = port.comName
+                                                      + (port.manufacturer ? ' ' + port.manufacturer: '');
+                                            return { value: value, label: label };
+                                        })}
+                                        backspaceRemoves={false}
+                                        clearable={false}
+                                        searchable={false}
+                                        placeholder={i18n._('Choose a port')}
+                                        noResultsText={i18n._('No ports available')}
+                                        onChange={(value) => this.setState({port: value})}
+                                    />
+                                </td>
+                                <td style={{paddingLeft: 10, width: '1%'}}>
+                                    <button type="button" className="btn btn-default" name="btn-refresh" title={i18n._('Refresh')}>
+                                        <i className="icon ion-android-sync"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className="form-group">
+                    <label className="control-label">{i18n._('Baud rate:')}</label>
+                    <Select
+                        name="form-baudrate"
+                        value={this.state.baudrate}
+                        options={_.map(this.state.baudrates, function(baudrate) {
+                            return {
+                                value: baudrate,
+                                label: Number(baudrate).toString()
+                            };
+                        })}
+                        backspaceRemoves={false}
+                        clearable={false}
+                        searchable={false}
+                        placeholder={i18n._('Choose a baud rate')}
+                        onChange={(value) => this.setState({baudrate: value})}
+                    />
+                </div>
+                <div className="btn-toolbar" role="toolbar">
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+                        disabled={ ! canOpenConnection}
+                        onClick={this.openConnection.bind(this)}>
+                        <i className="icon ion-power"></i>&nbsp;{i18n._('Open')}
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default class ConnectionWidget extends React.Component {
     render() {
         var options = {
             width: 300,
@@ -42,52 +126,7 @@ export default class ConnectionWidget extends React.Component {
             },
             content: (
                 <div data-component="Widgets/ConnectionWidget">
-                    <div className="form-group">
-                        <label className="control-label">{i18n._('Port:')}</label>
-                        <table style={{width: '100%'}}>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <Select
-                                            name="form-serial-port"
-                                            options={this.state.ports}
-                                            backspaceRemoves={false}
-                                            clearable={false}
-                                            searchable={false}
-                                            placeholder="Choose a port"
-                                            noResultsText="No ports available"
-                                        />
-                                    </td>
-                                    <td style={{paddingLeft: 10, width: '1%'}}>
-                                        <button type="button" className="btn btn-default" name="btn-refresh" title={i18n._('Refresh')}>
-                                            <i className="icon ion-android-sync"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="form-group">
-                        <label className="control-label">{i18n._('Baud rate:')}</label>
-                        <Select
-                            name="form-serial-port"
-                            value={115200}
-                            options={[
-                                { value: 9600, label: '9600' },
-                                { value: 19200, label: '19200' },
-                                { value: 38400, label: '38400' },
-                                { value: 57600, label: '57600' },
-                                { value: 115200, label: '115200' }
-                            ]}
-                            backspaceRemoves={false}
-                            clearable={false}
-                            searchable={false}
-                            placeholder="Choose a baud rate"
-                        />
-                    </div>
-                    <div className="btn-toolbar" role="toolbar">
-                        <button type="button" className="btn btn-primary"><i className="icon ion-power"></i>&nbsp;Open</button>
-                    </div>
+                    <Connection />
                 </div>
             )
         };

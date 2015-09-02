@@ -9,7 +9,7 @@ var fs = require('fs'),
     i18n = require('i18next'),
     urljoin = require('./lib/urljoin'),
     _ = require('lodash'),
-    logger = require('./lib/logger'),
+    log = require('./lib/log'),
     settings = require('./config/settings');
 
 // Auto-load bundled middleware
@@ -36,12 +36,6 @@ module.exports = function() {
     var morgan = require('morgan');
     var compress = require('compression');
     var serveStatic = require('serve-static');
-
-    // Setup logger (winston)
-    logger.init(settings.winston);
-    logger.registerAppHelper(app); // Register app.locals (app.helper)
-
-    var log = logger();
 
     // Setup i18n (i18next)
     i18n.init(settings.i18next);

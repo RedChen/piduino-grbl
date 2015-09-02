@@ -1,4 +1,6 @@
 var _ = require('lodash');
+var settings = require('./app/config/settings');
+var log = require('./app/lib/log');
 var path = require('path');
 var webappengine = require('webappengine');
 var serialport = require('serialport');
@@ -67,13 +69,12 @@ webappengine(options)
 
         io.on('connection', function(socket) {
 
-            runFive(socket);
-
             serialport.list(function(err, ports) {
                 if (err) {
                     console.error(err);
                     return;
                 }
+                log.info(ports);
                 socket.emit('serial-ports', ports);
             });
 

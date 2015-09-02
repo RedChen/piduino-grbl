@@ -5,7 +5,7 @@ var path = require('path'),
     _ = require('lodash'),
     settings = require('../config/settings'),
     urljoin = require('../lib/urljoin'),
-    log = require('../lib/logger')();
+    log = require('../lib/log');
 
 module.exports = {};
 

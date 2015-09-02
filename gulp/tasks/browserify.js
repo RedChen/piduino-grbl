@@ -51,7 +51,7 @@ module.exports = function(options) {
         // Create the application bundler
         var bundler = browserify(browserifyConfig.options);
         bundler.add(browserifyConfig.src);
-        bundler.transform('babelify');
+        bundler.transform('babelify', browserifyTransform['babelify']);
         bundler.transform('reactify'); // Use reactify to transform JSX content
         bundler.transform('browserify-css', browserifyTransform['browserify-css']);
         bundler.transform('brfs');

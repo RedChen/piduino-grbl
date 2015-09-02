@@ -72,6 +72,8 @@ function runFive(socket) {
     });
 }
 
+var connections = 0;
+
 function server(server) {
     var io = require('socket.io')(server, {
         serveClient: true,
@@ -98,6 +100,8 @@ function server(server) {
                 parser: serialport.parsers.readline('\n')
             });
 
+            log.info('Starting a new serial port connection: total=%d', connections + 1);
+
             queue.on('data', function(line) {
                 line = line.trim();
                 console.log(line);
@@ -105,15 +109,17 @@ function server(server) {
                 socket.emit('serialport:data', line);
             });
 
-            log.debug('SerialPort:', sp);
-
-            setInterval(function() {
-                if (sp.isOpen()) {
-                    sp.write('?');
-                }
-            }, 500);
+            if (connections <= 0) {
+                setInterval(function() {
+                    if (sp.isOpen()) {
+                        sp.write('?');
+                    }
+                }, 500);
+            }
 
             sp.on('open', function() {
+                ++connections;
+
                 log.debug('Connected to \'%s\' at %d.', path, baudrate);
                 socket.emit('serialport:open', {
                     port: path,
@@ -159,6 +165,7 @@ function server(server) {
             });
 
             sp.on('close', function() {
+                --connections;
                 log.debug('The serial port connection is closed.');
             });
 

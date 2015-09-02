@@ -55,11 +55,14 @@ var newSerialPort = function(options, callback) {
         baudrate: options.baudrate
     });
 
+    /*
+
     serialport.on('open', function(callback) {
         log.debug('Connected to \'%s\' at %d.', path, baudrate);
 
         callback(serialPort, data);
     });
+    */
 
     return serialport;
 };

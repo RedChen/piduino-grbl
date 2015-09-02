@@ -28,7 +28,7 @@ class WidgetHeaderToolbar extends React.Component {
                title=""
                className="btn btn-link btn-drag"
                style={style}
-               onClick={this.handleClick.bind(this, 'btn-drag')}>
+               onClick={::this.handleClick('btn-drag')}>
             <i className="icon ion-ios-drag"></i>
             </a>
         );
@@ -39,7 +39,7 @@ class WidgetHeaderToolbar extends React.Component {
                key='btn-refresh'
                title=""
                className="btn btn-link btn-refresh"
-               onClick={this.handleClick.bind(this, 'btn-refresh')}>
+               onClick={::this.handleClick('btn-refresh')}>
             <i className="icon ion-ios-refresh-empty"></i>
             </a>
         );
@@ -50,7 +50,7 @@ class WidgetHeaderToolbar extends React.Component {
                key='btn-remove'
                title={i18n._('Remove')}
                className="btn btn-link btn-remove"
-               onClick={this.handleClick.bind(this, 'btn-remove')}>
+               onClick={::this.handleClick('btn-remove')}>
                 <i className="icon ion-ios-close-empty"></i>
             </a>
         );
@@ -66,30 +66,31 @@ class WidgetHeaderToolbar extends React.Component {
                key='btn-toggle'
                title={i18n._('Expand/Collapse')}
                className="btn btn-link btn-toggle"
-               onClick={this.handleClick.bind(this, 'btn-toggle')}>
+               onClick={::this.handleClick('btn-toggle')}>
                 <i className={iconClasses}></i>
             </a>
         );
     }
     render() {
+        let that = this;
         let { options } = this.props;
         options = options || {};
 
         let toolbarButtons = _.get(options, 'header.toolbar.buttons');
-        toolbarButtons = _.map(toolbarButtons, function(button) {
+        toolbarButtons = _.map(toolbarButtons, (button) => {
             if (_.isObject(button)) {
                 return button;
             }
             if (button === 'refresh') {
-                return this.renderRefreshButton();
+                return that.renderRefreshButton();
             }
             if (button === 'remove') {
-                return this.renderRemoveButton();
+                return that.renderRemoveButton();
             }
             if (button === 'toggle') {
-                return this.renderToggleButton();
+                return that.renderToggleButton();
             }
-        }.bind(this))
+        })
         .concat(this.renderDragButton());
 
         return <div className="widget-header-toolbar btn-group">{toolbarButtons}</div>;
@@ -188,7 +189,7 @@ export default class Widget extends React.Component {
             <div className={options.containerClass} ref="widgetContainer" data-component="Widget" style={widgetStyle}>
                 <div className="widget">
                     { options.header && 
-                        <WidgetHeader options={options} handleClick={this.handleClick.bind(this)}/>
+                        <WidgetHeader options={options} handleClick={::this.handleClick}/>
                     }
                     { options.content && ! this.state.isCollapsed &&
                         <WidgetContent options={options}/>

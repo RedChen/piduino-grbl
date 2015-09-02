@@ -58,9 +58,11 @@ class Connection extends React.Component {
                                         name="form-port"
                                         value={this.state.port}
                                         options={_.map(this.state.ports, function(port) {
-                                            let value = port.comName;
-                                            let label = port.comName
-                                                      + (port.manufacturer ? ' ' + port.manufacturer: '');
+                                            let value = port.port;
+                                            let label = port.port;
+                                            if (port.manufacturer) {
+                                                label += (' ' + port.manufacturer);
+                                            }
                                             return { value: value, label: label };
                                         })}
                                         backspaceRemoves={false}

@@ -127,17 +127,17 @@ class CommandsTable extends React.Component {
                 className="noHeader"
                 headerHeight={0}
                 rowHeight={30}
-                rowGetter={this._rowGetter.bind(this)}
+                rowGetter={::this._rowGetter}
                 rowsCount={_.size(this.state.table.data)}
                 width={this.state.table.width}
                 height={this.state.table.height}
-                onContentHeightChange={this._onContentHeightChange.bind(this)}
+                onContentHeightChange={::this._onContentHeightChange}
                 scrollTop={this.props.top}
                 scrollLeft={this.props.left}
                 overflowX={controlledScrolling ? "hidden" : "auto"}
                 overflowY={controlledScrolling ? "hidden" : "auto"}
                 isColumnResizing={isColumnResizing}
-                onColumnResizeEndCallback={this._onColumnResizeEndCallback.bind(this)}>
+                onColumnResizeEndCallback={::this._onColumnResizeEndCallback}>
                 {this.renderTableColumns()}
             </Table>
         );
@@ -218,10 +218,10 @@ export default class GcodeWidget extends React.Component {
             },
             content: (
                 <div data-component="Widgets/GcodeWidget">
-                    <button type="button" className="btn btn-default" name="btn-play" title="Load" onClick={this.handleLoad.bind(this)}>
+                    <button type="button" className="btn btn-default" name="btn-play" title="Load" onClick={::this.handleLoad}>
                         <i className="icon ion-load"></i>
                     </button>
-                    <button type="button" className="btn btn-default" name="btn-play" title="Play" onClick={this.handlePlay.bind(this)}>
+                    <button type="button" className="btn btn-default" name="btn-play" title="Play" onClick={::this.handlePlay}>
                         <i className="icon ion-play"></i>
                     </button>
                     <div className="gcode-wrapper">

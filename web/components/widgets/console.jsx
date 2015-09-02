@@ -28,13 +28,13 @@ class ConsoleInput extends React.Component {
                         <div className="input-group">
                             <input type="text" className="form-control" ref="command" placeholder={i18n._('Command')}/>
                             <div className="input-group-btn">
-                                <button className="btn btn-default" type="button" onClick={this.handleSend.bind(this)}>{i18n._('Send')}</button>
+                                <button className="btn btn-default" type="button" onClick={::this.handleSend}>{i18n._('Send')}</button>
                                 <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span className="caret"></span>
                                     <span className="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-right">
-                                    <li><a href="javascript:void(0)" onClick={this.handleClear.bind(this)}>{i18n._('Clear all')}</a></li>
+                                    <li><a href="javascript:void(0)" onClick={::this.handleClear}>{i18n._('Clear all')}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -61,7 +61,7 @@ class ConsoleWindow extends React.Component {
             <div className="console-window">
                 <ReactList
                     initialIndex={initialIndex}
-                    itemRenderer={this.renderItem.bind(this)}
+                    itemRenderer={::this.renderItem}
                     length={length}
                     type="simple"
                 />
@@ -112,7 +112,7 @@ export default class ConsoleWidget extends React.Component {
             },
             content: (
                 <div data-component="Widgets/ConsoleWidget">
-                    <ConsoleInput onSend={this.sendMessage.bind(this)} onClear={this.clearMessages.bind(this)} />
+                    <ConsoleInput onSend={::this.sendMessage} onClear={::this.clearMessages} />
                     <ConsoleWindow messages={this.state.messages} />
                 </div>
             )

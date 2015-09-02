@@ -105,7 +105,7 @@ class Connection extends React.Component {
                         type="button"
                         className="btn btn-primary"
                         disabled={ ! canOpenConnection}
-                        onClick={this.openConnection.bind(this)}>
+                        onClick={::this.openConnection}>
                         <i className="icon ion-power"></i>&nbsp;{i18n._('Open')}
                     </button>
                 </div>

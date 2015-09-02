@@ -27,15 +27,23 @@ class Connection extends React.Component {
     componentDidMount() {
         var that = this;
 
-        socket.on('serial-ports', (ports) => {
+        socket.on('serialport:list', (ports) => {
             log.debug(ports);
             that.setState({ports: ports});
+        });
+
+        socket.on('serialport:open', (data) => {
+            log.debug('Connected to ' + data.port + ' at ' + data.baudrate + '.');
         });
     }
     openConnection() {
         let port = this.state.port;
         let baudrate = this.state.baudrate;
-        log.debug(port, baudrate);
+
+        socket.emit('serialport:connect', {
+            port: port,
+            baudrate: baudrate
+        });
     }
     render() {
         let canOpenConnection = (this.state.port && this.state.baudrate);

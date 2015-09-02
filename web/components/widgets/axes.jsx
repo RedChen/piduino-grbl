@@ -2,13 +2,198 @@ import i18n from 'i18next';
 import React from 'react';
 import Select from 'react-select';
 import Widget from '../widget';
+import socket from '../../socket';
 import './axes.css';
 
-export default class AxesWidget extends React.Component {
+class Axes extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeState: 'Idle', // Idle, Run, Hold, Door, Home, Alarm, Check
+            machinePos: { // Machine position
+                x: '0.000',
+                y: '0.000',
+                z: '0.000'
+            },
+            workingPos: { // Working position
+                x: '0.000',
+                y: '0.000',
+                z: '0.000'
+            }
+        };
+    }
+    componentDidMount() {
+        var that = this;
+        socket.on('grbl:status', function(data) {
+            that.setState({
+                activeState: data.activeState,
+                machinePos: data.machinePos,
+                workingPos: data.workingPos
+            });
+        });
+    }
     changeFeedRate() {
     }
     changeDistance() {
     }
+    render() {
+        let machinePos = this.state.machinePos;
+        let workingPos = this.state.workingPos;
+        return (
+            <div className="container-fluid">
+                <div className="row display-panel">
+                    <table className="table-bordered">
+                        <thead>
+                            <tr>
+                                <th className="table-header">{i18n._('Axis')}</th>
+                                <th className="table-header">{i18n._('Machine Position')}</th>
+                                <th className="table-header">{i18n._('Working Position')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="axis-label">X</td>
+                                <td className="axis-position">
+                                    <span className="integer-part">{machinePos.x.split('.')[0]}</span>
+                                    <span className="decimal-point">.</span>
+                                    <span className="fractional-part">{machinePos.x.split('.')[1]}</span>
+                                    <span className="dimension-unit">mm</span>
+                                </td>
+                                <td className="axis-position">
+                                    <span className="integer-part">{workingPos.x.split('.')[0]}</span>
+                                    <span className="decimal-point">.</span>
+                                    <span className="fractional-part">{workingPos.x.split('.')[1]}</span>
+                                    <span className="dimension-unit">mm</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="axis-label">Y</td>
+                                <td className="axis-position">
+                                    <span className="integer-part">{machinePos.y.split('.')[0]}</span>
+                                    <span className="decimal-point">.</span>
+                                    <span className="fractional-part">{machinePos.y.split('.')[1]}</span>
+                                    <span className="dimension-unit">mm</span>
+                                </td>
+                                <td className="axis-position">
+                                    <span className="integer-part">{workingPos.y.split('.')[0]}</span>
+                                    <span className="decimal-point">.</span>
+                                    <span className="fractional-part">{workingPos.y.split('.')[1]}</span>
+                                    <span className="dimension-unit">mm</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="axis-label">Z</td>
+                                <td className="axis-position">
+                                    <span className="integer-part">{machinePos.z.split('.')[0]}</span>
+                                    <span className="decimal-point">.</span>
+                                    <span className="fractional-part">{machinePos.z.split('.')[1]}</span>
+                                    <span className="dimension-unit">mm</span>
+                                </td>
+                                <td className="axis-position">
+                                    <span className="integer-part">{workingPos.z.split('.')[0]}</span>
+                                    <span className="decimal-point">.</span>
+                                    <span className="fractional-part">{workingPos.z.split('.')[1]}</span>
+                                    <span className="dimension-unit">mm</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className="row control-panel">
+                    <div className="form-group">
+                        <table className="table-centered">
+                            <tbody>
+                                <tr>
+                                    <td className="jog-x">
+                                        <button type="button" className="btn btn-default jog-x-minus">X-</button>
+                                    </td>
+                                    <td className="jog-y">
+                                        <div className="btn-group-vertical">
+                                            <button type="button" className="btn btn-primary jog-y-plus">Y+<i className="icon ion-arrow-up"></i></button>
+                                            <button type="button" className="btn btn-primary jog-y-minus">Y-<i className="icon ion-arrow-down"></i></button>
+                                        </div>
+                                    </td>
+                                    <td className="jog-x">
+                                        <button type="button" className="btn btn-default jog-x-plus">X+</button>
+                                    </td>
+                                    <td className="jog-z">
+                                        <div className="btn-group-vertical">
+                                            <button type="button" className="btn btn-danger jog-z-plus">Z+</button>
+                                            <button type="button" className="btn btn-danger jog-z-minus">Z-</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="form-group">
+                        <label className="control-label">Feed rate:</label>
+                        <Select
+                            name="form-feedrate"
+                            value={1000}
+                            options={[
+                                { value: 1500, label: '1500' },
+                                { value: 1000, label: '1000' },
+                                { value: 500, label: '500' },
+                                { value: 100, label: '100' }
+                            ]}
+                            backspaceRemoves={false}
+                            clearable={false}
+                            searchable={false}
+                            onChange={this.changeFeedRate}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="control-label">Distance:</label>
+                        <Select
+                            name="form-distance"
+                            value={1}
+                            options={[
+                                { value: 0.01, label: '0.01' },
+                                { value: 0.1, label: '0.1' },
+                                { value: 1, label: '1' },
+                                { value: 10, label: '10' },
+                                { value: 100, label: '100' }
+                            ]}
+                            backspaceRemoves={false}
+                            clearable={false}
+                            searchable={false}
+                            onChange={this.changeDistance}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <div className="btn-group" role="group">
+                            <button type="button" className="btn btn-sm btn-default">{i18n._('Go To Zero (G0)')}</button>
+                            <button type="button" className="btn btn-sm btn-default">{i18n._('Zero Out (G92)')}</button>
+
+                            <div className="btn-group dropup" role="group">
+                                <button type="button" className="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="glyphicon glyphicon-list"></i></button>
+                                <ul className="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#">{i18n._('Toggle inch/mm')}</a></li>
+                                    <li><a href="#">{i18n._('Homing Sequence')}</a></li>
+                                    <li className="divider"></li>
+                                    <li className="dropdown-header">{i18n._('X Axis')}</li>
+                                    <li><a href="#">{i18n._('Go To Zero On X Axis (G0 X0)')}</a></li>
+                                    <li><a href="#">{i18n._('Zero Out X Axis (G92 X0)')}</a></li>
+                                    <li className="divider"></li>
+                                    <li className="dropdown-header">{i18n._('Y Axis')}</li>
+                                    <li><a href="#">{i18n._('Go To Zero On Y Axis (G0 Y0)')}</a></li>
+                                    <li><a href="#">{i18n._('Zero Out Y Axis (G92 Y0)')}</a></li>
+                                    <li className="divider"></li>
+                                    <li className="dropdown-header">{i18n._('Z Axis')}</li>
+                                    <li><a href="#">{i18n._('Go To Zero On Z Axis (G0 Z0)')}</a></li>
+                                    <li><a href="#">{i18n._('Zero Out Z Axis (G92 Z0)')}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default class AxesWidget extends React.Component {
     render() {
         var options = {
             width: 300,
@@ -28,155 +213,7 @@ export default class AxesWidget extends React.Component {
             },
             content: (
                 <div data-component="Widgets/AxesWidget">
-                    <div className="container-fluid">
-                        <div className="row display-panel">
-                            <table className="table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th className="table-header">{i18n._('Axis')}</th>
-                                        <th className="table-header">{i18n._('Machine Position')}</th>
-                                        <th className="table-header">{i18n._('Working Position')}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="axis-label">X</td>
-                                        <td className="axis-position">
-                                            <span className="integer-part">-000</span>
-                                            <span className="decimal-point">.</span>
-                                            <span className="fractional-part">000</span>
-                                            <span className="dimension-unit">mm</span>
-                                        </td>
-                                        <td className="axis-position">
-                                            <span className="integer-part">-000</span>
-                                            <span className="decimal-point">.</span>
-                                            <span className="fractional-part">000</span>
-                                            <span className="dimension-unit">mm</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="axis-label">Y</td>
-                                        <td className="axis-position">
-                                            <span className="integer-part">-000</span>
-                                            <span className="decimal-point">.</span>
-                                            <span className="fractional-part">000</span>
-                                            <span className="dimension-unit">mm</span>
-                                        </td>
-                                        <td className="axis-position">
-                                            <span className="integer-part">-000</span>
-                                            <span className="decimal-point">.</span>
-                                            <span className="fractional-part">000</span>
-                                            <span className="dimension-unit">mm</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="axis-label">Z</td>
-                                        <td className="axis-position">
-                                            <span className="integer-part">-000</span>
-                                            <span className="decimal-point">.</span>
-                                            <span className="fractional-part">000</span>
-                                            <span className="dimension-unit">mm</span>
-                                        </td>
-                                        <td className="axis-position">
-                                            <span className="integer-part">-000</span>
-                                            <span className="decimal-point">.</span>
-                                            <span className="fractional-part">000</span>
-                                            <span className="dimension-unit">mm</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="row control-panel">
-                            <div className="form-group">
-                                <table className="table-centered">
-                                    <tbody>
-                                        <tr>
-                                            <td className="jog-x">
-                                                <button type="button" className="btn btn-default jog-x-minus">X-</button>
-                                            </td>
-                                            <td className="jog-y">
-                                                <div className="btn-group-vertical">
-                                                    <button type="button" className="btn btn-primary jog-y-plus">Y+<i className="icon ion-arrow-up"></i></button>
-                                                    <button type="button" className="btn btn-primary jog-y-minus">Y-<i className="icon ion-arrow-down"></i></button>
-                                                </div>
-                                            </td>
-                                            <td className="jog-x">
-                                                <button type="button" className="btn btn-default jog-x-plus">X+</button>
-                                            </td>
-                                            <td className="jog-z">
-                                                <div className="btn-group-vertical">
-                                                    <button type="button" className="btn btn-danger jog-z-plus">Z+</button>
-                                                    <button type="button" className="btn btn-danger jog-z-minus">Z-</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="form-group">
-                                <label className="control-label">Feed rate:</label>
-                                <Select
-                                    name="form-feedrate"
-                                    value={1000}
-                                    options={[
-                                        { value: 1500, label: '1500' },
-                                        { value: 1000, label: '1000' },
-                                        { value: 500, label: '500' },
-                                        { value: 100, label: '100' }
-                                    ]}
-                                    backspaceRemoves={false}
-                                    clearable={false}
-                                    searchable={false}
-                                    onChange={this.changeFeedRate}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label className="control-label">Distance:</label>
-                                <Select
-                                    name="form-distance"
-                                    value={1}
-                                    options={[
-                                        { value: 0.01, label: '0.01' },
-                                        { value: 0.1, label: '0.1' },
-                                        { value: 1, label: '1' },
-                                        { value: 10, label: '10' },
-                                        { value: 100, label: '100' }
-                                    ]}
-                                    backspaceRemoves={false}
-                                    clearable={false}
-                                    searchable={false}
-                                    onChange={this.changeDistance}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <div className="btn-group" role="group">
-                                    <button type="button" className="btn btn-sm btn-default">{i18n._('Go To Zero (G0)')}</button>
-                                    <button type="button" className="btn btn-sm btn-default">{i18n._('Zero Out (G92)')}</button>
-
-                                    <div className="btn-group dropup" role="group">
-                                        <button type="button" className="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="glyphicon glyphicon-list"></i></button>
-                                        <ul className="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#">{i18n._('Toggle inch/mm')}</a></li>
-                                            <li><a href="#">{i18n._('Homing Sequence')}</a></li>
-                                            <li className="divider"></li>
-                                            <li className="dropdown-header">{i18n._('X Axis')}</li>
-                                            <li><a href="#">{i18n._('Go To Zero On X Axis (G0 X0)')}</a></li>
-                                            <li><a href="#">{i18n._('Zero Out X Axis (G92 X0)')}</a></li>
-                                            <li className="divider"></li>
-                                            <li className="dropdown-header">{i18n._('Y Axis')}</li>
-                                            <li><a href="#">{i18n._('Go To Zero On Y Axis (G0 Y0)')}</a></li>
-                                            <li><a href="#">{i18n._('Zero Out Y Axis (G92 Y0)')}</a></li>
-                                            <li className="divider"></li>
-                                            <li className="dropdown-header">{i18n._('Z Axis')}</li>
-                                            <li><a href="#">{i18n._('Go To Zero On Z Axis (G0 Z0)')}</a></li>
-                                            <li><a href="#">{i18n._('Zero Out Z Axis (G92 Z0)')}</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <Axes />
                 </div>
             )
         };

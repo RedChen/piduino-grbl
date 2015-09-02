@@ -6,10 +6,15 @@ import Widget from '../widget';
 import socket from '../../socket';
 import './console.css';
 
+const MESSAGE_LIMIT = 5000;
+
 class ConsoleInput extends React.Component {
     handleSend() {
         let el = React.findDOMNode(this.refs.command);
         this.props.onSend(el.value);
+
+        socket.emit('serialport:writeln', el.value);
+
         el.value = '';
     }
     handleClear() {
@@ -50,13 +55,15 @@ class ConsoleWindow extends React.Component {
         );
     }
     render() {
-        let messages = this.props.messages || [];
+        let length = _.size(this.props.messages);
+        let initialIndex = (length > 0) ? (length - 1) : 0;
         return (
             <div className="console-window">
                 <ReactList
+                    initialIndex={initialIndex}
                     itemRenderer={this.renderItem.bind(this)}
-                    length={_.size(messages)}
-                    type="uniform"
+                    length={length}
+                    type="simple"
                 />
             </div>
         );
@@ -70,9 +77,15 @@ export default class ConsoleWidget extends React.Component {
             messages: []
         };
     }
+    componentDidMount() {
+        var that = this;
+        socket.on('serialport:data', (line) => {
+            that.sendMessage(line);
+        });
+    }
     sendMessage(message) {
         this.setState({
-            messages: this.state.messages.concat(message)
+            messages: this.state.messages.concat(message).slice(0, MESSAGE_LIMIT)
         });
     }
     clearMessages() {

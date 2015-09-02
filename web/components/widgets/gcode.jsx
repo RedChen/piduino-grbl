@@ -170,7 +170,7 @@ class CommandsTable extends React.Component {
 }
 
 export default class GcodeWidget extends React.Component {
-    handleCommands() {
+    handleLoad() {
         let fs = require('fs'); // FIXME
         let file = fs.readFileSync(__dirname + '/../../../test/github.gcode', 'utf8');
         let lines = file.split('\n');
@@ -191,6 +191,9 @@ export default class GcodeWidget extends React.Component {
                 .compact()
                 .value()
         });
+    }
+    handlePlay() {
+        socket.emit('grbl:start');
     }
     render() {
         let widgetWidth = 300;
@@ -215,7 +218,10 @@ export default class GcodeWidget extends React.Component {
             },
             content: (
                 <div data-component="Widgets/GcodeWidget">
-                    <button type="button" className="btn btn-default" name="btn-play" title="Play" onClick={this.handleCommands.bind(this)}>
+                    <button type="button" className="btn btn-default" name="btn-play" title="Load" onClick={this.handleLoad.bind(this)}>
+                        <i className="icon ion-load"></i>
+                    </button>
+                    <button type="button" className="btn btn-default" name="btn-play" title="Play" onClick={this.handlePlay.bind(this)}>
                         <i className="icon ion-play"></i>
                     </button>
                     <div className="gcode-wrapper">

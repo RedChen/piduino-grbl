@@ -16,6 +16,50 @@ var stripComments = (function() {
 
 var serialports = {};
 
+var isSerialPortOpen = function(sp) {
+    return sp && sp.serialPort && sp.serialPort.isOpen();
+};
+
+var parseMsg = function(sp, msg) {
+    msg = ('' + msg).trim();
+
+    console.log('grbl>', msg);
+
+    if (line === 'ok') {
+        sp.queue.next();
+    } else if (line === 'error') {
+        sp.queue.next();
+    } else if (/<[^>]+>/.test(line)){
+        // <Idle,MPos:0.000,0.000,0.000,WPos:0.000,0.000,0.000>
+        var r = line.match(/<(\w+),\w+:([^,]+),([^,]+),([^,]+),\w+:([^,]+),([^,]+),([^,]+)>/);
+        if ( ! r) {
+            return;
+        }
+
+        // https://github.com/grbl/grbl/wiki/Configuring-Grbl-v0.9#---current-status
+        sp.sockets.emit('grbl:current-status', {
+            activeState: r[1], // Active States: Idle, Run, Hold, Door, Home, Alarm, Check
+            machinePos: { // Machine position
+                x: r[2], 
+                y: r[3],
+                z: r[4]
+            },
+            workingPos: { // Working position
+                x: r[5],
+                y: r[6],
+                z: r[7]
+            }
+        });
+
+        return;
+    } else {
+        // Others
+    }
+
+    var msg = 'grbl> ' + line;
+    sp.sockets.emit('serialport:msg', msg);
+};
+
 module.exports = function(server) {
     var io = require('socket.io')(server, {
         serveClient: true,
@@ -28,11 +72,151 @@ module.exports = function(server) {
         socket.on('disconnect', function() {
             // Remove the socket of the disconnected client
             _.each(serialports, function(sp) {
-                sp.sockets = _.remove(sp.sockets, function(_socket) {
+                sp.sockets.list = _.remove(sp.sockets.list, function(_socket) {
                     return _socket === socket;
                 });
             });
             log.debug('socket.on(\'disconnect\'):', { id: socket.id });
+        });
+
+        socket.on('serialport:connect', function(data) {
+            var port = _.get(data, 'port');
+            var sp = serialports[port] = serialports[port] || {
+                port: port,
+                sockets: {
+                    emit: (function(port) {
+                        return function(evt, msg) {
+                            _.each(sp.sockets.list, function(_socket) {
+                                _socket.emit(evt, msg);
+                            });
+                        };
+                    })(port),
+                    list: []
+                }
+            };
+
+            if ( ! sp.queue) {
+                sp.queue = queue();
+                sp.queue.on('data', function(msg) {
+                    console.log(msg);
+                    msg = ('' + msg).trim();
+                    sp.write(msg + '\n');
+                    sp.sockets.emit('serialport:msg', msg);
+                });
+            }
+
+            if ( ! _.includes(sp.sockets.list, socket)) {
+                sp.sockets.list.push(socket);
+            }
+
+            if ( ! sp.serialPort) {
+                try {
+                    var baudrate = Number(_.get(data, 'baudrate')) || 9600; // defaults to 9600
+                    var serialPort = new SerialPort(port, {
+                        baudrate: baudrate,
+                        parser: serialport.parser.readline('\n')
+                    });
+
+                    sp.serialPort = serialPort;
+
+                    serialPort.on('open', function() {
+                        log.debug('Connected to \'%s\' at %d.', port, baudrate);
+                    });
+
+                    serialPort.on('data', function(line) {
+                        parseGRBL(sp, line);
+                    });
+
+                    serialPort.on('close', function() {
+                        log.debug('The serial port connection is closed.');
+
+                        delete serialports[port];
+                        serialports[port] = undefined;
+                    });
+
+                    serialPort.on('error', function() {
+                        log.error('Error opening serial port \'%s\'', port);
+                    });
+
+                }
+                catch (err) {
+                    log.error(err);
+
+                    // clear sockets on errors
+                    sp.sockets.list = [];
+                }
+            }
+
+            log.debug('socket.on(\'serial-connect\'):', serialports[port]);
+        });
+
+        socket.on('serialport:write', function(msg) {
+            log.debug('socket.on(\'serialport:write\'):', { id: socket.id, msg: msg });
+            sp.write(msg);
+        });
+
+        socket.on('serialport:writeln', function(msg) {
+            log.debug('socket.on(\'serialport:writeln\'):', { id: socket.id, msg: msg });
+            msg = ('' + msg).trim();
+            sp.write(msg + '\n');
+        });
+
+        socket.on('grbl:start', function(port) {
+            var sp = serialports[port];
+            if ( ! isOpen(sp)) {
+                log.warn('The serial port is not open.', { port: port });
+                return;
+            }
+
+            var lines = [];
+
+            readline
+                .createInterface({
+                    input: fs.createReadStream('./test/github.gcode'),
+                    // No output
+                    terminal: false
+                })
+                .on('line', function(line) {
+                    line = stripComments(line);
+                    if (line.length === 0) {
+                        return;
+                    }
+                    lines.push(line);
+                })
+                .on('close', function() {
+                    sp.queue.add(lines);
+                    sp.queue.start();
+                });
+        });
+
+        socket.on('grbl:pause', function(port) {
+            var sp = serialports[port];
+            if ( ! isOpen(sp)) {
+                log.warn('The serial port is not open.', { port: port });
+                return;
+            }
+
+            sp.queue.pause();
+        });
+
+        socket.on('grbl:resume', function(port) {
+            var sp = serialports[port];
+            if ( ! isOpen(sp)) {
+                log.warn('The serial port is not open.', { port: port });
+                return;
+            }
+
+            sp.queue.resume();
+        });
+
+        socket.on('grbl:reset', function(port) {
+            var sp = serialports[port];
+            if ( ! isOpen(sp)) {
+                log.warn('The serial port is not open.', { port: port });
+                return;
+            }
+
+            sp.queue.reset();
         });
 
         serialport.list(function(err, ports) {
@@ -62,57 +246,8 @@ module.exports = function(server) {
             socket.emit('serialport:list', ports);
         });
 
-        socket.on('serialport:connect', function(data) {
-            var port = _.get(data, 'port');
-
-            serialports[port] = serialports[port] || {
-                port: port,
-                queue: queue(),
-                sockets: []
-            };
-
-            if ( ! _.includes(serialports[port].sockets, socket)) {
-                serialports[port].sockets.push(socket);
-            }
-
-            if ( ! serialports[port].serialPort) {
-                try {
-                    var baudrate = Number(_.get(data, 'baudrate')) || 9600; // defaults to 9600
-                    var serialPort = new SerialPort(port, {
-                        baudrate: baudrate,
-                        parser: serialport.parser.readline('\n')
-                    });
-
-                    serialports[port].serialPort = serialPort;
-
-                    serialPort.on('open', function(err) {
-                        log.debug('Connected to \'%s\' at %d.', port, baudrate);
-                    });
-
-                    serialPort.on('close', function(err) {
-                        log.debug('The serial port connection is closed.');
-
-                        delete serialports[port];
-                        serialports[port] = undefined;
-                    });
-
-                    serialPort.on('error', function() {
-                        log.error('Error opening serial port \'%s\'', port);
-                    });
-
-                }
-                catch (err) {
-                    log.error(err);
-
-                    // clear sockets on errors
-                    serialports.sockets = [];
-                }
-            }
-
-            log.debug('socket.on(\'serial-connect\'):', serialports[port]);
-        });
-
     });
+};
 
     /*
     socket.on('serialport:connect', function(data) {

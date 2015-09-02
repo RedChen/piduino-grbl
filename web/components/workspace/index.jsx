@@ -6,10 +6,8 @@ import { ConnectionWidget, AxesWidget, ConsoleWidget, GcodeWidget, WebcamWidget 
 import './workspace.css';
 
 export default class Workspace extends React.Component {
-    constructor(props) {
-        super(props);
-        this._sortableGroups = [];
-    }
+    _sortableGroups = [];
+
     componentDidMount() {
         this.createSortableGroupForPrimaryContainer(React.findDOMNode(this.refs['primary-container']));
         this.createSortableGroupForSecondaryContainer(React.findDOMNode(this.refs['secondary-container']));

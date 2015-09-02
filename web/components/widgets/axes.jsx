@@ -6,22 +6,20 @@ import socket from '../../socket';
 import './axes.css';
 
 class Axes extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeState: 'Idle', // Idle, Run, Hold, Door, Home, Alarm, Check
-            machinePos: { // Machine position
-                x: '0.000',
-                y: '0.000',
-                z: '0.000'
-            },
-            workingPos: { // Working position
-                x: '0.000',
-                y: '0.000',
-                z: '0.000'
-            }
-        };
-    }
+    state = {
+        activeState: 'Idle', // Idle, Run, Hold, Door, Home, Alarm, Check
+        machinePos: { // Machine position
+            x: '0.000',
+            y: '0.000',
+            z: '0.000'
+        },
+        workingPos: { // Working position
+            x: '0.000',
+            y: '0.000',
+            z: '0.000'
+        }
+    };
+
     componentDidMount() {
         var that = this;
         socket.on('grbl:status', function(data) {

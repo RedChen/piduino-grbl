@@ -5,12 +5,10 @@ import classNames from 'classnames';
 import './widget.css';
 
 class WidgetHeaderToolbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isCollapsed: false
-        };
-    }
+    state = {
+        isCollapsed: false
+    };
+
     handleClick(btn) {
         if (btn === 'btn-toggle') {
             this.props.handleClick(btn, ! this.state.isCollapsed);
@@ -157,12 +155,16 @@ class WidgetFooter extends React.Component {
 }
 
 export default class Widget extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isCollapsed: false
-        };
-    }
+    static propTypes = {
+        options: React.PropTypes.object
+    };
+    static defaultProps = {
+        options: {}
+    };
+    state = {
+        isCollapsed: false
+    };
+
     handleClick(target, val) {
         if (target === 'btn-toggle') {
             this.setState({
@@ -199,10 +201,3 @@ export default class Widget extends React.Component {
         );
     }
 }
-
-Widget.defaultProps = {
-    options: {}
-};
-Widget.propTypes = {
-    options: React.PropTypes.object
-};

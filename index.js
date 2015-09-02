@@ -7,7 +7,6 @@ var webappengine = require('webappengine');
 var readline = require('readline');
 var motionQueue = require('./motion-queue');
 var serialport = require('serialport');
-var SerialPort = serialport.SerialPort;
 var serverOptions = {
     port: 8000,
     routes: [
@@ -28,51 +27,42 @@ var stripComments = (function() {
     };
 }());
 
-function runFive(socket) {
-    var five = require('johnny-five');
-    var board = new five.Board();
+var sockets = [];
+var serialPortList = [];
 
-    board.on('ready', function() {
-        var servos = {
-            base: new five.Servo({
-                pin: 3,
-                center: true
-            }),
-            axis1: new five.Servo({
-                pin: 5,
-                center: true
-            }),
-            axis2: new five.Servo({
-                pin: 6,
-                center: true
-            }),
-            axis3: new five.Servo({
-                pin: 9,
-                center: true
-            }),
-            turn: new five.Servo({
-                pin: 10,
-                center: true
-            }),
-            claw: new five.Servo({
-                pin: 11,
-                center: true,
-                range: [125, 175]
-            })
+serialport.list(function(err, ports) {
+    if (err) {
+        log.error(err);
+        return;
+    }
+
+    serialPortList = _.map(ports, function(port) {
+        return {
+            port: port,
+            queue: motionQueue(),
+            sockets: [],
+            serialPort: null
         };
-
-        socket.on('robot-arm', function(data) {
-            servos.base.to(data.base);
-            servos.axis1.to(data.axis1);
-            servos.axis2.to(data.axis2);
-            servos.axis3.to(data.axis3);
-            servos.turn.to(data.turn);
-            servos.claw.to(data.claw);
-        });
     });
-}
 
-var connections = 0;
+    log.info('serial ports:', ports);
+    //socket.emit('serialport:list', ports);
+});
+
+var newSerialPort = function(options, callback) {
+    var serialPort = new SerialPort(options.path, {
+        parser: serialport.parser.readline('\n'),
+        baudrate: options.baudrate
+    });
+
+    serialport.on('open', function(callback) {
+        log.debug('Connected to \'%s\' at %d.', path, baudrate);
+
+        callback(serialPort, data);
+    });
+
+    return serialport;
+};
 
 function server(server) {
     var io = require('socket.io')(server, {
@@ -81,6 +71,17 @@ function server(server) {
     });
 
     io.on('connection', function(socket) {
+        sockets.push(socket);
+        log.debug('socket.io: connected', { id: socket.id, connected: _.size(sockets) });
+
+        socket.on('disconnect', function() {
+            sockets = _.remove(sockets, function(_socket) {
+                return _socket === socket;
+            });
+            log.debug('socket.io: disconnected', { id: socket.id, connected: _.size(sockets) });
+        });
+
+        /*
         serialport.list(function(err, ports) {
             if (err) {
                 log.error(err);
@@ -95,12 +96,15 @@ function server(server) {
             var path = data.port;
             var baudrate = Number(data.baudrate);
             var queue = motionQueue();
-            var sp = new SerialPort(path, {
-                baudrate: baudrate, // defaults to 9600
-                parser: serialport.parsers.readline('\n')
-            });
 
-            log.info('Starting a new serial port connection: total=%d', connections + 1);
+            if ( ! sp) {
+                sp = new serialport.SerialPort(path, {
+                    baudrate: baudrate, // defaults to 9600
+                    parser: serialport.parsers.readline('\n')
+                });
+            }
+
+            log.info('Starting a new serial port connection: sockets=%d', sockets.length);
 
             queue.on('data', function(line) {
                 line = line.trim();
@@ -109,17 +113,7 @@ function server(server) {
                 socket.emit('serialport:data', line);
             });
 
-            if (connections <= 0) {
-                setInterval(function() {
-                    if (sp.isOpen()) {
-                        sp.write('?');
-                    }
-                }, 500);
-            }
-
             sp.on('open', function() {
-                ++connections;
-
                 log.debug('Connected to \'%s\' at %d.', path, baudrate);
                 socket.emit('serialport:open', {
                     port: path,
@@ -165,7 +159,6 @@ function server(server) {
             });
 
             sp.on('close', function() {
-                --connections;
                 log.debug('The serial port connection is closed.');
             });
 
@@ -218,6 +211,7 @@ function server(server) {
             });
 
         });
+        */
 
     });
 }

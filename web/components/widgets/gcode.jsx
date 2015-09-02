@@ -18,45 +18,43 @@ let stripComments = (() => {
 })();
 
 class CommandsTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            table: {
-                width: this.props.width,
-                height: this.props.height,
-                columns: [
-                    {
-                        dataKey: 'status',
-                        isResizable: false,
-                        width: 28,
-                        align: 'center',
-                        cellRenderer: (cellData, cellDataKey, rowData, rowIndex, columnData, width) => {
-                            var style = {
-                                color: '#ddd'
-                            };
-                            return (
-                                <i className="icon ion-checkmark" style={style}></i>
-                            );
-                        }
-                    },
-                    {
-                        dataKey: 'gcode',
-                        isResizable: true,
-                        flexGrow: 1,
-                        width: 100,
-                        cellRenderer: (cellData, cellDataKey, rowData, rowIndex, columnData, width) => {
-                            return (
-                                <span className="text-overflow-ellipsis" style={{width: width}}>
-                                    <span className="label label-default">{rowIndex + 1}</span> {cellData} 
-                                </span>
-                            );
-                        }
+    state = {
+        table: {
+            width: this.props.width,
+            height: this.props.height,
+            columns: [
+                {
+                    dataKey: 'status',
+                    isResizable: false,
+                    width: 28,
+                    align: 'center',
+                    cellRenderer: (cellData, cellDataKey, rowData, rowIndex, columnData, width) => {
+                        var style = {
+                            color: '#ddd'
+                        };
+                        return (
+                            <i className="icon ion-checkmark" style={style}></i>
+                        );
                     }
-                ],
-                data: this.getDataFromStore()
-            }
-        };
-    }
+                },
+                {
+                    dataKey: 'gcode',
+                    isResizable: true,
+                    flexGrow: 1,
+                    width: 100,
+                    cellRenderer: (cellData, cellDataKey, rowData, rowIndex, columnData, width) => {
+                        return (
+                            <span className="text-overflow-ellipsis" style={{width: width}}>
+                                <span className="label label-default">{rowIndex + 1}</span> {cellData} 
+                            </span>
+                        );
+                    }
+                }
+            ],
+            data: this.getDataFromStore()
+        }
+    };
+
     getDataFromStore() {
         return _.get(store.getState(), 'gcode.data');
     }

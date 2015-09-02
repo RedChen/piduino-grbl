@@ -8,22 +8,20 @@ import log from '../../lib/log';
 import './connection.css';
 
 class Connection extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            ports: [],
-            port: '',
-            baudrate: 115200,
-            baudrates: [
-                9600,
-                19200,
-                38400,
-                57600,
-                115200
-            ],
-            refreshing: false
-        };
-    }
+    state = {
+        ports: [],
+        port: '',
+        baudrate: 115200,
+        baudrates: [
+            9600,
+            19200,
+            38400,
+            57600,
+            115200
+        ],
+        refreshing: false
+    };
+
     componentDidMount() {
         var that = this;
 

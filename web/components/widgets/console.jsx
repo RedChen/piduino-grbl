@@ -71,12 +71,10 @@ class ConsoleWindow extends React.Component {
 }
 
 export default class ConsoleWidget extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            messages: []
-        };
-    }
+    state = {
+        messages: []
+    };
+
     componentDidMount() {
         var that = this;
         socket.on('serialport:data', (line) => {

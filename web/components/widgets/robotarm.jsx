@@ -21,17 +21,15 @@ class Slider extends React.Component {
 }
 
 export default class ConsoleWidget extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            base: 0,
-            axis1: 0,
-            axis2: 0,
-            axis3: 0,
-            turn: 0,
-            claw: 0
-        };
-    }
+    state = {
+        base: 0,
+        axis1: 0,
+        axis2: 0,
+        axis3: 0,
+        turn: 0,
+        claw: 0
+    };
+
     componentDidMount() {
         this.handleChange();
     }
